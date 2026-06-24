@@ -1,0 +1,141 @@
+:root {
+  --accent: #FF6B35;
+  --accent-dark: #e55a25;
+  --dark: #1a1a2e;
+  --mid: #4a4a68;
+  --light: #f8f8fc;
+  --border: #e8e8f0;
+  --white: #ffffff;
+  --success: #22c55e;
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--dark);
+  background: var(--white);
+  overflow-x: hidden;
+}
+
+/* Marquee Animation */
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Product Card Hover */
+.product-card:hover {
+  box-shadow: 0 20px 48px rgba(0,0,0,0.1);
+  transform: translateY(-4px);
+  border-color: transparent;
+}
+
+.product-card:hover .product-img {
+  transform: scale(1.06);
+}
+
+.product-card:hover .product-actions {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Category Card Hover */
+.cat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.14);
+}
+
+.cat-card:hover .cat-img {
+  transform: scale(1.06);
+}
+
+.cat-card:hover .cat-overlay {
+  opacity: 0.85;
+}
+
+.cat-card:hover .cat-link {
+  gap: 9px;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 14px !important;
+  }
+  
+  .hamburger {
+    display: flex !important;
+  }
+  
+  .nav-links,
+  .nav-search {
+    display: none !important;
+  }
+  
+  .hero-inner {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+    padding: 56px 20px !important;
+  }
+  
+  .hero-visual {
+    display: none !important;
+  }
+  
+  .promo-banner {
+    grid-template-columns: 1fr !important;
+    padding: 32px 24px !important;
+    text-align: center !important;
+  }
+  
+  .promo-title {
+    font-size: 1.7rem !important;
+  }
+  
+  .footer-inner {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  
+  .section {
+    padding: 52px 0 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+  
+  .footer-inner {
+    grid-template-columns: 1fr !important;
+  }
+}
