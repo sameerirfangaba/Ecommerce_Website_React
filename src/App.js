@@ -13,6 +13,8 @@ import ShippingPolicy from './pages/ShippingPolicy';
 import Returns from './pages/Returns';
 import NotFound from './pages/NotFound';
 import Admin from './pages/Admin/Admin';
+import Blog from './pages/Blog';
+import BlogDetail from './pages/BlogDetail';
 
 function App() {
   return (
@@ -30,6 +32,8 @@ function App() {
         <Route path="/terms" element={<Terms />} />
         <Route path="/shipping-policy" element={<ShippingPolicy />} />
         <Route path="/returns" element={<Returns />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:slug" element={<BlogDetail />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

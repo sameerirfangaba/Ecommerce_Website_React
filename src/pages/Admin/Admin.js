@@ -8,6 +8,7 @@ import Dashboard from './Dashboard';
 import Products from './Products';
 import Orders from './Orders';
 import Settings from './Settings';
+import BlogManagement from './BlogManagement';
 
 const ADMIN_EMAIL = 'sameerirfangaba@gmail.com';
 
@@ -117,6 +118,8 @@ function Admin() {
         return <Products formatPrice={formatPrice} />;
       case 'orders':
         return <Orders formatPrice={formatPrice} />;
+      case 'blog':
+        return <BlogManagement />;
       case 'settings':
         return <Settings />;
       default:
@@ -131,7 +134,7 @@ function Admin() {
       background: '#f8f8fc',
       position: 'relative'
     }}>
-      {/* Sidebar - Fixed position with proper width */}
+      {/* Sidebar */}
       <div style={{
         position: 'fixed',
         left: 0,
@@ -148,7 +151,7 @@ function Admin() {
         <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
       </div>
       
-      {/* Main Content - Push right by sidebar width */}
+      {/* Main Content */}
       <div style={{
         flex: 1,
         marginLeft: '280px',

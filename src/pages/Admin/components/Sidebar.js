@@ -3,6 +3,7 @@ function Sidebar({ activeTab, setActiveTab }) {
     { id: 'dashboard', label: 'Dashboard', icon: 'fa-chart-line' },
     { id: 'products', label: 'Products', icon: 'fa-box' },
     { id: 'orders', label: 'Orders', icon: 'fa-shopping-cart' },
+    { id: 'blog', label: 'Blog', icon: 'fa-newspaper' },
     { id: 'settings', label: 'Settings', icon: 'fa-cog' }
   ];
 

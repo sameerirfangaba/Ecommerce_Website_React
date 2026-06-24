@@ -84,6 +84,7 @@ function Navbar() {
 
   return (
     <>
+      {/* MARQUEE */}
       <div className="marquee-announce" style={{
         background: '#FF6B35',
         color: 'white',
@@ -137,6 +138,7 @@ function Navbar() {
         </button>
       </div>
 
+      {/* NAVBAR */}
       <header className="navbar" style={{
         background: '#1a1a2e',
         borderBottom: '1px solid rgba(255,255,255,0.06)',
@@ -156,6 +158,7 @@ function Navbar() {
           justifyContent: 'space-between',
           gap: '20px'
         }}>
+          {/* Hamburger */}
           <button className="hamburger" onClick={() => setMobileMenu(true)} style={{
             display: 'none',
             flexDirection: 'column',
@@ -170,6 +173,7 @@ function Navbar() {
             <span style={{ width: '24px', height: '2.5px', background: 'rgba(255,255,255,0.9)', borderRadius: '2px', display: 'block' }}></span>
           </button>
 
+          {/* Logo */}
           <Link to="/" className="nav-logo" style={{
             display: 'flex',
             alignItems: 'center',
@@ -197,6 +201,7 @@ function Navbar() {
             }}>Ismora</span>
           </Link>
 
+          {/* Nav Links */}
           <ul className="nav-links" style={{
             display: 'flex',
             alignItems: 'center',
@@ -251,6 +256,21 @@ function Navbar() {
               </Link>
             </li>
             <li>
+              <Link to="/blog" style={{
+                padding: '8px 18px',
+                borderRadius: '8px',
+                fontSize: '0.9rem',
+                fontWeight: '500',
+                fontFamily: "'DM Sans', sans-serif",
+                color: isActive('/blog') ? '#FF6B35' : 'rgba(255,255,255,0.7)',
+                textDecoration: 'none',
+                transition: 'all 0.2s',
+                background: isActive('/blog') ? 'rgba(255,107,53,0.1)' : 'transparent'
+              }}>
+                Blog
+              </Link>
+            </li>
+            <li>
               <Link to="/contact-us" style={{
                 padding: '8px 18px',
                 borderRadius: '8px',
@@ -267,6 +287,7 @@ function Navbar() {
             </li>
           </ul>
 
+          {/* Search */}
           <div className="nav-search" style={{
             flex: '1',
             maxWidth: '280px',
@@ -312,6 +333,7 @@ function Navbar() {
               onBlur={(e) => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)'}
             />
 
+            {/* Search Dropdown */}
             {showDropdown && (
               <div style={{
                 position: 'absolute',
@@ -458,6 +480,7 @@ function Navbar() {
             )}
           </div>
 
+          {/* Actions */}
           <div className="nav-actions" style={{
             display: 'flex',
             alignItems: 'center',
@@ -551,6 +574,7 @@ function Navbar() {
         </div>
       </header>
 
+      {/* Mobile Drawer */}
       <div className={`mobile-drawer ${mobileMenu ? 'open' : ''}`} style={{
         position: 'fixed',
         top: 0,
@@ -668,6 +692,22 @@ function Navbar() {
           }}>
             <i className="fas fa-info-circle" style={{ width: '20px', textAlign: 'center', color: '#FF6B35' }}></i>About
           </Link>
+          <Link to="/blog" onClick={() => setMobileMenu(false)} style={{
+            padding: '14px 16px',
+            borderRadius: '10px',
+            fontSize: '1rem',
+            fontWeight: '500',
+            fontFamily: "'DM Sans', sans-serif",
+            color: isActive('/blog') ? '#1a1a2e' : '#4a4a68',
+            textDecoration: 'none',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '12px',
+            transition: 'all 0.2s',
+            background: isActive('/blog') ? '#f8f8fc' : 'transparent'
+          }}>
+            <i className="fas fa-newspaper" style={{ width: '20px', textAlign: 'center', color: '#FF6B35' }}></i>Blog
+          </Link>
           <Link to="/contact-us" onClick={() => setMobileMenu(false)} style={{
             padding: '14px 16px',
             borderRadius: '10px',
@@ -687,6 +727,7 @@ function Navbar() {
         </nav>
       </div>
 
+      {/* Overlay */}
       {mobileMenu && (
         <div onClick={() => setMobileMenu(false)} style={{
           position: 'fixed',
@@ -700,6 +741,7 @@ function Navbar() {
         }}></div>
       )}
 
+      {/* Cart Drawer */}
       <CartDrawer isOpen={isCartOpen} onClose={closeCart} />
 
       <style>{`
