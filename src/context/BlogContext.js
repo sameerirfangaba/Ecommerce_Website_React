@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { db } from '../firebase/config';
 import { 
+  db, 
   collection, 
   getDocs, 
   getDoc, 
@@ -12,7 +12,7 @@ import {
   orderBy,
   where,
   serverTimestamp 
-} from 'firebase/firestore';
+} from '../firebase/config';
 
 const BlogContext = createContext();
 
@@ -29,11 +29,6 @@ export const BlogProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [categories, setCategories] = useState([]);
 
-  // Load all blogs
-  useEffect(() => {
-    loadBlogs();
-  }, []);
-
   const loadBlogs = async () => {
     setLoading(true);
     try {
@@ -48,10 +43,8 @@ export const BlogProvider = ({ children }) => {
       });
       setBlogs(blogData);
       
-      // Extract unique categories
       const uniqueCategories = [...new Set(blogData.map(b => b.category).filter(Boolean))];
       setCategories(uniqueCategories);
-      
       setLoading(false);
     } catch (error) {
       console.error('Error loading blogs:', error);
@@ -59,7 +52,10 @@ export const BlogProvider = ({ children }) => {
     }
   };
 
-  // Get single blog by slug
+  useEffect(() => {
+    loadBlogs();
+  }, []);
+
   const getBlogBySlug = async (slug) => {
     try {
       const q = query(
@@ -78,7 +74,6 @@ export const BlogProvider = ({ children }) => {
     }
   };
 
-  // Get single blog by ID
   const getBlogById = async (id) => {
     try {
       const docRef = doc(db, 'blogs', id);
@@ -93,7 +88,6 @@ export const BlogProvider = ({ children }) => {
     }
   };
 
-  // Add blog
   const addBlog = async (blogData) => {
     try {
       const data = {
@@ -112,7 +106,6 @@ export const BlogProvider = ({ children }) => {
     }
   };
 
-  // Update blog
   const updateBlog = async (id, blogData) => {
     try {
       const docRef = doc(db, 'blogs', id);
@@ -127,7 +120,6 @@ export const BlogProvider = ({ children }) => {
     }
   };
 
-  // Delete blog
   const deleteBlog = async (id) => {
     try {
       await deleteDoc(doc(db, 'blogs', id));
@@ -138,7 +130,6 @@ export const BlogProvider = ({ children }) => {
     }
   };
 
-  // Increment views
   const incrementViews = async (id) => {
     try {
       const docRef = doc(db, 'blogs', id);

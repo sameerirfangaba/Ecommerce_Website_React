@@ -29,20 +29,22 @@ export default async function handler(req, res) {
       return res.status(413).json({ error: 'Image is too large. Max size is 4MB.' });
     }
 
-    // For local development without GitHub token, use placeholder
-    // In production, use GitHub upload
     const token = process.env.GITHUB_TOKEN;
     const owner = process.env.GITHUB_OWNER;
     const repo = process.env.GITHUB_REPO;
     const branch = process.env.GITHUB_BRANCH || 'main';
     const siteBaseUrl = process.env.SITE_BASE_URL || 'https://ismora.shop';
 
-    // If GitHub credentials are not available, return placeholder URL
     if (!token || !owner || !repo) {
-      // For development, return a fake URL
+      // For development without GitHub token, return placeholder
       const ext = contentType.split('/')[1] || 'jpg';
-      const fakeUrl = `https://placehold.co/800x600/f0f0f0/aaa?text=${fileName.replace(/\.[^/.]+$/, '').substring(0, 20)}`;
-      return res.status(200).json({ url: fakeUrl, path: 'placeholder' });
+      const baseName = fileName.replace(/\.[^/.]+$/, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').slice(0, 30) || 'blog-image';
+      const placeholderUrl = `https://placehold.co/800x600/FF6B35/FFFFFF?text=${encodeURIComponent(baseName)}`;
+      return res.status(200).json({ 
+        url: placeholderUrl, 
+        path: 'placeholder',
+        message: 'Placeholder image (GitHub credentials not configured)'
+      });
     }
 
     const extensionFromMime = {
@@ -77,7 +79,7 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         message: `Upload blog image ${uniqueName}`,
         content: base64,
-        branch
+        branch: branch
       })
     });
 
@@ -92,6 +94,7 @@ export default async function handler(req, res) {
     const publicUrl = `${String(siteBaseUrl).replace(/\/$/, '')}/assets/blogs/${encodeURIComponent(uniqueName)}`;
     return res.status(200).json({ url: publicUrl, path: repoPath });
   } catch (error) {
+    console.error('Upload error:', error);
     return res.status(500).json({ error: error.message || 'Upload failed' });
   }
 }

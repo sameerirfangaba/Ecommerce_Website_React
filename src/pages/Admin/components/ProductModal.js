@@ -1,9 +1,44 @@
 import { useState, useEffect, useRef } from 'react';
 import { db } from '../../../firebase/config';
 import { doc, addDoc, updateDoc, collection, serverTimestamp } from 'firebase/firestore';
+import { useToast } from '../../../context/ToastContext';
+
+// ✅ ImgBB Upload Function
+const uploadToImgBB = async (file) => {
+  if (!file || !file.type.startsWith('image/')) {
+    throw new Error('Please select a valid image file');
+  }
+
+  if (file.size > 32 * 1024 * 1024) {
+    throw new Error('Image is too large. Max size is 32MB.');
+  }
+
+  const formData = new FormData();
+  formData.append('image', file);
+  formData.append('key', '396308e8c9d3f49bcdefd40a5ad2727d');
+
+  const response = await fetch('https://api.imgbb.com/1/upload', {
+    method: 'POST',
+    body: formData
+  });
+
+  const data = await response.json();
+
+  if (!response.ok || !data.success) {
+    throw new Error(data.error?.message || 'Upload failed');
+  }
+
+  return data.data.url;
+};
 
 function ProductModal({ product, onClose, onSave }) {
+  const { showToast } = useToast();
   const [loading, setLoading] = useState(false);
+  const [uploadingImage, setUploadingImage] = useState(false);
+  const [quillLoaded, setQuillLoaded] = useState(false);
+  const quillRef = useRef(null);
+  const quillInstance = useRef(null);
+  
   const [formData, setFormData] = useState({
     name: '',
     price: '',
@@ -55,6 +90,124 @@ function ProductModal({ product, onClose, onSave }) {
       }
     }
   }, [product]);
+
+  // ✅ Initialize Quill for description
+  useEffect(() => {
+    const initQuill = () => {
+      if (typeof window !== 'undefined' && window.Quill && document.getElementById('quill-editor') && !quillInstance.current) {
+        try {
+          const toolbarOptions = [
+            [{ header: [1, 2, 3, 4, 5, 6, false] }],
+            ['bold', 'italic', 'underline', 'strike'],
+            [{ list: 'ordered' }, { list: 'bullet' }],
+            [{ color: [] }, { background: [] }],
+            [{ align: [] }],
+            ['link', 'image', 'video'],
+            ['blockquote', 'code-block'],
+            ['clean']
+          ];
+
+          const quill = new window.Quill('#quill-editor', {
+            theme: 'snow',
+            modules: {
+              toolbar: toolbarOptions
+            },
+            placeholder: 'Write product description here...'
+          });
+
+          if (formData.desc) {
+            quill.root.innerHTML = formData.desc;
+          }
+
+          quill.on('text-change', () => {
+            const content = quill.root.innerHTML;
+            setFormData(prev => ({ ...prev, desc: content }));
+          });
+
+          const toolbar = quill.getModule('toolbar');
+          if (toolbar) {
+            toolbar.addHandler('image', () => {
+              const input = document.createElement('input');
+              input.setAttribute('type', 'file');
+              input.setAttribute('accept', 'image/*');
+              input.click();
+
+              input.onchange = async () => {
+                const file = input.files[0];
+                if (!file) return;
+
+                try {
+                  const range = quill.getSelection();
+                  if (range) {
+                    quill.insertText(range.index, '⏳ Uploading image...', 'bold');
+                    quill.setSelection(range.index + 19);
+                  }
+
+                  const url = await uploadToImgBB(file);
+
+                  if (range) {
+                    quill.deleteText(range.index, 19);
+                    quill.insertEmbed(range.index, 'image', url);
+                    quill.setSelection(range.index + 1);
+                  }
+                  showToast('Image uploaded successfully!', 'success');
+                } catch (error) {
+                  showToast('Image upload failed: ' + error.message, 'error');
+                  const range = quill.getSelection();
+                  if (range) {
+                    quill.deleteText(range.index - 19, 19);
+                  }
+                }
+              };
+            });
+          }
+
+          quillInstance.current = quill;
+          setQuillLoaded(true);
+        } catch (error) {
+          console.error('Quill init error:', error);
+        }
+      }
+    };
+
+    const checkQuill = () => {
+      if (typeof window !== 'undefined' && window.Quill) {
+        initQuill();
+        return true;
+      }
+      return false;
+    };
+
+    if (checkQuill()) return;
+
+    const interval = setInterval(() => {
+      if (checkQuill()) {
+        clearInterval(interval);
+      }
+    }, 100);
+
+    const timeout = setTimeout(() => {
+      clearInterval(interval);
+      if (!quillInstance.current) {
+        console.warn('Quill failed to load from CDN');
+      }
+    }, 5000);
+
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timeout);
+      if (quillInstance.current) {
+        quillInstance.current = null;
+      }
+    };
+  }, []);
+
+  // ✅ Update Quill when desc changes externally
+  useEffect(() => {
+    if (quillInstance.current && formData.desc !== quillInstance.current.root.innerHTML) {
+      quillInstance.current.root.innerHTML = formData.desc;
+    }
+  }, [formData.desc]);
 
   // ✅ Auto-set variant stock from product stock
   useEffect(() => {
@@ -121,7 +274,7 @@ function ProductModal({ product, onClose, onSave }) {
       return {
         key,
         attributes: attrs,
-        price: existing?.price !== undefined && existing?.price !== '' ? existing.price : defaultPrice, // ✅ Default price
+        price: existing?.price !== undefined && existing?.price !== '' ? existing.price : defaultPrice,
         stock: existing?.stock !== undefined ? existing.stock : defaultStock,
         image: existing?.image || '',
         color: combo.find(c => c.value.color)?.value?.color || null
@@ -199,7 +352,6 @@ function ProductModal({ product, onClose, onSave }) {
     setVariantCombinations(updated);
   };
 
-  // ✅ Apply price to all variants
   const applyPriceToAllVariants = () => {
     const priceValue = parseFloat(formData.price) || 0;
     const updated = variantCombinations.map(combo => ({
@@ -217,15 +369,75 @@ function ProductModal({ product, onClose, onSave }) {
     }
   };
 
+  // ✅ Main Image Upload with ImgBB
+  const handleMainImageUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      setImageUrl(event.target.result);
+      setFormData({ ...formData, image: event.target.result });
+    };
+    reader.readAsDataURL(file);
+
+    setUploadingImage(true);
+    try {
+      const url = await uploadToImgBB(file);
+      setImageUrl(url);
+      setFormData({ ...formData, image: url });
+      showToast('Image uploaded successfully!', 'success');
+    } catch (error) {
+      console.error('Upload error:', error);
+      showToast('Upload failed: ' + error.message, 'error');
+      setImageUrl('');
+      setFormData({ ...formData, image: '' });
+    }
+    setUploadingImage(false);
+  };
+
+  const addExtraImage = () => {
+    setExtraImages([...extraImages, '']);
+  };
+
+  const updateExtraImage = (index, value) => {
+    const newImages = [...extraImages];
+    newImages[index] = value;
+    setExtraImages(newImages);
+  };
+
+  const removeExtraImage = (index) => {
+    const newImages = [...extraImages];
+    newImages.splice(index, 1);
+    setExtraImages(newImages);
+  };
+
+  // ✅ Fix: Handle spaces and line breaks in description
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.image) {
-      alert('Please add a main image!');
+      showToast('Please add a main image!', 'warning');
       return;
     }
 
     setLoading(true);
     try {
+      // ✅ Fix: Preserve spaces and line breaks
+      let descContent = formData.desc || '';
+      
+      // Replace empty paragraphs with space (preserve spacing)
+      descContent = descContent.replace(/<p><br><\/p>/g, '<p>&nbsp;</p>');
+      descContent = descContent.replace(/<p>\s*<\/p>/g, '<p>&nbsp;</p>');
+      
+      // Replace multiple spaces with &nbsp; (non-breaking space)
+      descContent = descContent.replace(/  /g, ' &nbsp;');
+      
+      // Preserve line breaks
+      descContent = descContent.replace(/\n/g, '<br>');
+      
+      // Ensure paragraphs have proper spacing
+      descContent = descContent.replace(/<p>/g, '<p style="margin-bottom: 1.2em;">');
+
       const data = {
         name: formData.name,
         price: parseFloat(formData.price),
@@ -235,7 +447,7 @@ function ProductModal({ product, onClose, onSave }) {
         image: formData.image,
         images: [formData.image, ...extraImages].filter(Boolean),
         shortDesc: formData.shortDesc || '',
-        desc: formData.desc || '',
+        desc: descContent, // ✅ Save cleaned content
         hasVariants: variantsEnabled && variantGroups.length > 0 && variantGroups.some(g => g.values.length > 0),
         variants: variantsEnabled && variantGroups.length > 0 && variantGroups.some(g => g.values.length > 0) 
           ? {
@@ -258,11 +470,13 @@ function ProductModal({ product, onClose, onSave }) {
 
       if (product?.id) {
         await updateDoc(doc(db, 'products', product.id), data);
+        showToast('Product updated successfully!', 'success');
       } else {
         await addDoc(collection(db, 'products'), {
           ...data,
           createdAt: serverTimestamp()
         });
+        showToast('Product added successfully!', 'success');
       }
 
       localStorage.removeItem('cached_products');
@@ -271,37 +485,9 @@ function ProductModal({ product, onClose, onSave }) {
       onClose();
     } catch (error) {
       console.error('Error saving product:', error);
-      alert('Error saving product');
+      showToast('Error saving product: ' + error.message, 'error');
     }
     setLoading(false);
-  };
-
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        setImageUrl(event.target.result);
-        setFormData({ ...formData, image: event.target.result });
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const addExtraImage = () => {
-    setExtraImages([...extraImages, '']);
-  };
-
-  const updateExtraImage = (index, value) => {
-    const newImages = [...extraImages];
-    newImages[index] = value;
-    setExtraImages(newImages);
-  };
-
-  const removeExtraImage = (index) => {
-    const newImages = [...extraImages];
-    newImages.splice(index, 1);
-    setExtraImages(newImages);
   };
 
   return (
@@ -324,9 +510,9 @@ function ProductModal({ product, onClose, onSave }) {
         background: 'white',
         borderRadius: '16px',
         padding: '32px',
-        maxWidth: '900px',
+        maxWidth: '1000px',
         width: '100%',
-        maxHeight: '90vh',
+        maxHeight: '95vh',
         overflowY: 'auto',
         position: 'relative'
       }}>
@@ -489,7 +675,7 @@ function ProductModal({ product, onClose, onSave }) {
             </div>
           </div>
 
-          {/* Main Image */}
+          {/* Main Image Upload */}
           <div style={{ marginBottom: '16px' }}>
             <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: 500, marginBottom: '6px' }}>
               Main Product Image *
@@ -497,24 +683,22 @@ function ProductModal({ product, onClose, onSave }) {
             <div style={{
               border: '2px dashed #d1d5db',
               borderRadius: '12px',
-              padding: '24px',
+              padding: '20px',
               textAlign: 'center',
               cursor: 'pointer',
-              transition: 'all 0.2s'
+              transition: 'all 0.2s',
+              background: '#fafafa'
             }}
             onClick={() => document.getElementById('main-image-input').click()}
-            onDragOver={(e) => { e.preventDefault(); e.currentTarget.style.borderColor = '#4f46e5'; e.currentTarget.style.background = '#eef2ff'; }}
-            onDragLeave={(e) => { e.currentTarget.style.borderColor = '#d1d5db'; e.currentTarget.style.background = 'transparent'; }}
+            onDragOver={(e) => { e.preventDefault(); e.currentTarget.style.borderColor = '#FF6B35'; e.currentTarget.style.background = '#fff7ed'; }}
+            onDragLeave={(e) => { e.currentTarget.style.borderColor = '#d1d5db'; e.currentTarget.style.background = '#fafafa'; }}
             onDrop={(e) => {
               e.preventDefault();
               const file = e.dataTransfer.files[0];
               if (file && file.type.startsWith('image/')) {
-                const reader = new FileReader();
-                reader.onload = (event) => {
-                  setImageUrl(event.target.result);
-                  setFormData({ ...formData, image: event.target.result });
-                };
-                reader.readAsDataURL(file);
+                const input = document.getElementById('main-image-input');
+                const event = { target: { files: [file] } };
+                handleMainImageUpload(event);
               }
             }}
             >
@@ -523,23 +707,56 @@ function ProductModal({ product, onClose, onSave }) {
                 type="file"
                 accept="image/*"
                 style={{ display: 'none' }}
-                onChange={handleImageUpload}
+                onChange={handleMainImageUpload}
               />
-              {imageUrl ? (
-                <img
-                  src={imageUrl}
-                  alt="Main product"
-                  style={{
-                    maxHeight: '150px',
-                    maxWidth: '100%',
-                    objectFit: 'contain',
-                    borderRadius: '8px'
-                  }}
-                />
+              {uploadingImage ? (
+                <div style={{ padding: '20px' }}>
+                  <i className="fas fa-spinner fa-spin" style={{ fontSize: '2rem', color: '#FF6B35', display: 'block', marginBottom: '8px' }}></i>
+                  <p style={{ color: '#6b7280' }}>Uploading...</p>
+                </div>
+              ) : imageUrl ? (
+                <div style={{ position: 'relative' }}>
+                  <img
+                    src={imageUrl}
+                    alt="Main product"
+                    style={{
+                      maxHeight: '200px',
+                      maxWidth: '100%',
+                      objectFit: 'contain',
+                      borderRadius: '8px'
+                    }}
+                  />
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setImageUrl('');
+                      setFormData({ ...formData, image: '' });
+                    }}
+                    style={{
+                      position: 'absolute',
+                      top: '8px',
+                      right: '8px',
+                      width: '32px',
+                      height: '32px',
+                      borderRadius: '50%',
+                      background: 'rgba(0,0,0,0.6)',
+                      color: 'white',
+                      border: 'none',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }}
+                  >
+                    <i className="fas fa-times"></i>
+                  </button>
+                </div>
               ) : (
                 <>
                   <i className="fas fa-cloud-upload-alt" style={{ fontSize: '3rem', color: '#9ca3af', display: 'block', marginBottom: '8px' }}></i>
-                  <p style={{ color: '#6b7280', fontSize: '0.875rem' }}>Click or drag & drop</p>
+                  <p style={{ color: '#6b7280', fontSize: '0.875rem' }}>Click or drag & drop to upload</p>
+                  <p style={{ color: '#9ca3af', fontSize: '0.75rem', marginTop: '4px' }}>PNG, JPG, WEBP • Max 32MB</p>
                 </>
               )}
             </div>
@@ -635,24 +852,40 @@ function ProductModal({ product, onClose, onSave }) {
             />
           </div>
 
-          {/* Long Description */}
+          {/* ✅ Long Description with Quill Editor */}
           <div style={{ marginBottom: '16px' }}>
-            <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: 500, marginBottom: '6px' }}>
-              Long Description
+            <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: 500, marginBottom: '8px' }}>
+              Long Description *
             </label>
-            <textarea
-              rows="6"
-              value={formData.desc}
-              onChange={(e) => setFormData({ ...formData, desc: e.target.value })}
-              style={{
-                width: '100%',
-                padding: '12px 16px',
-                border: '1px solid #e5e7eb',
-                borderRadius: '8px',
-                fontSize: '0.9rem',
-                resize: 'vertical'
-              }}
-            />
+            <div style={{
+              border: '1px solid #e5e7eb',
+              borderRadius: '8px',
+              overflow: 'hidden',
+              background: 'white'
+            }}>
+              <div
+                id="quill-editor"
+                style={{
+                  minHeight: '200px',
+                  maxHeight: '400px',
+                  overflowY: 'auto',
+                  background: 'white'
+                }}
+              />
+              {!quillLoaded && (
+                <div style={{
+                  padding: '20px',
+                  textAlign: 'center',
+                  color: '#6b7280'
+                }}>
+                  <i className="fas fa-spinner fa-spin" style={{ marginRight: '8px' }}></i>
+                  Loading editor...
+                </div>
+              )}
+            </div>
+            <p style={{ fontSize: '0.75rem', color: '#6b7280', marginTop: '4px' }}>
+              <i className="fas fa-info-circle"></i> Use the toolbar to format text. Click the <strong>image icon</strong> to upload images.
+            </p>
           </div>
 
           {/* Custom Text Field */}
@@ -814,7 +1047,6 @@ function ProductModal({ product, onClose, onSave }) {
 
             {variantsEnabled && (
               <div>
-                {/* Add Variant Group Buttons */}
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '12px' }}>
                   <button
                     type="button"
@@ -894,7 +1126,6 @@ function ProductModal({ product, onClose, onSave }) {
                   </button>
                 </div>
 
-                {/* Variant Groups */}
                 {variantGroups.map((group, gIdx) => (
                   <div key={group.id} style={{
                     background: '#f9fafb',
@@ -943,7 +1174,6 @@ function ProductModal({ product, onClose, onSave }) {
                       </button>
                     </div>
 
-                    {/* Values */}
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '8px' }}>
                       {group.values.map((value, vIdx) => (
                         <span key={vIdx} style={{
@@ -985,7 +1215,6 @@ function ProductModal({ product, onClose, onSave }) {
                       ))}
                     </div>
 
-                    {/* Add Value */}
                     <div style={{ display: 'flex', gap: '6px', alignItems: 'center', flexWrap: 'wrap' }}>
                       {group.type === 'Color' && (
                         <input
@@ -1042,7 +1271,6 @@ function ProductModal({ product, onClose, onSave }) {
                   </div>
                 ))}
 
-                {/* Combinations Table */}
                 {variantCombinations.length > 0 && (
                   <div style={{
                     marginTop: '16px',
@@ -1237,7 +1465,7 @@ function ProductModal({ product, onClose, onSave }) {
 
           <button
             type="submit"
-            disabled={loading}
+            disabled={loading || uploadingImage || !quillLoaded}
             style={{
               width: '100%',
               padding: '14px',
@@ -1247,16 +1475,17 @@ function ProductModal({ product, onClose, onSave }) {
               color: 'white',
               fontSize: '1rem',
               fontWeight: 600,
-              cursor: loading ? 'not-allowed' : 'pointer',
-              opacity: loading ? 0.7 : 1,
+              cursor: (loading || uploadingImage || !quillLoaded) ? 'not-allowed' : 'pointer',
+              opacity: (loading || uploadingImage || !quillLoaded) ? 0.7 : 1,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: '8px'
+              gap: '8px',
+              marginTop: '8px'
             }}
           >
             <i className="fas fa-save"></i>
-            {loading ? 'Saving...' : 'Save Product'}
+            {loading ? 'Saving...' : uploadingImage ? 'Uploading Image...' : !quillLoaded ? 'Loading Editor...' : 'Save Product'}
           </button>
         </form>
       </div>

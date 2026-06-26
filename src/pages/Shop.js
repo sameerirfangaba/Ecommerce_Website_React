@@ -135,6 +135,10 @@ function Shop() {
     const discount = hasDiscount ? Math.round(((product.comparePrice - product.price) / product.comparePrice) * 100) : 0;
     const isListView = view === 'list';
 
+    const handleCardClick = () => {
+      window.location.href = `/product/${product.id}`;
+    };
+
     return (
       <div 
         className="product-card" 
@@ -147,7 +151,7 @@ function Shop() {
           transition: 'all 0.3s cubic-bezier(0.4,0,0.2,1)',
           ...(isListView ? { display: 'grid', gridTemplateColumns: '160px 1fr', gap: 0 } : {})
         }}
-        onClick={() => window.location = `/product/${product.id}`}
+        onClick={handleCardClick}
       >
         <div 
           className="product-img-wrap" 
@@ -219,7 +223,7 @@ function Shop() {
                   justifyContent: 'center',
                   gap: '6px'
                 }}
-                onClick={(e) => handleAddToCart(product, e)}
+                onClick={handleAddToCart}
               >
                 <i className="fas fa-cart-plus"></i>
               </button>
@@ -325,7 +329,7 @@ function Shop() {
                   justifyContent: 'center',
                   gap: '6px'
                 }}
-                onClick={(e) => handleAddToCart(product, e)}
+                onClick={handleAddToCart}
               >
                 <i className="fas fa-cart-plus"></i> Add to Cart
               </button>

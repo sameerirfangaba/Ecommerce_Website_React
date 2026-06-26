@@ -1002,20 +1002,29 @@ function ProductDetail() {
             </button>
           </div>
 
+          {/* Description Tab */}
           <div style={{ display: activeTab === 'desc' ? 'block' : 'none' }}>
             <div style={{
               color: '#4a4a68',
-              lineHeight: '1.7',
+              lineHeight: '1.8',
               fontSize: '0.88rem'
             }}>
               {product.desc ? (
-                <div dangerouslySetInnerHTML={{ __html: product.desc }} />
+                <div 
+                  className="product-description"
+                  dangerouslySetInnerHTML={{ 
+                    __html: product.desc
+                      .replace(/<p>/g, '<p style="margin-bottom: 1.2em;">')
+                      .replace(/<br>/g, '<br />')
+                  }} 
+                />
               ) : (
                 <p style={{ color: '#4a4a68' }}>No description available.</p>
               )}
             </div>
           </div>
 
+          {/* Info Tab */}
           <div style={{ display: activeTab === 'info' ? 'block' : 'none' }}>
             <table style={{
               width: '100%',
@@ -1049,6 +1058,7 @@ function ProductDetail() {
             </table>
           </div>
 
+          {/* Reviews Tab */}
           <div style={{ display: activeTab === 'reviews' ? 'block' : 'none' }}>
             <div style={{ textAlign: 'center', padding: '36px 0' }}>
               <div style={{

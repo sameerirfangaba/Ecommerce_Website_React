@@ -486,7 +486,7 @@ function Navbar() {
             alignItems: 'center',
             gap: '8px'
           }}>
-            <button className="nav-icon-btn" title="Wishlist" style={{
+            {/* <button className="nav-icon-btn" title="Wishlist" style={{
               width: '42px',
               height: '42px',
               borderRadius: '10px',
@@ -514,7 +514,7 @@ function Navbar() {
             }}
             >
               <i className="far fa-heart"></i>
-            </button>
+            </button> */}
             
             <button 
               className="nav-icon-btn" 

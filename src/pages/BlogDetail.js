@@ -39,28 +39,62 @@ function BlogDetail() {
     });
   };
 
+  // ✅ Function to clean and render HTML content properly
+  const renderContent = (html) => {
+    if (!html) return <p>No content available.</p>;
+    
+    // Clean the HTML to preserve formatting
+    let content = html;
+    
+    // Ensure paragraphs have proper spacing
+    content = content.replace(/<p><\/p>/g, '<p>&nbsp;</p>');
+    content = content.replace(/<p>\s*<br>\s*<\/p>/g, '<p>&nbsp;</p>');
+    
+    return <div dangerouslySetInnerHTML={{ __html: content }} />;
+  };
+
+  // Loading Spinner
   if (loading) {
     return (
       <>
         <Navbar />
-        <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '80px 24px', textAlign: 'center' }}>
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          minHeight: '60vh',
+          padding: '40px 20px'
+        }}>
           <div style={{
-            width: '48px',
-            height: '48px',
-            border: '3px solid #e8e8f0',
-            borderTopColor: '#FF6B35',
+            width: '60px',
+            height: '60px',
+            border: '4px solid #f0f0f0',
+            borderTop: '4px solid #FF6B35',
             borderRadius: '50%',
             animation: 'spin 0.8s linear infinite',
-            margin: '0 auto 16px'
+            marginBottom: '20px'
           }}></div>
-          <p style={{ color: '#4a4a68' }}>Loading blog...</p>
+          <p style={{
+            color: '#6b7280',
+            fontSize: '1rem',
+            fontWeight: 500,
+            animation: 'pulse 1.5s ease-in-out infinite'
+          }}>
+            Loading blog...
+          </p>
         </div>
-        <Footer />
         <style>{`
           @keyframes spin {
-            to { transform: rotate(360deg); }
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+          @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
           }
         `}</style>
+        <Footer />
       </>
     );
   }
@@ -70,8 +104,30 @@ function BlogDetail() {
       <>
         <Navbar />
         <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '80px 24px', textAlign: 'center' }}>
+          <div style={{
+            width: '80px',
+            height: '80px',
+            borderRadius: '50%',
+            background: '#fef2f2',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            margin: '0 auto 16px'
+          }}>
+            <i className="fas fa-exclamation-triangle" style={{ fontSize: '2rem', color: '#ef4444' }}></i>
+          </div>
           <h1 style={{ color: '#ef4444', fontSize: '2rem', marginBottom: '16px' }}>Blog Not Found</h1>
-          <Link to="/blog" style={{ color: '#FF6B35', textDecoration: 'none' }}>← Back to Blog</Link>
+          <p style={{ color: '#6b7280', marginBottom: '24px' }}>The blog post you're looking for doesn't exist or has been removed.</p>
+          <Link to="/blog" style={{ 
+            color: '#FF6B35', 
+            textDecoration: 'none',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '8px',
+            fontWeight: 600
+          }}>
+            <i className="fas fa-arrow-left"></i> Back to Blog
+          </Link>
         </div>
         <Footer />
       </>
@@ -81,6 +137,111 @@ function BlogDetail() {
   return (
     <>
       <Navbar />
+      
+      <style>{`
+        /* ✅ Blog Content Styles - Fix White Space */
+        .blog-content {
+          color: #4a4a68;
+          line-height: 1.8;
+          font-size: 1rem;
+        }
+        
+        .blog-content p {
+          margin-bottom: 1.2em;
+          line-height: 1.8;
+        }
+        
+        .blog-content h1, 
+        .blog-content h2, 
+        .blog-content h3, 
+        .blog-content h4 {
+          font-family: 'Playfair Display', serif;
+          color: #1a1a2e;
+          margin-top: 1.5em;
+          margin-bottom: 0.5em;
+        }
+        
+        .blog-content h1 { font-size: 2rem; }
+        .blog-content h2 { font-size: 1.5rem; }
+        .blog-content h3 { font-size: 1.2rem; }
+        
+        .blog-content ul, 
+        .blog-content ol {
+          margin: 0.5em 0 1em 1.5em;
+          padding-left: 1em;
+        }
+        
+        .blog-content li {
+          margin-bottom: 0.3em;
+          line-height: 1.8;
+        }
+        
+        .blog-content img {
+          max-width: 100%;
+          border-radius: 12px;
+          margin: 1.5em 0;
+          box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+        }
+        
+        .blog-content blockquote {
+          border-left: 4px solid #FF6B35;
+          padding: 0.5em 1.5em;
+          margin: 1em 0;
+          background: #f8f8fc;
+          border-radius: 0 12px 12px 0;
+          font-style: italic;
+          color: #1a1a2e;
+        }
+        
+        .blog-content a {
+          color: #FF6B35;
+          text-decoration: underline;
+        }
+        
+        .blog-content table {
+          width: 100%;
+          border-collapse: collapse;
+          margin: 1em 0;
+        }
+        
+        .blog-content table td,
+        .blog-content table th {
+          border: 1px solid #e5e7eb;
+          padding: 8px 12px;
+        }
+        
+        .blog-content table th {
+          background: #f9fafb;
+          font-weight: 600;
+        }
+        
+        .blog-content br {
+          display: block;
+          content: "";
+          margin: 0.5em 0;
+        }
+        
+        .blog-content .ql-align-center {
+          text-align: center;
+        }
+        
+        .blog-content .ql-align-right {
+          text-align: right;
+        }
+        
+        .blog-content .ql-align-justify {
+          text-align: justify;
+        }
+        
+        @media (max-width: 768px) {
+          .blog-detail-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .blog-content h1 { font-size: 1.5rem; }
+          .blog-content h2 { font-size: 1.2rem; }
+        }
+      `}</style>
+
       <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '40px 24px' }}>
         {/* Breadcrumb */}
         <div style={{
@@ -99,7 +260,7 @@ function BlogDetail() {
         </div>
 
         {/* Blog Content */}
-        <div style={{
+        <div className="blog-detail-grid" style={{
           display: 'grid',
           gridTemplateColumns: '2fr 1fr',
           gap: '48px'
@@ -157,13 +318,10 @@ function BlogDetail() {
               {blog.title}
             </h1>
 
-            <div style={{
-              color: '#4a4a68',
-              lineHeight: '1.8',
-              fontSize: '1rem'
-            }}>
+            {/* ✅ Content with proper formatting */}
+            <div className="blog-content">
               {blog.content ? (
-                <div dangerouslySetInnerHTML={{ __html: blog.content }} />
+                renderContent(blog.content)
               ) : (
                 <p>No content available.</p>
               )}

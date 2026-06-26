@@ -1,3 +1,9 @@
-# https://www.robotstxt.org/robotstxt.html
+# Allow all crawlers
 User-agent: *
-Disallow:
+Allow: /
+
+# Disallow admin panel
+Disallow: /admin/
+
+# Sitemap location
+Sitemap: https://ismora.shop/sitemap.xml

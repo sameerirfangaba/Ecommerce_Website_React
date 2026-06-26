@@ -15,10 +15,15 @@ import NotFound from './pages/NotFound';
 import Admin from './pages/Admin/Admin';
 import Blog from './pages/Blog';
 import BlogDetail from './pages/BlogDetail';
+import ScrollToTop from './components/ScrollToTop'; // ✅ Import
+import Disclaimer from './pages/Disclaimer';
+import CookiePolicy from './pages/CookiePolicy';
+
 
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop /> {/* ✅ Add this component */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/shop" element={<Shop />} />
@@ -35,6 +40,8 @@ function App() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogDetail />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/disclaimer" element={<Disclaimer />} />
+        <Route path="/cookie-policy" element={<CookiePolicy />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

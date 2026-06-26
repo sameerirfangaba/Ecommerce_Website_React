@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { db } from '../firebase/config';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, query, orderBy, limit } from 'firebase/firestore';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { useCart } from '../context/CartContext';
@@ -10,6 +10,8 @@ function Home() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [categories, setCategories] = useState([]);
+  const [latestBlogs, setLatestBlogs] = useState([]);
+  const [blogsLoading, setBlogsLoading] = useState(true);
   const { addToCart } = useCart();
 
   useEffect(() => {
@@ -43,22 +45,86 @@ function Home() {
     fetchProducts();
   }, []);
 
+  // ✅ Fetch latest blogs
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const q = query(
+          collection(db, 'blogs'),
+          orderBy('createdAt', 'desc'),
+          limit(4)
+        );
+        const snapshot = await getDocs(q);
+        const blogsData = [];
+        snapshot.forEach(doc => {
+          blogsData.push({ id: doc.id, ...doc.data() });
+        });
+        setLatestBlogs(blogsData);
+        setBlogsLoading(false);
+      } catch (error) {
+        console.error('Error fetching blogs:', error);
+        setBlogsLoading(false);
+      }
+    };
+    fetchBlogs();
+  }, []);
+
   const formatPrice = (price) => {
     return `AED ${Number(price).toFixed(2)}`;
+  };
+
+  const formatDate = (timestamp) => {
+    if (!timestamp) return 'Recent';
+    const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    });
   };
 
   const getCatImage = (catName) => {
     const lower = catName.toLowerCase().trim();
     const images = {
-      'electronics': 'https://images.unsplash.com/photo-1498049794561-7780e7231661?w=600&h=450&fit=crop',
-      'mobile': 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600&h=450&fit=crop',
-      'phones': 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600&h=450&fit=crop',
-      'clothing': 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=450&fit=crop',
-      'fashion': 'https://images.unsplash.com/photo-1445205170230-053b83016050?w=600&h=450&fit=crop',
-      'jewelry': 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600&h=450&fit=crop',
-      'watches': 'https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=600&h=450&fit=crop',
-      'accessories': 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&h=450&fit=crop',
-    };
+      'electronics':    'https://images.unsplash.com/photo-1498049794561-7780e7231661?w=600&h=450&fit=crop',
+        'mobile':         'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600&h=450&fit=crop',
+        'phones':         'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600&h=450&fit=crop',
+        'clothing':       'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=450&fit=crop',
+        'fashion':        'https://images.unsplash.com/photo-1445205170230-053b83016050?w=600&h=450&fit=crop',
+        'clothes':        'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=450&fit=crop',
+        'sports':         'https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=600&h=450&fit=crop',
+        'accessories':    'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&h=450&fit=crop',
+        'jewelry':        'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600&h=450&fit=crop',
+        'jewellery':      'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600&h=450&fit=crop',
+        'ring':           'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=600&h=450&fit=crop',
+        'rings':          'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=600&h=450&fit=crop',
+        'customized ring':'https://i.ibb.co/B5SSfqRD/customized-ring.jpg?w=600&h=450&fit=crop',
+        'customized bracelet':'https://i.ibb.co/1YsDjXWp/customized-bracelet.jpg?w=600&h=450&fit=crop',
+        'necklace':       'https://i.ibb.co/VpD018Dv/customized-necklace.jpg&h=450&fit=crop',
+        'customized earring': 'https://i.ibb.co/4Z7Pn15r/customized-earring.jpg&h=450&fit=crop',
+        'customized anklets':'https://i.ibb.co/Kzr9xb8y/customized-anklets.jpg&h=450&fit=crop',
+        'watches':        'https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=600&h=450&fit=crop',
+        'watch':          'https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=600&h=450&fit=crop',
+        'home':           'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=600&h=450&fit=crop',
+        'kitchen':        'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=450&fit=crop',
+        'beauty':         'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=600&h=450&fit=crop',
+        'skincare':       'https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=600&h=450&fit=crop',
+        'perfume':        'https://images.unsplash.com/photo-1541643600914-78b084683702?w=600&h=450&fit=crop',
+        'toys':           'https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=600&h=450&fit=crop',
+        'books':          'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=600&h=450&fit=crop',
+        'bags':           'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&h=450&fit=crop',
+        'shoes':          'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=450&fit=crop',
+        'kids':           'https://images.unsplash.com/photo-1484820540004-14229fe36ca4?w=600&h=450&fit=crop',
+        'food':           'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&h=450&fit=crop',
+        'health':         'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=600&h=450&fit=crop',
+        'garden':         'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&h=450&fit=crop',
+        'furniture':      'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&h=450&fit=crop',
+        'art':            'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=600&h=450&fit=crop',
+        'stationery':     'https://images.unsplash.com/photo-1456735190827-d1262f71b8a3?w=600&h=450&fit=crop',
+        'gift':           'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=600&h=450&fit=crop',
+        'gifts':          'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=600&h=450&fit=crop',
+        'earring':        'https://images.unsplash.com/photo-1665520674561-2c5edb9b5435?w=600&h=450&fit=crop'
+      };
     for (const [key, url] of Object.entries(images)) {
       if (lower.includes(key) || key.includes(lower)) return url;
     }
@@ -69,105 +135,113 @@ function Home() {
     const hasDiscount = product.comparePrice && product.comparePrice > product.price;
     const discount = hasDiscount ? Math.round(((product.comparePrice - product.price) / product.comparePrice) * 100) : 0;
 
+    const handleAddToCart = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      addToCart(product);
+    };
+
+    const handleCardClick = () => {
+      window.location.href = `/product/${product.id}`;
+    };
+
     return (
-      <div className="product-card" style={{
-        background: 'white',
-        border: '1px solid #e8e8f0',
-        borderRadius: '16px',
-        overflow: 'hidden',
-        cursor: 'pointer',
-        transition: 'all 0.3s cubic-bezier(0.4,0,0.2,1)',
-      }}>
-        <Link to={`/product/${product.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-          <div className="product-img-wrap" style={{
-            position: 'relative',
-            aspectRatio: '1',
-            overflow: 'hidden',
-            background: '#f8f8fc'
-          }}>
-            <img
-              className="product-img"
-              src={product.image}
-              alt={product.name}
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                transition: 'transform 0.5s'
-              }}
-              onError={(e) => e.target.src = 'https://placehold.co/400x400/f0f0f0/aaa?text=IMG'}
-            />
-            {hasDiscount && (
-              <div className="product-badge badge-sale" style={{
-                position: 'absolute',
-                top: '12px',
-                left: '12px',
-                zIndex: 2,
-                padding: '4px 10px',
-                borderRadius: '6px',
-                fontSize: '0.7rem',
-                fontWeight: '700',
-                background: '#FF6B35',
-                color: 'white'
-              }}>−{discount}%</div>
-            )}
-            <div className="product-actions" style={{
+      <div 
+        className="product-card" 
+        style={{
+          background: 'white',
+          border: '1px solid #e8e8f0',
+          borderRadius: '16px',
+          overflow: 'hidden',
+          cursor: 'pointer',
+          transition: 'all 0.3s cubic-bezier(0.4,0,0.2,1)',
+        }}
+        onClick={handleCardClick}
+      >
+        <div className="product-img-wrap" style={{
+          position: 'relative',
+          aspectRatio: '1',
+          overflow: 'hidden',
+          background: '#f8f8fc'
+        }}>
+          <img
+            className="product-img"
+            src={product.image}
+            alt={product.name}
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              transition: 'transform 0.5s'
+            }}
+            onError={(e) => e.target.src = 'https://placehold.co/400x400/f0f0f0/aaa?text=IMG'}
+          />
+          {hasDiscount && (
+            <div className="product-badge badge-sale" style={{
               position: 'absolute',
-              bottom: '12px',
+              top: '12px',
               left: '12px',
-              right: '12px',
-              display: 'flex',
-              gap: '8px',
-              transform: 'translateY(12px)',
-              opacity: 0,
-              transition: 'all 0.25s'
-            }}>
-              <button 
-                className="product-atc-btn" 
-                style={{
-                  flex: 1,
-                  padding: '10px',
-                  borderRadius: '9px',
-                  border: 'none',
-                  background: '#1a1a2e',
-                  color: 'white',
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: '0.82rem',
-                  fontWeight: '600',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '6px'
-                }}
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  addToCart(product);
-                }}
-              >
-                <i className="fas fa-cart-plus"></i>Add to Cart
-              </button>
-              <button className="product-wish-btn" style={{
-                width: '40px',
-                height: '40px',
+              zIndex: 2,
+              padding: '4px 10px',
+              borderRadius: '6px',
+              fontSize: '0.7rem',
+              fontWeight: '700',
+              background: '#FF6B35',
+              color: 'white'
+            }}>−{discount}%</div>
+          )}
+          <div className="product-actions" style={{
+            position: 'absolute',
+            bottom: '12px',
+            left: '12px',
+            right: '12px',
+            display: 'flex',
+            gap: '8px',
+            transform: 'translateY(12px)',
+            opacity: 0,
+            transition: 'all 0.25s'
+          }}>
+            <button 
+              className="product-atc-btn" 
+              style={{
+                flex: 1,
+                padding: '10px',
                 borderRadius: '9px',
                 border: 'none',
+                background: '#1a1a2e',
+                color: 'white',
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: '0.82rem',
+                fontWeight: '600',
                 cursor: 'pointer',
-                background: 'rgba(255,255,255,0.92)',
-                color: '#4a4a68',
-                fontSize: '0.9rem',
                 transition: 'all 0.2s',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center'
-              }}>
-                <i className="far fa-heart"></i>
-              </button>
-            </div>
+                justifyContent: 'center',
+                gap: '6px'
+              }}
+              onClick={handleAddToCart}
+            >
+              <i className="fas fa-cart-plus"></i>Add to Cart
+            </button>
+            <button className="product-wish-btn" style={{
+              width: '40px',
+              height: '40px',
+              borderRadius: '9px',
+              border: 'none',
+              cursor: 'pointer',
+              background: 'rgba(255,255,255,0.92)',
+              color: '#4a4a68',
+              fontSize: '0.9rem',
+              transition: 'all 0.2s',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+              <i className="far fa-heart"></i>
+            </button>
           </div>
-        </Link>
+        </div>
         <div className="product-body" style={{ padding: '16px' }}>
           <div className="product-category" style={{
             fontSize: '0.72rem',
@@ -289,6 +363,118 @@ function Home() {
     );
   };
 
+  const BlogCard = ({ blog }) => {
+    return (
+      <div style={{
+        background: 'white',
+        border: '1px solid #e8e8f0',
+        borderRadius: '16px',
+        overflow: 'hidden',
+        cursor: 'pointer',
+        transition: 'all 0.3s cubic-bezier(0.4,0,0.2,1)',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column'
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.boxShadow = '0 20px 48px rgba(0,0,0,0.1)';
+        e.currentTarget.style.transform = 'translateY(-4px)';
+        e.currentTarget.style.borderColor = 'transparent';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.boxShadow = 'none';
+        e.currentTarget.style.transform = 'translateY(0)';
+        e.currentTarget.style.borderColor = '#e8e8f0';
+      }}
+      onClick={() => window.location.href = `/blog/${blog.slug}`}
+      >
+        <div style={{
+          position: 'relative',
+          overflow: 'hidden',
+          height: '180px',
+          background: '#f8f8fc'
+        }}>
+          <img
+            src={blog.image || 'https://placehold.co/400x200/f0f0f0/aaa?text=Blog'}
+            alt={blog.title}
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              transition: 'transform 0.5s'
+            }}
+            onError={(e) => e.target.src = 'https://placehold.co/400x200/f0f0f0/aaa?text=Blog'}
+          />
+          {blog.category && (
+            <span style={{
+              position: 'absolute',
+              top: '10px',
+              left: '10px',
+              padding: '3px 10px',
+              borderRadius: '20px',
+              fontSize: '0.65rem',
+              fontWeight: 600,
+              background: '#FF6B35',
+              color: 'white'
+            }}>
+              {blog.category}
+            </span>
+          )}
+        </div>
+        <div style={{ padding: '16px', flex: 1, display: 'flex', flexDirection: 'column' }}>
+          <div style={{
+            fontSize: '0.7rem',
+            color: '#6b7280',
+            marginBottom: '6px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px'
+          }}>
+            <span>{blog.author || 'Ismora'}</span>
+            <span>•</span>
+            <span>{formatDate(blog.createdAt)}</span>
+          </div>
+          <h3 style={{
+            fontSize: '0.95rem',
+            fontWeight: 700,
+            color: '#1a1a2e',
+            marginBottom: '6px',
+            lineHeight: '1.3',
+            display: '-webkit-box',
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden'
+          }}>
+            {blog.title}
+          </h3>
+          <p style={{
+            color: '#4a4a68',
+            fontSize: '0.85rem',
+            lineHeight: '1.5',
+            flex: 1,
+            display: '-webkit-box',
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden'
+          }}>
+            {blog.excerpt || 'Read more about this topic...'}
+          </p>
+          <div style={{
+            marginTop: '12px',
+            color: '#FF6B35',
+            fontWeight: 600,
+            fontSize: '0.8rem',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '4px'
+          }}>
+            Read More <i className="fas fa-arrow-right" style={{ fontSize: '0.6rem' }}></i>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   const featuredProducts = products.slice(0, 4);
   const newArrivals = products.slice(0, 8);
 
@@ -332,9 +518,11 @@ function Home() {
         }
         @media (max-width: 1024px) {
           .product-grid { grid-template-columns: repeat(3, 1fr) !important; }
+          .blog-grid { grid-template-columns: repeat(2, 1fr) !important; }
         }
         @media (max-width: 768px) {
           .product-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 14px !important; }
+          .blog-grid { grid-template-columns: 1fr !important; }
           .hero-inner { grid-template-columns: 1fr !important; gap: 40px !important; padding: 56px 20px !important; }
           .hero-visual { display: none !important; }
           .promo-banner { grid-template-columns: 1fr !important; padding: 32px 24px !important; text-align: center !important; }
@@ -954,6 +1142,169 @@ function Home() {
             }}>
               {newArrivals.map(product => (
                 <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* ✅ LATEST BLOGS SECTION */}
+      <section className="section" style={{ padding: '80px 0', background: '#f8f8fc' }}>
+        <div className="section-inner" style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 24px' }}>
+          <div style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'flex-end',
+            flexWrap: 'wrap',
+            gap: '16px',
+            marginBottom: '40px'
+          }}>
+            <div>
+              <p style={{
+                fontSize: '0.75rem',
+                fontWeight: '700',
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase',
+                color: '#FF6B35',
+                marginBottom: '8px'
+              }}>Latest Articles</p>
+              <h2 style={{
+                fontFamily: "'Playfair Display', serif",
+                fontSize: 'clamp(1.8rem, 3vw, 2.5rem)',
+                fontWeight: '700',
+                color: '#1a1a2e',
+                letterSpacing: '-0.02em',
+                lineHeight: '1.15',
+                marginBottom: '12px'
+              }}>From Our Blog</h2>
+              <p style={{
+                color: '#4a4a68',
+                fontSize: '0.95rem',
+                lineHeight: '1.6',
+                maxWidth: '520px'
+              }}>Tips, guides and inspiration for your style journey.</p>
+            </div>
+            <Link to="/blog" className="btn btn-outline" style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '8px',
+              padding: '12px 24px',
+              borderRadius: '10px',
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: '0.9rem',
+              fontWeight: '600',
+              cursor: 'pointer',
+              border: '1.5px solid #1a1a2e',
+              transition: 'all 0.2s',
+              textDecoration: 'none',
+              background: 'transparent',
+              color: '#1a1a2e'
+            }}>
+              View All <i className="fas fa-arrow-right" style={{ fontSize: '0.8rem' }}></i>
+            </Link>
+          </div>
+
+          {blogsLoading ? (
+            <div className="blog-grid" style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(4, 1fr)',
+              gap: '24px'
+            }}>
+              {[1,2,3,4].map(i => (
+                <div key={i} style={{
+                  background: 'white',
+                  border: '1px solid #e8e8f0',
+                  borderRadius: '16px',
+                  overflow: 'hidden',
+                  height: '280px'
+                }}>
+                  <div style={{
+                    height: '160px',
+                    background: '#f0f0f0',
+                    position: 'relative',
+                    overflow: 'hidden'
+                  }}>
+                    <div style={{
+                      position: 'absolute',
+                      inset: 0,
+                      background: 'linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)',
+                      backgroundSize: '200% 100%',
+                      animation: 'shimmer 1.5s infinite'
+                    }}></div>
+                  </div>
+                  <div style={{ padding: '16px' }}>
+                    <div style={{
+                      height: '10px',
+                      background: '#f0f0f0',
+                      borderRadius: '4px',
+                      width: '60%',
+                      marginBottom: '8px',
+                      position: 'relative',
+                      overflow: 'hidden'
+                    }}>
+                      <div style={{
+                        position: 'absolute',
+                        inset: 0,
+                        background: 'linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)',
+                        backgroundSize: '200% 100%',
+                        animation: 'shimmer 1.5s infinite'
+                      }}></div>
+                    </div>
+                    <div style={{
+                      height: '16px',
+                      background: '#f0f0f0',
+                      borderRadius: '4px',
+                      width: '80%',
+                      marginBottom: '8px',
+                      position: 'relative',
+                      overflow: 'hidden'
+                    }}>
+                      <div style={{
+                        position: 'absolute',
+                        inset: 0,
+                        background: 'linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)',
+                        backgroundSize: '200% 100%',
+                        animation: 'shimmer 1.5s infinite'
+                      }}></div>
+                    </div>
+                    <div style={{
+                      height: '10px',
+                      background: '#f0f0f0',
+                      borderRadius: '4px',
+                      width: '50%',
+                      position: 'relative',
+                      overflow: 'hidden'
+                    }}>
+                      <div style={{
+                        position: 'absolute',
+                        inset: 0,
+                        background: 'linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)',
+                        backgroundSize: '200% 100%',
+                        animation: 'shimmer 1.5s infinite'
+                      }}></div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : latestBlogs.length === 0 ? (
+            <div style={{
+              textAlign: 'center',
+              padding: '40px 20px',
+              color: '#6b7280'
+            }}>
+              <i className="fas fa-newspaper" style={{ fontSize: '2rem', display: 'block', marginBottom: '12px', opacity: 0.3 }}></i>
+              <p>No blog posts yet. Check back soon!</p>
+            </div>
+          ) : (
+            <div className="blog-grid" style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(4, 1fr)',
+              gap: '24px'
+            }}>
+              {latestBlogs.map(blog => (
+                <BlogCard key={blog.id} blog={blog} />
               ))}
             </div>
           )}

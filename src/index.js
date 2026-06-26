@@ -5,6 +5,8 @@ import App from './App';
 import { CartProvider } from './context/CartContext';
 import { SearchProvider } from './context/SearchContext';
 import { BlogProvider } from './context/BlogContext';
+import { ToastProvider } from './context/ToastContext';
+import AdSense from './components/AdSense'; // ✅ IMPORT
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -12,7 +14,10 @@ root.render(
     <CartProvider>
       <SearchProvider>
         <BlogProvider>
-          <App />
+          <ToastProvider>
+            <AdSense /> {/* ✅ ADD THIS */}
+            <App />
+          </ToastProvider>
         </BlogProvider>
       </SearchProvider>
     </CartProvider>

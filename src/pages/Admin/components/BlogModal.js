@@ -1,11 +1,45 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useBlog } from '../../../context/BlogContext';
+import { useToast } from '../../../context/ToastContext';
+
+// ✅ ImgBB Upload Function
+const uploadToImgBB = async (file) => {
+  if (!file || !file.type.startsWith('image/')) {
+    throw new Error('Please select a valid image file');
+  }
+
+  if (file.size > 32 * 1024 * 1024) {
+    throw new Error('Image is too large. Max size is 32MB.');
+  }
+
+  const formData = new FormData();
+  formData.append('image', file);
+  formData.append('key', '396308e8c9d3f49bcdefd40a5ad2727d');
+
+  const response = await fetch('https://api.imgbb.com/1/upload', {
+    method: 'POST',
+    body: formData
+  });
+
+  const data = await response.json();
+
+  if (!response.ok || !data.success) {
+    throw new Error(data.error?.message || 'Upload failed');
+  }
+
+  return data.data.url;
+};
 
 function BlogModal({ blog, onClose, onSave }) {
   const { addBlog, updateBlog } = useBlog();
+  const { showToast } = useToast(); // ✅ Use Toast
   const [loading, setLoading] = useState(false);
   const [uploadingImage, setUploadingImage] = useState(false);
   const [featuredImagePreview, setFeaturedImagePreview] = useState('');
+  const [uploadError, setUploadError] = useState('');
+  const [quillLoaded, setQuillLoaded] = useState(false);
+  const editorRef = useRef(null);
+  const quillInstance = useRef(null);
   
   const [formData, setFormData] = useState({
     title: '',
@@ -34,6 +68,125 @@ function BlogModal({ blog, onClose, onSave }) {
     }
   }, [blog]);
 
+  // ✅ Initialize Quill from CDN
+  useEffect(() => {
+    const initQuill = () => {
+      if (typeof window !== 'undefined' && window.Quill && editorRef.current && !quillInstance.current) {
+        try {
+          const toolbarOptions = [
+            [{ header: [1, 2, 3, 4, 5, 6, false] }],
+            ['bold', 'italic', 'underline', 'strike'],
+            [{ list: 'ordered' }, { list: 'bullet' }],
+            [{ color: [] }, { background: [] }],
+            [{ align: [] }],
+            ['link', 'image', 'video'],
+            ['blockquote', 'code-block'],
+            ['clean']
+          ];
+
+          const quill = new window.Quill(editorRef.current, {
+            theme: 'snow',
+            modules: {
+              toolbar: toolbarOptions
+            },
+            placeholder: 'Write your blog content here...'
+          });
+
+          if (formData.content) {
+            quill.root.innerHTML = formData.content;
+          }
+
+          quill.on('text-change', () => {
+            const content = quill.root.innerHTML;
+            setFormData(prev => ({ ...prev, content }));
+          });
+
+          const toolbar = quill.getModule('toolbar');
+          if (toolbar) {
+            toolbar.addHandler('image', () => {
+              const input = document.createElement('input');
+              input.setAttribute('type', 'file');
+              input.setAttribute('accept', 'image/*');
+              input.click();
+
+              input.onchange = async () => {
+                const file = input.files[0];
+                if (!file) return;
+
+                try {
+                  const range = quill.getSelection();
+                  if (range) {
+                    quill.insertText(range.index, '⏳ Uploading image...', 'bold');
+                    quill.setSelection(range.index + 19);
+                  }
+
+                  const url = await uploadToImgBB(file);
+
+                  if (range) {
+                    quill.deleteText(range.index, 19);
+                    quill.insertEmbed(range.index, 'image', url);
+                    quill.setSelection(range.index + 1);
+                  }
+                  
+                  // ✅ Toast for image upload success
+                  showToast('Image uploaded successfully!', 'success');
+                } catch (error) {
+                  showToast('Image upload failed: ' + error.message, 'error');
+                  const range = quill.getSelection();
+                  if (range) {
+                    quill.deleteText(range.index - 19, 19);
+                  }
+                }
+              };
+            });
+          }
+
+          quillInstance.current = quill;
+          setQuillLoaded(true);
+        } catch (error) {
+          console.error('Quill init error:', error);
+        }
+      }
+    };
+
+    const checkQuill = () => {
+      if (typeof window !== 'undefined' && window.Quill) {
+        initQuill();
+        return true;
+      }
+      return false;
+    };
+
+    if (checkQuill()) return;
+
+    const interval = setInterval(() => {
+      if (checkQuill()) {
+        clearInterval(interval);
+      }
+    }, 100);
+
+    const timeout = setTimeout(() => {
+      clearInterval(interval);
+      if (!quillInstance.current) {
+        console.warn('Quill failed to load from CDN');
+      }
+    }, 5000);
+
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timeout);
+      if (quillInstance.current) {
+        quillInstance.current = null;
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (quillInstance.current && formData.content !== quillInstance.current.root.innerHTML) {
+      quillInstance.current.root.innerHTML = formData.content;
+    }
+  }, [formData.content]);
+
   const generateSlug = (title) => {
     return title
       .toLowerCase()
@@ -45,60 +198,25 @@ function BlogModal({ blog, onClose, onSave }) {
     const file = e.target.files[0];
     if (!file) return;
 
-    if (!file.type.startsWith('image/')) {
-      alert('Please select an image file');
-      return;
-    }
-
-    if (file.size > 4 * 1024 * 1024) {
-      alert('Image is too large. Max size is 4MB.');
-      return;
-    }
-
+    setUploadError('');
     setUploadingImage(true);
     setFeaturedImagePreview(URL.createObjectURL(file));
 
     try {
-      // Convert to base64
-      const base64 = await new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(String(reader.result).split(',')[1]);
-        reader.onerror = () => reject(new Error('Could not read image file'));
-        reader.readAsDataURL(file);
-      });
-
-      // Send to API
-      const response = await fetch('/api/upload-image', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          fileName: file.name,
-          contentType: file.type,
-          base64: base64
-        })
-      });
-
-      // ✅ Fix: Check if response is JSON
-      const text = await response.text();
-      let data;
-      try {
-        data = JSON.parse(text);
-      } catch (e) {
-        console.error('Response is not JSON:', text);
-        throw new Error('Server returned an error. Please try again.');
+      const url = await uploadToImgBB(file);
+      
+      if (url) {
+        setFormData(prev => ({ ...prev, image: url }));
+        setFeaturedImagePreview(url);
+        showToast('Featured image uploaded successfully!', 'success');
+      } else {
+        throw new Error('No URL returned from upload');
       }
-
-      if (!response.ok || !data.url) {
-        throw new Error(data.error || 'Upload failed');
-      }
-
-      setFormData(prev => ({ ...prev, image: data.url }));
-      setFeaturedImagePreview(data.url);
-      alert('Image uploaded successfully!');
     } catch (error) {
       console.error('Upload error:', error);
-      alert('Image upload failed: ' + error.message);
+      setUploadError(error.message || 'Upload failed');
       setFeaturedImagePreview('');
+      showToast('Image upload failed: ' + error.message, 'error');
     }
     setUploadingImage(false);
   };
@@ -106,17 +224,23 @@ function BlogModal({ blog, onClose, onSave }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.image) {
-      alert('Please upload a featured image!');
+      showToast('Please upload a featured image!', 'warning');
       return;
     }
     
     setLoading(true);
     try {
+      let content = formData.content || '';
+      
+      content = content.replace(/<p><br><\/p>/g, '<p>&nbsp;</p>');
+      content = content.replace(/<p>\s*<\/p>/g, '<p>&nbsp;</p>');
+      content = content.replace(/\n/g, '<br>');
+      
       const data = {
         title: formData.title,
         slug: formData.slug || generateSlug(formData.title),
         excerpt: formData.excerpt,
-        content: formData.content,
+        content: content,
         image: formData.image,
         category: formData.category,
         author: formData.author || 'Ismora',
@@ -125,14 +249,16 @@ function BlogModal({ blog, onClose, onSave }) {
 
       if (blog?.id) {
         await updateBlog(blog.id, data);
+        showToast('Blog updated successfully!', 'success');
       } else {
         await addBlog(data);
+        showToast('Blog created successfully!', 'success');
       }
       onSave();
       onClose();
     } catch (error) {
       console.error('Error saving blog:', error);
-      alert('Error saving blog');
+      showToast('Error saving blog: ' + error.message, 'error');
     }
     setLoading(false);
   };
@@ -157,7 +283,7 @@ function BlogModal({ blog, onClose, onSave }) {
         background: 'white',
         borderRadius: '16px',
         padding: '32px',
-        maxWidth: '900px',
+        maxWidth: '1000px',
         width: '100%',
         maxHeight: '95vh',
         overflowY: 'auto',
@@ -347,11 +473,16 @@ function BlogModal({ blog, onClose, onSave }) {
               ) : (
                 <>
                   <i className="fas fa-cloud-upload-alt" style={{ fontSize: '3rem', color: '#9ca3af', display: 'block', marginBottom: '8px' }}></i>
-                  <p style={{ color: '#6b7280', fontSize: '0.875rem' }}>Click or drag & drop to upload featured image</p>
-                  <p style={{ color: '#9ca3af', fontSize: '0.75rem', marginTop: '4px' }}>PNG, JPG, WEBP • Max 4MB</p>
+                  <p style={{ color: '#6b7280', fontSize: '0.875rem' }}>Click or drag & drop to upload</p>
+                  <p style={{ color: '#9ca3af', fontSize: '0.75rem', marginTop: '4px' }}>PNG, JPG, WEBP • Max 32MB</p>
                 </>
               )}
             </div>
+            {uploadError && (
+              <p style={{ color: '#ef4444', fontSize: '0.8rem', marginTop: '4px' }}>
+                ❌ {uploadError}
+              </p>
+            )}
           </div>
 
           {/* Tags */}
@@ -396,34 +527,45 @@ function BlogModal({ blog, onClose, onSave }) {
             />
           </div>
 
-          {/* Content */}
+          {/* Content with Quill Editor */}
           <div style={{ marginBottom: '16px' }}>
-            <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: 500, marginBottom: '6px' }}>
+            <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: 500, marginBottom: '8px' }}>
               Content *
             </label>
-            <textarea
-              rows="12"
-              required
-              value={formData.content}
-              onChange={(e) => setFormData(prev => ({ ...prev, content: e.target.value }))}
-              placeholder="Write your blog content here... You can use HTML tags: <h2>, <p>, <ul>, <li>, etc."
-              style={{
-                width: '100%',
-                padding: '12px 16px',
-                border: '1px solid #e5e7eb',
-                borderRadius: '8px',
-                fontSize: '0.9rem',
-                resize: 'vertical'
-              }}
-            />
+            <div style={{
+              border: '1px solid #e5e7eb',
+              borderRadius: '8px',
+              overflow: 'hidden',
+              background: 'white'
+            }}>
+              <div
+                ref={editorRef}
+                style={{
+                  minHeight: '300px',
+                  maxHeight: '500px',
+                  overflowY: 'auto',
+                  background: 'white'
+                }}
+              />
+              {!quillLoaded && (
+                <div style={{
+                  padding: '20px',
+                  textAlign: 'center',
+                  color: '#6b7280'
+                }}>
+                  <i className="fas fa-spinner fa-spin" style={{ marginRight: '8px' }}></i>
+                  Loading editor...
+                </div>
+              )}
+            </div>
             <p style={{ fontSize: '0.75rem', color: '#6b7280', marginTop: '4px' }}>
-              <i className="fas fa-info-circle"></i> You can use HTML: &lt;h2&gt;, &lt;p&gt;, &lt;ul&gt;, &lt;li&gt;, &lt;blockquote&gt;, etc.
+              <i className="fas fa-info-circle"></i> Use the toolbar to format text. Click the <strong>image icon</strong> to upload images.
             </p>
           </div>
 
           <button
             type="submit"
-            disabled={loading || uploadingImage}
+            disabled={loading || uploadingImage || !quillLoaded}
             style={{
               width: '100%',
               padding: '14px',
@@ -433,8 +575,8 @@ function BlogModal({ blog, onClose, onSave }) {
               color: 'white',
               fontSize: '1rem',
               fontWeight: 600,
-              cursor: (loading || uploadingImage) ? 'not-allowed' : 'pointer',
-              opacity: (loading || uploadingImage) ? 0.7 : 1,
+              cursor: (loading || uploadingImage || !quillLoaded) ? 'not-allowed' : 'pointer',
+              opacity: (loading || uploadingImage || !quillLoaded) ? 0.7 : 1,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -443,7 +585,7 @@ function BlogModal({ blog, onClose, onSave }) {
             }}
           >
             <i className="fas fa-save"></i>
-            {loading ? 'Saving...' : uploadingImage ? 'Uploading Image...' : 'Save Blog'}
+            {loading ? 'Saving...' : uploadingImage ? 'Uploading Image...' : !quillLoaded ? 'Loading Editor...' : 'Save Blog'}
           </button>
         </form>
       </div>
@@ -451,4 +593,4 @@ function BlogModal({ blog, onClose, onSave }) {
   );
 }
 
-export default BlogModal;
+export default BlogModal; 

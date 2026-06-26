@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { auth, db } from '../../firebase/config';
+import { auth } from '../../firebase/config';
 import { signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth';
+import { db, getDoc, doc } from '../../firebase/config';
 import AdminLogin from './AdminLogin';
 import Sidebar from './components/Sidebar';
 import TopNav from './components/TopNav';
@@ -50,9 +51,10 @@ function Admin() {
 
   const loadCurrency = async () => {
     try {
-      const doc = await db.collection('settings').doc('checkout').get();
-      if (doc.exists) {
-        const data = doc.data();
+      const docRef = doc(db, 'settings', 'checkout');
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        const data = docSnap.data();
         setCurrency(data.currency || 'AED');
         setCurrencyPosition(data.currencyPosition || 'left-space');
         const symbols = { 'USD':'$', 'PKR':'Rs', 'INR':'₹', 'GBP':'£', 'EUR':'€', 'AED':'AED', 'SAR':'SAR', 'CAD':'C$', 'AUD':'A$' };
