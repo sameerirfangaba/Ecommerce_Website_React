@@ -188,7 +188,7 @@ function FAQ() {
 
       <style>{`
         .page-hero {
-          background: #1a1a2e;
+          background: #1A1A1A;
           padding: 72px 0 64px;
           position: relative;
           overflow: hidden;
@@ -196,7 +196,7 @@ function FAQ() {
         .page-hero-bg {
           position: absolute;
           inset: 0;
-          background-image: radial-gradient(circle at 20% 50%, rgba(255,107,53,0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255,107,53,0.07) 0%, transparent 40%);
+          background-image: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255,255,255,0.07) 0%, transparent 40%);
         }
         .page-hero-grid {
           position: absolute;
@@ -206,17 +206,17 @@ function FAQ() {
           background-size: 60px 60px;
         }
         .acc-item.open {
-          border-color: #FF6B35;
-          box-shadow: 0 4px 20px rgba(255,107,53,0.08);
+          border-color: #1A1A1A;
+          box-shadow: 0 4px 20px rgba(255,255,255,0.08);
         }
         .acc-item.open .acc-q {
-          color: #FF6B35;
+          color: #1A1A1A;
         }
         .acc-item.open .acc-icon {
-          background: rgba(255,107,53,0.12);
+          background: rgba(255,255,255,0.12);
         }
         .acc-item.open .acc-icon i {
-          color: #FF6B35;
+          color: #1A1A1A;
           transform: rotate(45deg);
         }
         .acc-body.open {
@@ -229,14 +229,14 @@ function FAQ() {
           display: none;
         }
         .cat-btn.active {
-          background: #f8f8fc;
-          color: #1a1a2e;
+          background: #FAFAFA;
+          color: #1A1A1A;
         }
         .cat-btn.active i {
-          color: #FF6B35;
+          color: #1A1A1A;
         }
         .cat-btn.active .cat-count {
-          background: #FF6B35;
+          background: #1A1A1A;
           color: white;
         }
         @media (max-width: 1024px) {
@@ -273,15 +273,15 @@ function FAQ() {
               textDecoration: 'none'
             }}>Home</Link>
             <span style={{ color: 'rgba(255,255,255,0.2)', fontSize: '0.75rem' }}>›</span>
-            <span style={{ color: '#FF6B35', fontSize: '0.82rem', fontWeight: 500 }}>FAQ</span>
+            <span style={{ color: '#1A1A1A', fontSize: '0.82rem', fontWeight: 500 }}>FAQ</span>
           </nav>
           <div style={{
             display: 'inline-flex',
             alignItems: 'center',
             gap: '8px',
-            background: 'rgba(255,107,53,0.15)',
-            border: '1px solid rgba(255,107,53,0.3)',
-            color: '#FF6B35',
+            background: 'rgba(255,255,255,0.15)',
+            border: '1px solid rgba(255,255,255,0.3)',
+            color: '#1A1A1A',
             borderRadius: '100px',
             padding: '6px 14px',
             fontSize: '0.75rem',
@@ -293,7 +293,7 @@ function FAQ() {
             <i className="fas fa-question-circle"></i> &nbsp;Help Center
           </div>
           <h1 style={{
-            fontFamily: "'Playfair Display', serif",
+            fontFamily: "'DM Sans', sans-serif",
             fontSize: 'clamp(2rem, 4vw, 3rem)',
             fontWeight: 700,
             color: 'white',
@@ -301,7 +301,7 @@ function FAQ() {
             letterSpacing: '-0.02em',
             marginBottom: '14px'
           }}>
-            Frequently Asked <em style={{ fontStyle: 'italic', color: '#FF6B35' }}>Questions</em>
+            Frequently Asked <em style={{ fontStyle: 'italic', color: '#1A1A1A' }}>Questions</em>
           </h1>
           <p style={{
             color: 'rgba(255,255,255,0.5)',
@@ -325,7 +325,7 @@ function FAQ() {
               color: 'rgba(255,255,255,0.4)',
               fontSize: '0.82rem'
             }}>
-              <i className="fas fa-list" style={{ color: '#FF6B35', fontSize: '0.85rem' }}></i>
+              <i className="fas fa-list" style={{ color: '#1A1A1A', fontSize: '0.85rem' }}></i>
               {totalQuestions}+ Questions Answered
             </div>
             <div style={{
@@ -335,8 +335,8 @@ function FAQ() {
               color: 'rgba(255,255,255,0.4)',
               fontSize: '0.82rem'
             }}>
-              <i className="fas fa-headset" style={{ color: '#FF6B35', fontSize: '0.85rem' }}></i>
-              Still need help? <Link to="/contact-us" style={{ color: '#FF6B35', marginLeft: '4px' }}>Contact Us</Link>
+              <i className="fas fa-headset" style={{ color: '#1A1A1A', fontSize: '0.85rem' }}></i>
+              Still need help? <Link to="/contact-us" style={{ color: '#1A1A1A', marginLeft: '4px' }}>Contact Us</Link>
             </div>
           </div>
         </div>
@@ -352,7 +352,7 @@ function FAQ() {
       }}>
         <div style={{
           background: 'white',
-          border: '1px solid #e8e8f0',
+          border: '1px solid #EAEAEA',
           borderRadius: '16px',
           padding: '20px 24px',
           boxShadow: '0 8px 40px rgba(0,0,0,0.08)',
@@ -360,7 +360,7 @@ function FAQ() {
           alignItems: 'center',
           gap: '14px'
         }}>
-          <i className="fas fa-search" style={{ color: '#4a4a68', fontSize: '1.1rem', flexShrink: 0 }}></i>
+          <i className="fas fa-search" style={{ color: '#6B6B6B', fontSize: '1.1rem', flexShrink: 0 }}></i>
           <input
             type="text"
             id="faq-search"
@@ -371,7 +371,7 @@ function FAQ() {
               outline: 'none',
               fontFamily: "'DM Sans', sans-serif",
               fontSize: '0.95rem',
-              color: '#1a1a2e'
+              color: '#1A1A1A'
             }}
             value={searchQuery}
             onChange={(e) => handleSearch(e.target.value)}
@@ -380,9 +380,9 @@ function FAQ() {
             <button
               onClick={clearSearch}
               style={{
-                background: '#f8f8fc',
+                background: '#FAFAFA',
                 border: 'none',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 padding: '6px 14px',
                 borderRadius: '8px',
                 fontFamily: "'DM Sans', sans-serif",
@@ -412,7 +412,7 @@ function FAQ() {
           <aside className="faq-cats" style={{ position: 'sticky', top: '90px' }}>
             <div className="cats-card" style={{
               background: 'white',
-              border: '1px solid #e8e8f0',
+              border: '1px solid #EAEAEA',
               borderRadius: '16px',
               padding: '20px',
               boxShadow: '0 4px 20px rgba(0,0,0,0.04)'
@@ -422,7 +422,7 @@ function FAQ() {
                 fontWeight: 700,
                 letterSpacing: '0.1em',
                 textTransform: 'uppercase',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 marginBottom: '14px'
               }}>Categories</p>
               
@@ -437,12 +437,12 @@ function FAQ() {
                   padding: '10px 12px',
                   borderRadius: '10px',
                   border: 'none',
-                  background: activeCategory === 'all' ? '#f8f8fc' : 'none',
+                  background: activeCategory === 'all' ? '#FAFAFA' : 'none',
                   cursor: 'pointer',
                   fontFamily: "'DM Sans', sans-serif",
                   fontSize: '0.875rem',
                   fontWeight: 500,
-                  color: activeCategory === 'all' ? '#1a1a2e' : '#4a4a68',
+                  color: activeCategory === 'all' ? '#1A1A1A' : '#6B6B6B',
                   textAlign: 'left',
                   transition: 'all 0.2s',
                   marginBottom: '2px'
@@ -452,13 +452,13 @@ function FAQ() {
                   width: '18px',
                   textAlign: 'center',
                   fontSize: '0.85rem',
-                  color: activeCategory === 'all' ? '#FF6B35' : '#4a4a68'
+                  color: activeCategory === 'all' ? '#1A1A1A' : '#6B6B6B'
                 }}></i>
                 All Questions
                 <span className="cat-count" style={{
                   marginLeft: 'auto',
-                  background: activeCategory === 'all' ? '#FF6B35' : '#e8e8f0',
-                  color: activeCategory === 'all' ? 'white' : '#4a4a68',
+                  background: activeCategory === 'all' ? '#1A1A1A' : '#EAEAEA',
+                  color: activeCategory === 'all' ? 'white' : '#6B6B6B',
                   fontSize: '0.68rem',
                   fontWeight: 700,
                   padding: '2px 7px',
@@ -479,12 +479,12 @@ function FAQ() {
                     padding: '10px 12px',
                     borderRadius: '10px',
                     border: 'none',
-                    background: activeCategory === key ? '#f8f8fc' : 'none',
+                    background: activeCategory === key ? '#FAFAFA' : 'none',
                     cursor: 'pointer',
                     fontFamily: "'DM Sans', sans-serif",
                     fontSize: '0.875rem',
                     fontWeight: 500,
-                    color: activeCategory === key ? '#1a1a2e' : '#4a4a68',
+                    color: activeCategory === key ? '#1A1A1A' : '#6B6B6B',
                     textAlign: 'left',
                     transition: 'all 0.2s',
                     marginBottom: '2px'
@@ -494,13 +494,13 @@ function FAQ() {
                     width: '18px',
                     textAlign: 'center',
                     fontSize: '0.85rem',
-                    color: activeCategory === key ? '#FF6B35' : '#4a4a68'
+                    color: activeCategory === key ? '#1A1A1A' : '#6B6B6B'
                   }}></i>
                   {faqData[key].title}
                   <span className="cat-count" style={{
                     marginLeft: 'auto',
-                    background: activeCategory === key ? '#FF6B35' : '#e8e8f0',
-                    color: activeCategory === key ? 'white' : '#4a4a68',
+                    background: activeCategory === key ? '#1A1A1A' : '#EAEAEA',
+                    color: activeCategory === key ? 'white' : '#6B6B6B',
                     fontSize: '0.68rem',
                     fontWeight: 700,
                     padding: '2px 7px',
@@ -517,16 +517,16 @@ function FAQ() {
                 textAlign: 'center',
                 padding: '64px 24px'
               }}>
-                <i className="fas fa-search" style={{ fontSize: '2.5rem', color: '#e8e8f0', display: 'block', marginBottom: '16px' }}></i>
+                <i className="fas fa-search" style={{ fontSize: '2.5rem', color: '#EAEAEA', display: 'block', marginBottom: '16px' }}></i>
                 <h3 style={{
-                  fontFamily: "'Playfair Display', serif",
+                  fontFamily: "'DM Sans', sans-serif",
                   fontSize: '1.3rem',
                   fontWeight: 700,
-                  color: '#1a1a2e',
+                  color: '#1A1A1A',
                   marginBottom: '8px'
                 }}>No results found</h3>
-                <p style={{ color: '#4a4a68', fontSize: '0.9rem' }}>
-                  Try different keywords or <Link to="/contact-us" style={{ color: '#FF6B35' }}>contact our support team</Link>.
+                <p style={{ color: '#6B6B6B', fontSize: '0.9rem' }}>
+                  Try different keywords or <Link to="/contact-us" style={{ color: '#1A1A1A' }}>contact our support team</Link>.
                 </p>
               </div>
             )}
@@ -552,28 +552,28 @@ function FAQ() {
                       width: '40px',
                       height: '40px',
                       borderRadius: '12px',
-                      background: 'rgba(255,107,53,0.1)',
+                      background: 'rgba(255,255,255,0.1)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       flexShrink: 0
                     }}>
-                      <i className={`fas ${section.icon}`} style={{ color: '#FF6B35', fontSize: '0.95rem' }}></i>
+                      <i className={`fas ${section.icon}`} style={{ color: '#1A1A1A', fontSize: '0.95rem' }}></i>
                     </div>
                     <div>
                       <div style={{
-                        fontFamily: "'Playfair Display', serif",
+                        fontFamily: "'DM Sans', sans-serif",
                         fontSize: '1.35rem',
                         fontWeight: 700,
-                        color: '#1a1a2e',
+                        color: '#1A1A1A',
                         letterSpacing: '-0.02em'
                       }}>{section.title}</div>
                     </div>
                     <span style={{
                       fontSize: '0.75rem',
                       fontWeight: 700,
-                      background: '#f8f8fc',
-                      color: '#4a4a68',
+                      background: '#FAFAFA',
+                      color: '#6B6B6B',
                       padding: '3px 10px',
                       borderRadius: '20px'
                     }}>{section.questions.length} questions</span>
@@ -593,7 +593,7 @@ function FAQ() {
                           className={`acc-item ${isOpen ? 'open' : ''}`}
                           style={{
                             background: 'white',
-                            border: `1px solid ${isOpen ? '#FF6B35' : '#e8e8f0'}`,
+                            border: `1px solid ${isOpen ? '#1A1A1A' : '#EAEAEA'}`,
                             borderRadius: '14px',
                             overflow: 'hidden',
                             transition: 'border-color 0.2s, box-shadow 0.2s'
@@ -619,14 +619,14 @@ function FAQ() {
                               flex: 1,
                               fontSize: '0.93rem',
                               fontWeight: 600,
-                              color: isOpen ? '#FF6B35' : '#1a1a2e',
+                              color: isOpen ? '#1A1A1A' : '#1A1A1A',
                               lineHeight: 1.4
                             }}>{item.q}</span>
                             <div className="acc-icon" style={{
                               width: '28px',
                               height: '28px',
                               borderRadius: '8px',
-                              background: isOpen ? 'rgba(255,107,53,0.12)' : '#f8f8fc',
+                              background: isOpen ? 'rgba(255,255,255,0.12)' : '#FAFAFA',
                               display: 'flex',
                               alignItems: 'center',
                               justifyContent: 'center',
@@ -635,7 +635,7 @@ function FAQ() {
                             }}>
                               <i className="fas fa-plus" style={{
                                 fontSize: '0.72rem',
-                                color: isOpen ? '#FF6B35' : '#4a4a68',
+                                color: isOpen ? '#1A1A1A' : '#6B6B6B',
                                 transition: 'transform 0.25s',
                                 transform: isOpen ? 'rotate(45deg)' : 'none'
                               }}></i>
@@ -649,7 +649,7 @@ function FAQ() {
                             <div className="acc-ans" style={{
                               padding: '0 20px 20px 52px',
                               fontSize: '0.9rem',
-                              color: '#4a4a68',
+                              color: '#6B6B6B',
                               lineHeight: 1.75
                             }}
                             dangerouslySetInnerHTML={{ __html: item.a }}
@@ -664,7 +664,7 @@ function FAQ() {
             })}
 
             <div className="contact-cta" style={{
-              background: '#1a1a2e',
+              background: '#1A1A1A',
               borderRadius: '20px',
               padding: '48px',
               textAlign: 'center',
@@ -675,11 +675,11 @@ function FAQ() {
               <div style={{
                 position: 'absolute',
                 inset: 0,
-                background: 'radial-gradient(circle at 30% 50%, rgba(255,107,53,0.15), transparent 60%), radial-gradient(circle at 70% 50%, rgba(255,107,53,0.08), transparent 60%)'
+                background: 'radial-gradient(circle at 30% 50%, rgba(255,255,255,0.15), transparent 60%), radial-gradient(circle at 70% 50%, rgba(255,255,255,0.08), transparent 60%)'
               }}></div>
               <div style={{ position: 'relative', zIndex: 1 }}>
                 <h3 style={{
-                  fontFamily: "'Playfair Display', serif",
+                  fontFamily: "'DM Sans', sans-serif",
                   fontSize: '1.6rem',
                   fontWeight: 700,
                   color: 'white',
@@ -710,7 +710,7 @@ function FAQ() {
                     border: 'none',
                     transition: 'all 0.2s',
                     textDecoration: 'none',
-                    background: '#FF6B35',
+                    background: '#1A1A1A',
                     color: 'white'
                   }}>
                     <i className="fas fa-envelope"></i> Contact Support

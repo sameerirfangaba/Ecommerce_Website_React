@@ -1,13 +1,13 @@
 :root {
-  --accent: #FF6B35;
-  --accent-dark: #e55a25;
-  --dark: #1a1a2e;
-  --mid: #4a4a68;
-  --light: #f8f8fc;
-  --border: #e8e8f0;
+  --accent: #1A1A1A;
+  --accent-dark: #000000;
+  --dark: #1A1A1A;
+  --mid: #6B6B6B;
+  --light: #FAFAFA;
+  --border: #EAEAEA;
   --white: #ffffff;
   --success: #22c55e;
-  --font-display: 'Playfair Display', serif;
+  --font-display: 'DM Sans', sans-serif;
   --font-body: 'DM Sans', sans-serif;
 }
 
@@ -61,26 +61,13 @@ body {
 }
 
 /* Category Card Hover */
-.cat-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.14);
-}
-
 .cat-card:hover .cat-img {
   transform: scale(1.06);
 }
 
-.cat-card:hover .cat-overlay {
-  opacity: 0.85;
-}
-
-.cat-card:hover .cat-link {
-  gap: 9px;
-}
-
 /* Product Description - Fix White Space */
 .product-description {
-  color: #4a4a68;
+  color: #6B6B6B;
   line-height: 1.8;
   font-size: 0.95rem;
 }
@@ -100,8 +87,8 @@ body {
 .product-description h2,
 .product-description h3,
 .product-description h4 {
-  font-family: 'Playfair Display', serif;
-  color: #1a1a2e;
+  font-family: 'DM Sans', sans-serif;
+  color: #1A1A1A;
   margin-top: 1.5em;
   margin-bottom: 0.5em;
 }
@@ -129,17 +116,17 @@ body {
 }
 
 .product-description blockquote {
-  border-left: 4px solid #FF6B35;
+  border-left: 4px solid #1A1A1A;
   padding: 0.5em 1.5em;
   margin: 1em 0;
-  background: #f8f8fc;
+  background: #FAFAFA;
   border-radius: 0 12px 12px 0;
   font-style: italic;
-  color: #1a1a2e;
+  color: #1A1A1A;
 }
 
 .product-description a {
-  color: #FF6B35;
+  color: #1A1A1A;
   text-decoration: underline;
 }
 
@@ -157,7 +144,7 @@ body {
 
 /* Blog Content - Fix White Space */
 .blog-content {
-  color: #4a4a68;
+  color: #6B6B6B;
   line-height: 1.8;
   font-size: 1rem;
 }
@@ -177,8 +164,8 @@ body {
 .blog-content h2,
 .blog-content h3,
 .blog-content h4 {
-  font-family: 'Playfair Display', serif;
-  color: #1a1a2e;
+  font-family: 'DM Sans', sans-serif;
+  color: #1A1A1A;
   margin-top: 1.5em;
   margin-bottom: 0.5em;
 }
@@ -206,17 +193,17 @@ body {
 }
 
 .blog-content blockquote {
-  border-left: 4px solid #FF6B35;
+  border-left: 4px solid #1A1A1A;
   padding: 0.5em 1.5em;
   margin: 1em 0;
-  background: #f8f8fc;
+  background: #FAFAFA;
   border-radius: 0 12px 12px 0;
   font-style: italic;
-  color: #1a1a2e;
+  color: #1A1A1A;
 }
 
 .blog-content a {
-  color: #FF6B35;
+  color: #1A1A1A;
   text-decoration: underline;
 }
 
@@ -238,14 +225,14 @@ body {
   font-family: 'DM Sans', sans-serif;
   font-size: 0.95rem;
   line-height: 1.8;
-  color: #1a1a2e;
+  color: #1A1A1A;
 }
 
 .ql-editor h1,
 .ql-editor h2,
 .ql-editor h3 {
-  font-family: 'Playfair Display', serif;
-  color: #1a1a2e;
+  font-family: 'DM Sans', sans-serif;
+  color: #1A1A1A;
   margin-top: 16px;
   margin-bottom: 8px;
 }
@@ -258,10 +245,10 @@ body {
 }
 
 .ql-editor blockquote {
-  border-left: 4px solid #FF6B35;
+  border-left: 4px solid #1A1A1A;
   padding: 8px 16px;
   margin: 8px 0;
-  background: #f8f8fc;
+  background: #FAFAFA;
   border-radius: 0 8px 8px 0;
 }
 
@@ -272,7 +259,7 @@ body {
 }
 
 .ql-editor a {
-  color: #FF6B35;
+  color: #1A1A1A;
   text-decoration: underline;
 }
 

@@ -39,7 +39,7 @@ function Blog() {
   const SkeletonCard = () => (
     <div style={{
       background: 'white',
-      border: '1px solid #e8e8f0',
+      border: '1px solid #EAEAEA',
       borderRadius: '16px',
       overflow: 'hidden',
       animation: 'pulse 1.5s ease-in-out infinite'
@@ -170,7 +170,7 @@ function Blog() {
 
       {/* Header */}
       <div style={{
-        background: '#1a1a2e',
+        background: '#1A1A1A',
         padding: '60px 0',
         textAlign: 'center',
         position: 'relative',
@@ -179,11 +179,11 @@ function Blog() {
         <div style={{
           position: 'absolute',
           inset: 0,
-          background: 'radial-gradient(circle at 30% 50%, rgba(255,107,53,0.12) 0%, transparent 60%)'
+          background: 'radial-gradient(circle at 30% 50%, rgba(255,255,255,0.12) 0%, transparent 60%)'
         }}></div>
         <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 24px', position: 'relative', zIndex: 1 }}>
           <h1 style={{
-            fontFamily: "'Playfair Display', serif",
+            fontFamily: "'DM Sans', sans-serif",
             fontSize: 'clamp(2rem, 4vw, 3rem)',
             fontWeight: 700,
             color: 'white',
@@ -209,9 +209,9 @@ function Blog() {
               color: 'rgba(255,255,255,0.3)',
               fontSize: '0.85rem'
             }}>
-              <span><i className="fas fa-pen" style={{ color: '#FF6B35' }}></i> {blogs.length} Articles</span>
+              <span><i className="fas fa-pen" style={{ color: '#1A1A1A' }}></i> {blogs.length} Articles</span>
               <span>•</span>
-              <span><i className="fas fa-tag" style={{ color: '#FF6B35' }}></i> {categories.length} Categories</span>
+              <span><i className="fas fa-tag" style={{ color: '#1A1A1A' }}></i> {categories.length} Categories</span>
             </div>
           )}
         </div>
@@ -224,7 +224,7 @@ function Blog() {
           margin: '0 auto',
           padding: '16px 24px',
           background: 'white',
-          borderBottom: '1px solid #e8e8f0'
+          borderBottom: '1px solid #EAEAEA'
         }}>
           <div style={{
             display: 'flex',
@@ -239,9 +239,9 @@ function Blog() {
                 style={{
                   padding: '6px 16px',
                   borderRadius: '20px',
-                  border: `1px solid ${activeCategory === 'all' ? '#FF6B35' : '#e8e8f0'}`,
-                  background: activeCategory === 'all' ? '#FF6B35' : 'white',
-                  color: activeCategory === 'all' ? 'white' : '#4a4a68',
+                  border: `1px solid ${activeCategory === 'all' ? '#1A1A1A' : '#EAEAEA'}`,
+                  background: activeCategory === 'all' ? '#1A1A1A' : 'white',
+                  color: activeCategory === 'all' ? 'white' : '#6B6B6B',
                   cursor: 'pointer',
                   fontWeight: 500,
                   fontSize: '0.8rem',
@@ -257,9 +257,9 @@ function Blog() {
                   style={{
                     padding: '6px 16px',
                     borderRadius: '20px',
-                    border: `1px solid ${activeCategory === cat ? '#FF6B35' : '#e8e8f0'}`,
-                    background: activeCategory === cat ? '#FF6B35' : 'white',
-                    color: activeCategory === cat ? 'white' : '#4a4a68',
+                    border: `1px solid ${activeCategory === cat ? '#1A1A1A' : '#EAEAEA'}`,
+                    background: activeCategory === cat ? '#1A1A1A' : 'white',
+                    color: activeCategory === cat ? 'white' : '#6B6B6B',
                     cursor: 'pointer',
                     fontWeight: 500,
                     fontSize: '0.8rem',
@@ -287,14 +287,14 @@ function Blog() {
                 style={{
                   width: '100%',
                   padding: '8px 12px 8px 36px',
-                  border: '1px solid #e8e8f0',
+                  border: '1px solid #EAEAEA',
                   borderRadius: '20px',
                   fontSize: '0.85rem',
                   outline: 'none',
                   transition: 'all 0.2s'
                 }}
-                onFocus={(e) => e.currentTarget.style.borderColor = '#FF6B35'}
-                onBlur={(e) => e.currentTarget.style.borderColor = '#e8e8f0'}
+                onFocus={(e) => e.currentTarget.style.borderColor = '#1A1A1A'}
+                onBlur={(e) => e.currentTarget.style.borderColor = '#EAEAEA'}
               />
             </div>
           </div>
@@ -321,7 +321,7 @@ function Blog() {
             color: '#6b7280'
           }}>
             <i className="fas fa-search" style={{ fontSize: '3rem', display: 'block', marginBottom: '16px', opacity: 0.3 }}></i>
-            <h3 style={{ fontSize: '1.1rem', fontWeight: 600, color: '#1a1a2e', marginBottom: '4px' }}>
+            <h3 style={{ fontSize: '1.1rem', fontWeight: 600, color: '#1A1A1A', marginBottom: '4px' }}>
               No blogs found
             </h3>
             <p style={{ fontSize: '0.875rem' }}>
@@ -337,7 +337,7 @@ function Blog() {
             {filteredBlogs.map(blog => (
               <div key={blog.id} style={{
                 background: 'white',
-                border: '1px solid #e8e8f0',
+                border: '1px solid #EAEAEA',
                 borderRadius: '16px',
                 overflow: 'hidden',
                 transition: 'all 0.3s cubic-bezier(0.4,0,0.2,1)',
@@ -351,7 +351,7 @@ function Blog() {
               onMouseLeave={(e) => {
                 e.currentTarget.style.boxShadow = 'none';
                 e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.borderColor = '#e8e8f0';
+                e.currentTarget.style.borderColor = '#EAEAEA';
               }}
               >
                 <Link to={`/blog/${blog.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
@@ -359,7 +359,7 @@ function Blog() {
                     position: 'relative',
                     overflow: 'hidden',
                     height: '200px',
-                    background: '#f8f8fc'
+                    background: '#FAFAFA'
                   }}>
                     <img
                       src={blog.image || 'https://placehold.co/600x400/f0f0f0/aaa?text=Blog'}
@@ -381,7 +381,7 @@ function Blog() {
                         borderRadius: '20px',
                         fontSize: '0.7rem',
                         fontWeight: 600,
-                        background: '#FF6B35',
+                        background: '#1A1A1A',
                         color: 'white'
                       }}>
                         {blog.category}
@@ -404,7 +404,7 @@ function Blog() {
                     <h3 style={{
                       fontSize: '1.1rem',
                       fontWeight: 700,
-                      color: '#1a1a2e',
+                      color: '#1A1A1A',
                       marginBottom: '8px',
                       lineHeight: '1.3',
                       display: '-webkit-box',
@@ -415,7 +415,7 @@ function Blog() {
                       {blog.title}
                     </h3>
                     <p style={{
-                      color: '#4a4a68',
+                      color: '#6B6B6B',
                       fontSize: '0.9rem',
                       lineHeight: '1.6',
                       display: '-webkit-box',
@@ -427,7 +427,7 @@ function Blog() {
                     </p>
                     <div style={{
                       marginTop: '16px',
-                      color: '#FF6B35',
+                      color: '#1A1A1A',
                       fontWeight: 600,
                       fontSize: '0.85rem',
                       display: 'flex',

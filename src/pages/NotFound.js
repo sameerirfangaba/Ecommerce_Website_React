@@ -13,20 +13,20 @@ function NotFound() {
         textAlign: 'center'
       }}>
         <h1 style={{
-          fontFamily: "'Playfair Display', serif",
+          fontFamily: "'DM Sans', sans-serif",
           fontSize: '6rem',
           fontWeight: '700',
-          color: '#FF6B35',
+          color: '#1A1A1A',
           marginBottom: '16px'
         }}>404</h1>
         <h2 style={{
           fontSize: '2rem',
           fontWeight: '700',
-          color: '#1a1a2e',
+          color: '#1A1A1A',
           marginBottom: '16px'
         }}>Page Not Found</h2>
         <p style={{
-          color: '#4a4a68',
+          color: '#6B6B6B',
           fontSize: '1.1rem',
           marginBottom: '32px'
         }}>Oops! The page you're looking for doesn't exist.</p>
@@ -36,7 +36,7 @@ function NotFound() {
           gap: '8px',
           padding: '12px 32px',
           borderRadius: '10px',
-          background: '#FF6B35',
+          background: '#1A1A1A',
           color: 'white',
           textDecoration: 'none',
           fontWeight: '600',

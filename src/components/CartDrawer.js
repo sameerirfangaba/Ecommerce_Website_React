@@ -78,7 +78,7 @@ function CartDrawer({ isOpen, onClose }) {
         <div
           style={{
             padding: '20px 24px',
-            borderBottom: '1px solid #e8e8f0',
+            borderBottom: '1px solid #EAEAEA',
             flexShrink: 0
           }}
         >
@@ -90,10 +90,10 @@ function CartDrawer({ isOpen, onClose }) {
           }}>
             <h2
               style={{
-                fontFamily: "'Playfair Display', serif",
+                fontFamily: "'DM Sans', sans-serif",
                 fontSize: '1.25rem',
                 fontWeight: 600,
-                color: '#1a1a2e'
+                color: '#1A1A1A'
               }}
             >
               Your Cart
@@ -119,18 +119,18 @@ function CartDrawer({ isOpen, onClose }) {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                background: '#f8f8fc',
-                border: '1px solid #e8e8f0',
+                background: '#FAFAFA',
+                border: '1px solid #EAEAEA',
                 cursor: 'pointer',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 fontSize: '1rem',
                 transition: 'all 0.2s'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = '#e8e8f0';
+                e.currentTarget.style.background = '#EAEAEA';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = '#f8f8fc';
+                e.currentTarget.style.background = '#FAFAFA';
               }}
             >
               <i className="fas fa-times"></i>
@@ -183,7 +183,7 @@ function CartDrawer({ isOpen, onClose }) {
                 style={{
                   width: '64px',
                   height: '64px',
-                  background: '#f8f8fc',
+                  background: '#FAFAFA',
                   borderRadius: '50%',
                   display: 'flex',
                   alignItems: 'center',
@@ -198,7 +198,7 @@ function CartDrawer({ isOpen, onClose }) {
               </div>
               <p
                 style={{
-                  color: '#4a4a68',
+                  color: '#6B6B6B',
                   fontWeight: 500,
                   marginBottom: '6px',
                   fontSize: '1rem'
@@ -210,7 +210,7 @@ function CartDrawer({ isOpen, onClose }) {
                 to="/shop"
                 onClick={onClose}
                 style={{
-                  color: '#FF6B35',
+                  color: '#1A1A1A',
                   fontSize: '0.875rem',
                   fontWeight: 600,
                   textDecoration: 'none'
@@ -230,7 +230,7 @@ function CartDrawer({ isOpen, onClose }) {
                       display: 'flex',
                       gap: '14px',
                       padding: '14px 0',
-                      borderBottom: '1px solid #e8e8f0'
+                      borderBottom: '1px solid #EAEAEA'
                     }}
                   >
                     <img
@@ -241,7 +241,7 @@ function CartDrawer({ isOpen, onClose }) {
                         height: '76px',
                         borderRadius: '10px',
                         objectFit: 'cover',
-                        border: '1px solid #e8e8f0',
+                        border: '1px solid #EAEAEA',
                         flexShrink: 0
                       }}
                       onError={(e) => e.target.src = 'https://placehold.co/76x76/f0f0f0/aaa?text=IMG'}
@@ -251,7 +251,7 @@ function CartDrawer({ isOpen, onClose }) {
                         style={{
                           fontSize: '0.875rem',
                           fontWeight: 600,
-                          color: '#1a1a2e',
+                          color: '#1A1A1A',
                           marginBottom: '4px'
                         }}
                       >
@@ -261,7 +261,7 @@ function CartDrawer({ isOpen, onClose }) {
                         <div
                           style={{
                             fontSize: '0.75rem',
-                            color: '#4a4a68',
+                            color: '#6B6B6B',
                             marginBottom: '6px'
                           }}
                         >
@@ -302,7 +302,7 @@ function CartDrawer({ isOpen, onClose }) {
                           style={{
                             display: 'flex',
                             alignItems: 'center',
-                            border: '1.5px solid #e8e8f0',
+                            border: '1.5px solid #EAEAEA',
                             borderRadius: '8px',
                             overflow: 'hidden',
                             width: 'fit-content'
@@ -317,13 +317,13 @@ function CartDrawer({ isOpen, onClose }) {
                               border: 'none',
                               cursor: 'pointer',
                               fontSize: '1rem',
-                              color: '#4a4a68',
+                              color: '#6B6B6B',
                               display: 'flex',
                               alignItems: 'center',
                               justifyContent: 'center',
                               transition: 'background 0.15s'
                             }}
-                            onMouseEnter={(e) => e.currentTarget.style.background = '#f8f8fc'}
+                            onMouseEnter={(e) => e.currentTarget.style.background = '#FAFAFA'}
                             onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
                           >
                             −
@@ -334,8 +334,8 @@ function CartDrawer({ isOpen, onClose }) {
                               textAlign: 'center',
                               fontSize: '0.875rem',
                               fontWeight: 600,
-                              borderLeft: '1.5px solid #e8e8f0',
-                              borderRight: '1.5px solid #e8e8f0',
+                              borderLeft: '1.5px solid #EAEAEA',
+                              borderRight: '1.5px solid #EAEAEA',
                               height: '28px',
                               display: 'flex',
                               alignItems: 'center',
@@ -353,13 +353,13 @@ function CartDrawer({ isOpen, onClose }) {
                               border: 'none',
                               cursor: 'pointer',
                               fontSize: '1rem',
-                              color: '#4a4a68',
+                              color: '#6B6B6B',
                               display: 'flex',
                               alignItems: 'center',
                               justifyContent: 'center',
                               transition: 'background 0.15s'
                             }}
-                            onMouseEnter={(e) => e.currentTarget.style.background = '#f8f8fc'}
+                            onMouseEnter={(e) => e.currentTarget.style.background = '#FAFAFA'}
                             onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
                           >
                             +
@@ -393,7 +393,7 @@ function CartDrawer({ isOpen, onClose }) {
                         style={{
                           fontSize: '0.9rem',
                           fontWeight: 700,
-                          color: '#1a1a2e',
+                          color: '#1A1A1A',
                           marginTop: '4px'
                         }}
                       >
@@ -440,7 +440,7 @@ function CartDrawer({ isOpen, onClose }) {
           <div
             style={{
               padding: '20px 24px',
-              borderTop: '1px solid #e8e8f0',
+              borderTop: '1px solid #EAEAEA',
               flexShrink: 0,
               background: 'white'
             }}
@@ -457,7 +457,7 @@ function CartDrawer({ isOpen, onClose }) {
                 style={{
                   fontSize: '1rem',
                   fontWeight: 600,
-                  color: '#1a1a2e'
+                  color: '#1A1A1A'
                 }}
               >
                 Total
@@ -466,7 +466,7 @@ function CartDrawer({ isOpen, onClose }) {
                 style={{
                   fontSize: '1.3rem',
                   fontWeight: 700,
-                  color: '#FF6B35'
+                  color: '#1A1A1A'
                 }}
               >
                 {formatPrice(total)}
@@ -482,7 +482,7 @@ function CartDrawer({ isOpen, onClose }) {
                 padding: '14px',
                 borderRadius: '10px',
                 border: 'none',
-                background: '#1a1a2e',
+                background: '#1A1A1A',
                 color: 'white',
                 textDecoration: 'none',
                 fontWeight: 600,
@@ -494,7 +494,7 @@ function CartDrawer({ isOpen, onClose }) {
                 e.currentTarget.style.background = '#2d2d4e';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = '#1a1a2e';
+                e.currentTarget.style.background = '#1A1A1A';
               }}
             >
               <i className="fas fa-lock" style={{ fontSize: '0.85rem', marginRight: '6px' }}></i>
@@ -510,18 +510,18 @@ function CartDrawer({ isOpen, onClose }) {
                 padding: '12px',
                 borderRadius: '10px',
                 border: 'none',
-                background: '#f8f8fc',
-                color: '#1a1a2e',
+                background: '#FAFAFA',
+                color: '#1A1A1A',
                 textDecoration: 'none',
                 fontWeight: 600,
                 textAlign: 'center',
                 transition: 'all 0.2s'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = '#e8e8f0';
+                e.currentTarget.style.background = '#EAEAEA';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = '#f8f8fc';
+                e.currentTarget.style.background = '#FAFAFA';
               }}
             >
               View Full Cart

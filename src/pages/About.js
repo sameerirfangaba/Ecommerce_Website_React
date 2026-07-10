@@ -33,10 +33,10 @@ function About() {
           box-shadow: 0 20px 40px rgba(0,0,0,0.08);
         }
         .stat-number {
-          font-family: 'Playfair Display', serif;
+          font-family: 'DM Sans', sans-serif;
           font-size: 2.5rem;
           font-weight: 700;
-          color: #FF6B35;
+          color: #1A1A1A;
         }
         @media (max-width: 768px) {
           .stats-grid {
@@ -51,7 +51,7 @@ function About() {
 
       {/* Hero Section */}
       <section className="hero-about" style={{
-        background: '#1a1a2e',
+        background: '#1A1A1A',
         padding: '100px 0',
         textAlign: 'center',
         position: 'relative',
@@ -60,7 +60,7 @@ function About() {
         <div style={{
           position: 'absolute',
           inset: 0,
-          background: 'radial-gradient(circle at 30% 50%, rgba(255,107,53,0.12) 0%, transparent 60%)'
+          background: 'radial-gradient(circle at 30% 50%, rgba(255,255,255,0.12) 0%, transparent 60%)'
         }}></div>
         <div className="section-inner" style={{
           maxWidth: '1280px',
@@ -70,7 +70,7 @@ function About() {
           zIndex: 1
         }}>
           <h1 className="hero-title" style={{
-            fontFamily: "'Playfair Display', serif",
+            fontFamily: "'DM Sans', sans-serif",
             fontSize: 'clamp(2.5rem, 5vw, 4rem)',
             fontWeight: '700',
             color: 'white',
@@ -101,17 +101,17 @@ function About() {
           }}>
             <div>
               <p style={{
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: '1.6',
                 marginBottom: '16px',
                 fontSize: '1rem'
-              }}>Founded in 2024, Ismora has quickly become a trusted name for those who seek elegance, durability, and style in their everyday essentials. We believe that the things you own should bring you joy, and we're committed to curating a collection that does exactly that.</p>
+              }}>Ismora is a newly launched e-commerce brand based in the UAE, built for people who want their everyday essentials — from customized jewelry to fashion, accessories, and more — to feel a little more considered. We're just getting started, and every product in our collection is chosen the same way we'd shop for ourselves: for quality, style, and lasting value.</p>
               <p style={{
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: '1.6',
                 marginBottom: '24px',
                 fontSize: '1rem'
-              }}>From our carefully sourced materials to our dedicated customer support, every aspect of Ismora is designed with you in mind. We're not just selling products — we're building relationships and creating experiences that last.</p>
+              }}>As a new brand, we're focused on getting the fundamentals right — carefully sourced products, honest pricing, and reliable shipping across the UAE. We'd rather grow slowly with happy customers than rush the process, so expect our collection to keep evolving as we learn what you love.</p>
               <Link to="/shop" className="btn btn-accent" style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -126,7 +126,7 @@ function About() {
                 border: 'none',
                 transition: 'all 0.2s',
                 textDecoration: 'none',
-                background: '#FF6B35',
+                background: '#1A1A1A',
                 color: 'white'
               }}>
                 <i className="fas fa-shopping-bag"></i> Shop Our Collection
@@ -151,7 +151,7 @@ function About() {
       {/* Core Values */}
       <section className="section" style={{
         padding: '80px 0',
-        background: '#f8f8fc'
+        background: '#FAFAFA'
       }}>
         <div className="section-inner" style={{
           maxWidth: '1280px',
@@ -167,14 +167,14 @@ function About() {
               fontWeight: '700',
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#FF6B35',
+              color: '#1A1A1A',
               marginBottom: '8px'
             }}>What Drives Us</p>
             <h2 className="section-title" style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: 'clamp(2rem, 4vw, 3rem)',
               fontWeight: '700',
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               letterSpacing: '-0.02em'
             }}>Our Core Values</h2>
           </div>
@@ -185,7 +185,7 @@ function About() {
           }}>
             <div className="value-card" style={{
               background: 'white',
-              border: '1px solid #e8e8f0',
+              border: '1px solid #EAEAEA',
               borderRadius: '20px',
               padding: '32px',
               textAlign: 'center',
@@ -194,14 +194,14 @@ function About() {
               <div className="value-icon" style={{
                 width: '70px',
                 height: '70px',
-                background: '#f8f8fc',
+                background: '#FAFAFA',
                 borderRadius: '20px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 margin: '0 auto 20px',
                 fontSize: '1.8rem',
-                color: '#FF6B35'
+                color: '#1A1A1A'
               }}>
                 <i className="fas fa-gem"></i>
               </div>
@@ -209,10 +209,10 @@ function About() {
                 fontSize: '1.25rem',
                 fontWeight: '600',
                 marginBottom: '8px',
-                color: '#1a1a2e'
+                color: '#1A1A1A'
               }}>Quality First</h3>
               <p style={{
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 fontSize: '0.875rem',
                 lineHeight: '1.6'
               }}>Every product is carefully selected to ensure it meets our high standards of durability and design.</p>
@@ -220,7 +220,7 @@ function About() {
 
             <div className="value-card" style={{
               background: 'white',
-              border: '1px solid #e8e8f0',
+              border: '1px solid #EAEAEA',
               borderRadius: '20px',
               padding: '32px',
               textAlign: 'center',
@@ -229,14 +229,14 @@ function About() {
               <div className="value-icon" style={{
                 width: '70px',
                 height: '70px',
-                background: '#f8f8fc',
+                background: '#FAFAFA',
                 borderRadius: '20px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 margin: '0 auto 20px',
                 fontSize: '1.8rem',
-                color: '#FF6B35'
+                color: '#1A1A1A'
               }}>
                 <i className="fas fa-heart"></i>
               </div>
@@ -244,10 +244,10 @@ function About() {
                 fontSize: '1.25rem',
                 fontWeight: '600',
                 marginBottom: '8px',
-                color: '#1a1a2e'
+                color: '#1A1A1A'
               }}>Customer Love</h3>
               <p style={{
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 fontSize: '0.875rem',
                 lineHeight: '1.6'
               }}>Your satisfaction is our priority. We're here to help you find exactly what you need.</p>
@@ -255,7 +255,7 @@ function About() {
 
             <div className="value-card" style={{
               background: 'white',
-              border: '1px solid #e8e8f0',
+              border: '1px solid #EAEAEA',
               borderRadius: '20px',
               padding: '32px',
               textAlign: 'center',
@@ -264,14 +264,14 @@ function About() {
               <div className="value-icon" style={{
                 width: '70px',
                 height: '70px',
-                background: '#f8f8fc',
+                background: '#FAFAFA',
                 borderRadius: '20px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 margin: '0 auto 20px',
                 fontSize: '1.8rem',
-                color: '#FF6B35'
+                color: '#1A1A1A'
               }}>
                 <i className="fas fa-leaf"></i>
               </div>
@@ -279,10 +279,10 @@ function About() {
                 fontSize: '1.25rem',
                 fontWeight: '600',
                 marginBottom: '8px',
-                color: '#1a1a2e'
+                color: '#1A1A1A'
               }}>Sustainable Choices</h3>
               <p style={{
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 fontSize: '0.875rem',
                 lineHeight: '1.6'
               }}>We're committed to responsible sourcing and eco-friendly packaging.</p>
@@ -300,57 +300,45 @@ function About() {
         }}>
           <div className="stats-grid" style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
+            gridTemplateColumns: 'repeat(3, 1fr)',
             gap: '32px',
             textAlign: 'center'
           }}>
             <div>
               <div className="stat-number" style={{
-                fontFamily: "'Playfair Display', serif",
+                fontFamily: "'DM Sans', sans-serif",
                 fontSize: '2.5rem',
                 fontWeight: '700',
-                color: '#FF6B35'
-              }}>5000+</div>
-              <div style={{
-                color: '#4a4a68',
-                fontSize: '0.875rem'
-              }}>Happy Customers</div>
-            </div>
-            <div>
-              <div className="stat-number" style={{
-                fontFamily: "'Playfair Display', serif",
-                fontSize: '2.5rem',
-                fontWeight: '700',
-                color: '#FF6B35'
+                color: '#1A1A1A'
               }}>{loading ? '...' : `${products.length}+`}</div>
               <div style={{
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 fontSize: '0.875rem'
               }}>Products</div>
             </div>
             <div>
               <div className="stat-number" style={{
-                fontFamily: "'Playfair Display', serif",
+                fontFamily: "'DM Sans', sans-serif",
                 fontSize: '2.5rem',
                 fontWeight: '700',
-                color: '#FF6B35'
-              }}>50+</div>
+                color: '#1A1A1A'
+              }}>UAE</div>
               <div style={{
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 fontSize: '0.875rem'
-              }}>Cities Served</div>
+              }}>Wide Shipping</div>
             </div>
             <div>
               <div className="stat-number" style={{
-                fontFamily: "'Playfair Display', serif",
+                fontFamily: "'DM Sans', sans-serif",
                 fontSize: '2.5rem',
                 fontWeight: '700',
-                color: '#FF6B35'
-              }}>4.9★</div>
+                color: '#1A1A1A'
+              }}>2026</div>
               <div style={{
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 fontSize: '0.875rem'
-              }}>Avg. Rating</div>
+              }}>Est.</div>
             </div>
           </div>
         </div>

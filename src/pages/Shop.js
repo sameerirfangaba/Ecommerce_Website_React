@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { db } from '../firebase/config';
 import { collection, getDocs } from 'firebase/firestore';
 import Navbar from '../components/Navbar';
@@ -16,6 +16,8 @@ function Shop() {
   const [view, setView] = useState('grid');
   const [sortBy, setSortBy] = useState('default');
   const [searchQuery, setSearchQuery] = useState('');
+  const [visibleCount, setVisibleCount] = useState(12);
+  const [openInfoSection, setOpenInfoSection] = useState(null);
   const { addToCart } = useCart();
   const searchInputRef = useRef(null);
   const sidebarSearchRef = useRef(null);
@@ -90,6 +92,7 @@ function Shop() {
     }
 
     setFilteredProducts(filtered);
+    setVisibleCount(12);
   }, [products, activeCategory, searchQuery, sortBy]);
 
   useEffect(() => {
@@ -134,6 +137,7 @@ function Shop() {
     const hasDiscount = product.comparePrice && product.comparePrice > product.price;
     const discount = hasDiscount ? Math.round(((product.comparePrice - product.price) / product.comparePrice) * 100) : 0;
     const isListView = view === 'list';
+    const colorGroup = product.hasVariants && product.variants?.groups?.find(g => g.type === 'Color');
 
     const handleCardClick = () => {
       window.location.href = `/product/${product.id}`;
@@ -144,8 +148,8 @@ function Shop() {
         className="product-card" 
         style={{
           background: 'white',
-          border: '1px solid #e8e8f0',
-          borderRadius: '14px',
+          border: '1px solid #EAEAEA',
+          borderRadius: '2px',
           overflow: 'hidden',
           cursor: 'pointer',
           transition: 'all 0.3s cubic-bezier(0.4,0,0.2,1)',
@@ -160,7 +164,7 @@ function Shop() {
             aspectRatio: isListView ? 'auto' : '1',
             height: isListView ? '160px' : 'auto',
             overflow: 'hidden',
-            background: '#f8f8fc'
+            background: '#FAFAFA'
           }}
         >
           <img
@@ -181,70 +185,44 @@ function Shop() {
               top: '10px',
               left: '10px',
               zIndex: 2,
-              padding: '4px 9px',
-              borderRadius: '6px',
-              fontSize: '0.7rem',
-              fontWeight: '700',
-              background: '#FF6B35',
-              color: 'white',
+              padding: '3px 8px',
+              border: '1px solid #1A1A1A',
+              fontSize: '0.65rem',
+              fontWeight: '600',
+              background: 'white',
+              color: '#1A1A1A',
               letterSpacing: '0.04em'
             }}>
               −{discount}%
             </div>
           )}
           {!isListView && (
-            <div className="product-actions" style={{
-              position: 'absolute',
-              bottom: '10px',
-              left: '10px',
-              right: '10px',
-              display: 'flex',
-              gap: '8px',
-              transform: 'translateY(10px)',
-              opacity: 0,
-              transition: 'all 0.25s'
-            }}>
-              <button 
-                className="product-atc-btn" 
-                style={{
-                  flex: 1,
-                  padding: '9px',
-                  borderRadius: '9px',
-                  border: 'none',
-                  background: '#1a1a2e',
-                  color: 'white',
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: '0.8rem',
-                  fontWeight: '600',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '6px'
-                }}
-                onClick={handleAddToCart}
-              >
-                <i className="fas fa-cart-plus"></i>
-              </button>
-              <button className="product-wish-btn" style={{
-                width: '38px',
-                height: '38px',
-                borderRadius: '9px',
-                border: 'none',
-                cursor: 'pointer',
-                background: 'rgba(255,255,255,0.92)',
-                color: '#4a4a68',
+            <button
+              className="product-atc-btn"
+              title="Add to Cart"
+              style={{
+                position: 'absolute',
+                bottom: '10px',
+                right: '10px',
+                width: '32px',
+                height: '32px',
+                borderRadius: '50%',
+                border: '1px solid #1A1A1A',
+                background: 'white',
+                color: '#1A1A1A',
                 fontSize: '0.85rem',
+                cursor: 'pointer',
                 transition: 'all 0.2s',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center',
-                backdropFilter: 'blur(4px)'
-              }}>
-                <i className="far fa-heart"></i>
-              </button>
-            </div>
+                justifyContent: 'center'
+              }}
+              onClick={handleAddToCart}
+              onMouseEnter={(e) => { e.currentTarget.style.background = '#1A1A1A'; e.currentTarget.style.color = 'white'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.background = 'white'; e.currentTarget.style.color = '#1A1A1A'; }}
+            >
+              +
+            </button>
           )}
         </div>
         <div className="product-body" style={{
@@ -257,7 +235,7 @@ function Shop() {
             <div className="product-category" style={{
               fontSize: '0.7rem',
               fontWeight: '700',
-              color: '#4a4a68',
+              color: '#6B6B6B',
               textTransform: 'uppercase',
               letterSpacing: '0.08em',
               marginBottom: '5px'
@@ -265,7 +243,7 @@ function Shop() {
             <div className="product-name" style={{
               fontSize: '0.9rem',
               fontWeight: '600',
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               marginBottom: '8px',
               lineHeight: '1.35'
             }}>{product.name}</div>
@@ -277,7 +255,7 @@ function Shop() {
               <span className="product-price" style={{
                 fontSize: '1rem',
                 fontWeight: '700',
-                color: '#1a1a2e'
+                color: '#1A1A1A'
               }}>{formatPrice(product.price)}</span>
               {hasDiscount && (
                 <span className="product-price-old" style={{
@@ -287,15 +265,22 @@ function Shop() {
                 }}>{formatPrice(product.comparePrice)}</span>
               )}
             </div>
-            <div className="product-rating" style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '4px',
-              marginTop: '5px'
-            }}>
-              <span className="stars" style={{ color: '#fbbf24', fontSize: '0.7rem' }}>★★★★★</span>
-              <span className="rating-count" style={{ fontSize: '0.72rem', color: '#4a4a68' }}>(24)</span>
-            </div>
+            {colorGroup && colorGroup.values?.length > 0 && (
+              <div style={{ display: 'flex', alignItems: 'center', gap: '5px', marginTop: '8px' }}>
+                {colorGroup.values.slice(0, 5).map((v, i) => (
+                  <span key={i} style={{
+                    width: '13px',
+                    height: '13px',
+                    borderRadius: '50%',
+                    border: '1px solid #EAEAEA',
+                    background: v.color || '#ccc',
+                    display: 'inline-block',
+                    flexShrink: 0
+                  }} title={v.label}></span>
+                ))}
+                <span style={{ fontSize: '0.72rem', color: '#6B6B6B', marginLeft: '2px' }}>{colorGroup.values[0]?.label}</span>
+              </div>
+            )}
             {product.stock < 1 && (
               <div style={{ fontSize: '0.75rem', color: '#ef4444', fontWeight: '600', marginTop: '6px' }}>
                 <i className="fas fa-times-circle" style={{ marginRight: '3px' }}></i>Out of Stock
@@ -309,45 +294,28 @@ function Shop() {
               marginTop: '12px',
               justifyContent: 'flex-start'
             }}>
-              <button 
-                className="product-atc-btn" 
+              <button
+                className="product-atc-btn"
                 style={{
-                  flex: 1,
-                  maxWidth: '160px',
-                  padding: '9px',
-                  borderRadius: '9px',
-                  border: 'none',
-                  background: '#1a1a2e',
+                  maxWidth: '200px',
+                  padding: '10px 20px',
+                  border: '1px solid #1A1A1A',
+                  background: '#1A1A1A',
                   color: 'white',
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: '0.8rem',
+                  fontSize: '0.72rem',
                   fontWeight: '600',
+                  letterSpacing: '0.06em',
+                  textTransform: 'uppercase',
                   cursor: 'pointer',
                   transition: 'all 0.2s',
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '6px'
+                  justifyContent: 'center'
                 }}
                 onClick={handleAddToCart}
               >
-                <i className="fas fa-cart-plus"></i> Add to Cart
-              </button>
-              <button className="product-wish-btn" style={{
-                width: '38px',
-                height: '38px',
-                borderRadius: '9px',
-                border: 'none',
-                cursor: 'pointer',
-                background: 'rgba(255,255,255,0.92)',
-                color: '#4a4a68',
-                fontSize: '0.85rem',
-                transition: 'all 0.2s',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}>
-                <i className="far fa-heart"></i>
+                Add to Cart
               </button>
             </div>
           )}
@@ -359,13 +327,13 @@ function Shop() {
   const SkeletonCard = () => (
     <div className="skeleton-card" style={{
       background: 'white',
-      border: '1px solid #e8e8f0',
-      borderRadius: '14px',
+      border: '1px solid #EAEAEA',
+      borderRadius: '2px',
       overflow: 'hidden'
     }}>
       <div className="skeleton-img" style={{
         aspectRatio: '1',
-        background: '#f8f8fc',
+        background: '#FAFAFA',
         position: 'relative',
         overflow: 'hidden'
       }}>
@@ -379,7 +347,7 @@ function Shop() {
       <div className="skeleton-body" style={{ padding: '14px' }}>
         <div className="skeleton-line w1" style={{
           height: '11px',
-          background: '#f8f8fc',
+          background: '#FAFAFA',
           borderRadius: '6px',
           marginBottom: '8px',
           width: '35%',
@@ -395,7 +363,7 @@ function Shop() {
         </div>
         <div className="skeleton-line w3" style={{
           height: '11px',
-          background: '#f8f8fc',
+          background: '#FAFAFA',
           borderRadius: '6px',
           marginBottom: '8px',
           width: '75%',
@@ -411,7 +379,7 @@ function Shop() {
         </div>
         <div className="skeleton-line w2" style={{
           height: '11px',
-          background: '#f8f8fc',
+          background: '#FAFAFA',
           borderRadius: '6px',
           width: '50%',
           position: 'relative',
@@ -449,27 +417,13 @@ function Shop() {
           transform: translateY(0);
           opacity: 1;
         }
-        .cat-item:hover {
-          background: #f8f8fc;
-          color: #1a1a2e;
-        }
-        .cat-item.active {
-          background: #1a1a2e;
-          color: white;
-        }
-        .cat-item.active .cat-count {
-          background: rgba(255,255,255,0.2);
-          color: white;
-        }
         @media (max-width: 768px) {
-          .shop-body {
-            grid-template-columns: 1fr !important;
-          }
-          .filter-sidebar {
-            position: static !important;
-          }
           .products-grid {
             grid-template-columns: repeat(2, 1fr) !important;
+          }
+          .shop-toolbar {
+            flex-direction: column !important;
+            align-items: flex-start !important;
           }
         }
         @media (max-width: 480px) {
@@ -480,406 +434,288 @@ function Shop() {
         }
       `}</style>
 
-      <div className="shop-header" style={{
-        background: '#1a1a2e',
-        padding: '48px 0',
-        position: 'relative',
-        overflow: 'hidden'
-      }}>
-        <div style={{
-          position: 'absolute',
-          inset: 0,
-          background: 'radial-gradient(circle at 30% 50%, rgba(255,107,53,0.12) 0%, transparent 60%)'
-        }}></div>
-        <div className="shop-header-inner" style={{
-          maxWidth: '1280px',
-          margin: '0 auto',
-          padding: '0 24px',
-          position: 'relative',
-          zIndex: 1
+      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '40px 24px 0' }}>
+        <h1 style={{
+          fontSize: '1.3rem',
+          fontWeight: '700',
+          letterSpacing: '0.06em',
+          textTransform: 'uppercase',
+          color: '#1A1A1A',
+          marginBottom: '10px'
+        }}>{activeCategory !== 'all' ? activeCategory : 'All Products'}</h1>
+        <p style={{
+          color: '#6B6B6B',
+          fontSize: '0.9rem',
+          lineHeight: '1.7',
+          maxWidth: '760px'
+        }}>Browse our full range — from customized rings, bracelets and necklaces to everyday accessories and more. Every piece is chosen for quality and lasting value.</p>
+
+        <div className="shop-toolbar" style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          marginTop: '28px',
+          paddingBottom: '16px',
+          borderBottom: '1px solid #EAEAEA',
+          flexWrap: 'wrap',
+          gap: '14px'
         }}>
-          <div className="breadcrumb" style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-            fontSize: '0.8rem',
-            color: 'rgba(255,255,255,0.5)',
-            marginBottom: '16px'
-          }}>
-            <Link to="/" style={{ color: 'rgba(255,255,255,0.5)', textDecoration: 'none' }}>Home</Link>
-            <i className="fas fa-chevron-right" style={{ fontSize: '0.65rem' }}></i>
-            <span style={{ color: 'white' }}>Shop</span>
-          </div>
-          <h1 className="shop-title" style={{
-            fontFamily: "'Playfair Display', serif",
-            fontSize: '2.4rem',
-            fontWeight: '700',
-            color: 'white',
-            letterSpacing: '-0.02em',
-            marginBottom: '8px'
-          }}>All Products</h1>
-          <p className="shop-subtitle" style={{
-            color: 'rgba(255,255,255,0.55)',
-            fontSize: '0.95rem'
-          }}>Explore our full collection of premium products</p>
-        </div>
-      </div>
-
-      <div className="shop-body" style={{
-        maxWidth: '1280px',
-        margin: '0 auto',
-        padding: '40px 24px',
-        display: 'grid',
-        gridTemplateColumns: '260px 1fr',
-        gap: '32px',
-        alignItems: 'start'
-      }}>
-        <aside className="filter-sidebar" style={{
-          position: 'sticky',
-          top: '88px'
-        }}>
-          <div className="filter-panel" style={{
-            background: 'white',
-            border: '1px solid #e8e8f0',
-            borderRadius: '16px',
-            padding: '24px',
-            marginBottom: '16px'
-          }}>
-            <div className="filter-panel-title" style={{
-              fontSize: '0.75rem',
-              fontWeight: '700',
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-              color: '#4a4a68',
-              marginBottom: '16px',
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center'
-            }}>
-              <span><i className="fas fa-search" style={{ marginRight: '6px', color: '#FF6B35' }}></i>Search</span>
-            </div>
-            <div className="search-box" style={{ position: 'relative' }}>
-              <i className="fas fa-search" style={{
-                position: 'absolute',
-                left: '12px',
-                top: '50%',
-                transform: 'translateY(-50%)',
-                color: '#aaa',
-                fontSize: '0.85rem'
-              }}></i>
-              <input
-                ref={sidebarSearchRef}
-                type="text"
-                placeholder="Search products..."
-                style={{
-                  width: '100%',
-                  padding: '10px 14px 10px 38px',
-                  border: '1.5px solid #e8e8f0',
-                  borderRadius: '10px',
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: '0.875rem',
-                  color: '#1a1a2e',
-                  outline: 'none',
-                  transition: 'border-color 0.2s'
-                }}
-                onChange={(e) => {
-                  const val = e.target.value;
-                  setSearchQuery(val);
-                  if (searchInputRef.current) searchInputRef.current.value = val;
-                }}
-              />
-            </div>
-          </div>
-
-          <div className="filter-panel" style={{
-            background: 'white',
-            border: '1px solid #e8e8f0',
-            borderRadius: '16px',
-            padding: '24px',
-            marginBottom: '16px'
-          }}>
-            <div className="filter-panel-title" style={{
-              fontSize: '0.75rem',
-              fontWeight: '700',
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-              color: '#4a4a68',
-              marginBottom: '16px',
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center'
-            }}>
-              <span><i className="fas fa-tag" style={{ marginRight: '6px', color: '#FF6B35' }}></i>Categories</span>
-              <button 
-                className="filter-clear" 
-                style={{
-                  fontSize: '0.75rem',
-                  fontWeight: '600',
-                  color: '#FF6B35',
-                  cursor: 'pointer',
-                  background: 'none',
-                  border: 'none',
-                  fontFamily: "'DM Sans', sans-serif"
-                }}
-                onClick={resetFilters}
-              >
-                All
-              </button>
-            </div>
-            <div className="category-list" style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '2px'
-            }}>
-              <div 
-                className={`cat-item ${activeCategory === 'all' ? 'active' : ''}`}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  padding: '9px 12px',
-                  borderRadius: '9px',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s',
-                  fontSize: '0.875rem',
-                  fontWeight: '500',
-                  color: activeCategory === 'all' ? 'white' : '#4a4a68',
-                  background: activeCategory === 'all' ? '#1a1a2e' : 'transparent'
-                }}
-                onClick={() => handleCategoryClick('all')}
-              >
-                <span>All Products</span>
-                <span className="cat-count" style={{
-                  fontSize: '0.7rem',
-                  fontWeight: '700',
-                  background: activeCategory === 'all' ? 'rgba(255,255,255,0.2)' : '#f8f8fc',
-                  color: activeCategory === 'all' ? 'white' : '#4a4a68',
-                  padding: '2px 7px',
-                  borderRadius: '100px'
-                }}>{products.length}</span>
-              </div>
-              {categories.map((cat) => (
-                <div 
-                  key={cat.name}
-                  className={`cat-item ${activeCategory === cat.name ? 'active' : ''}`}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    padding: '9px 12px',
-                    borderRadius: '9px',
-                    cursor: 'pointer',
-                    transition: 'all 0.2s',
-                    fontSize: '0.875rem',
-                    fontWeight: '500',
-                    color: activeCategory === cat.name ? 'white' : '#4a4a68',
-                    background: activeCategory === cat.name ? '#1a1a2e' : 'transparent'
-                  }}
-                  onClick={() => handleCategoryClick(cat.name)}
-                >
-                  <span>{cat.name}</span>
-                  <span className="cat-count" style={{
-                    fontSize: '0.7rem',
-                    fontWeight: '700',
-                    background: activeCategory === cat.name ? 'rgba(255,255,255,0.2)' : '#f8f8fc',
-                    color: activeCategory === cat.name ? 'white' : '#4a4a68',
-                    padding: '2px 7px',
-                    borderRadius: '100px'
-                  }}>{cat.count}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="filter-panel" style={{
-            background: 'white',
-            border: '1px solid #e8e8f0',
-            borderRadius: '16px',
-            padding: '24px',
-            marginBottom: '16px'
-          }}>
-            <div className="filter-panel-title" style={{
-              fontSize: '0.75rem',
-              fontWeight: '700',
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-              color: '#4a4a68',
-              marginBottom: '16px',
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center'
-            }}>
-              <span><i className="fas fa-sort-amount-down" style={{ marginRight: '6px', color: '#FF6B35' }}></i>Sort By</span>
-            </div>
-            <select 
-              className="sort-select" 
+          <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '20px' }}>
+            <button
+              onClick={resetFilters}
               style={{
-                width: '100%',
-                padding: '10px 14px',
-                border: '1.5px solid #e8e8f0',
-                borderRadius: '10px',
+                background: 'none',
+                borderTop: 'none',
+                borderLeft: 'none',
+                borderRight: 'none',
+                borderBottom: activeCategory === 'all' ? '1.5px solid #1A1A1A' : '1.5px solid transparent',
+                color: activeCategory === 'all' ? '#1A1A1A' : '#6B6B6B',
+                cursor: 'pointer',
                 fontFamily: "'DM Sans', sans-serif",
-                fontSize: '0.875rem',
-                color: '#1a1a2e',
+                fontSize: '0.78rem',
+                fontWeight: '600',
+                letterSpacing: '0.04em',
+                textTransform: 'uppercase',
+                padding: '0 0 4px',
+                transition: 'color 0.15s'
+              }}
+              onMouseEnter={(e) => { if (activeCategory !== 'all') e.currentTarget.style.color = '#1A1A1A'; }}
+              onMouseLeave={(e) => { if (activeCategory !== 'all') e.currentTarget.style.color = '#6B6B6B'; }}
+            >
+              View All
+            </button>
+            {categories.map((cat) => (
+              <button
+                key={cat.name}
+                onClick={() => handleCategoryClick(cat.name)}
+                style={{
+                  background: 'none',
+                  borderTop: 'none',
+                  borderLeft: 'none',
+                  borderRight: 'none',
+                  borderBottom: activeCategory === cat.name ? '1.5px solid #1A1A1A' : '1.5px solid transparent',
+                  color: activeCategory === cat.name ? '#1A1A1A' : '#6B6B6B',
+                  cursor: 'pointer',
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: '0.78rem',
+                  fontWeight: '600',
+                  letterSpacing: '0.04em',
+                  textTransform: 'uppercase',
+                  padding: '0 0 4px',
+                  whiteSpace: 'nowrap',
+                  transition: 'color 0.15s'
+                }}
+                onMouseEnter={(e) => { if (activeCategory !== cat.name) e.currentTarget.style.color = '#1A1A1A'; }}
+                onMouseLeave={(e) => { if (activeCategory !== cat.name) e.currentTarget.style.color = '#6B6B6B'; }}
+              >
+                {cat.name}
+              </button>
+            ))}
+          </div>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flexShrink: 0 }}>
+            <p style={{ fontSize: '0.8rem', color: '#6B6B6B', margin: 0, whiteSpace: 'nowrap' }}>
+              {loading ? 'Loading...' : `${filteredProducts.length} item${filteredProducts.length !== 1 ? 's' : ''}`}
+            </p>
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              style={{
+                padding: '6px 26px 6px 4px',
+                border: 'none',
+                borderBottom: '1px solid #EAEAEA',
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: '0.78rem',
+                fontWeight: '600',
+                letterSpacing: '0.04em',
+                textTransform: 'uppercase',
+                color: '#1A1A1A',
                 background: 'white',
                 outline: 'none',
                 cursor: 'pointer',
-                transition: 'border-color 0.2s',
                 appearance: 'none',
-                backgroundImage: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' fill=\'none\' viewBox=\'0 0 24 24\' stroke=\'%234a4a68\'%3E%3Cpath stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'2\' d=\'M19 9l-7 7-7-7\'/%3E%3C/svg%3E")',
+                backgroundImage: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' fill=\'none\' viewBox=\'0 0 24 24\' stroke=\'%231A1A1A\'%3E%3Cpath stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'2\' d=\'M19 9l-7 7-7-7\'/%3E%3C/svg%3E")',
                 backgroundRepeat: 'no-repeat',
-                backgroundPosition: 'right 12px center',
-                backgroundSize: '16px'
+                backgroundPosition: 'right 2px center',
+                backgroundSize: '13px'
               }}
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
             >
-              <option value="default">Default</option>
+              <option value="default">Sort</option>
               <option value="price-low">Price: Low to High</option>
               <option value="price-high">Price: High to Low</option>
               <option value="name-az">Name: A to Z</option>
               <option value="name-za">Name: Z to A</option>
             </select>
-          </div>
-        </aside>
-
-        <main>
-          <div className="shop-toolbar" style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            marginBottom: '24px',
-            flexWrap: 'wrap',
-            gap: '12px'
-          }}>
-            <p className="product-count" style={{
-              fontSize: '0.875rem',
-              color: '#4a4a68',
-              fontWeight: '500'
-            }}>
-              {loading ? 'Loading products...' : `${filteredProducts.length} product${filteredProducts.length !== 1 ? 's' : ''}`}
-            </p>
-            <div className="view-toggle" style={{ display: 'flex', gap: '4px' }}>
-              <button 
-                className={`view-btn ${view === 'grid' ? 'active' : ''}`}
-                style={{
-                  width: '36px',
-                  height: '36px',
-                  border: '1.5px solid #e8e8f0',
-                  borderRadius: '8px',
-                  background: view === 'grid' ? '#1a1a2e' : 'white',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: view === 'grid' ? 'white' : '#4a4a68',
-                  fontSize: '0.85rem',
-                  transition: 'all 0.2s'
-                }}
+            <div style={{ display: 'flex', gap: '4px' }}>
+              <button
                 onClick={() => setView('grid')}
+                style={{
+                  width: '30px', height: '30px', border: 'none', background: 'none',
+                  cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  color: view === 'grid' ? '#1A1A1A' : '#ccc', fontSize: '0.9rem'
+                }}
               >
                 <i className="fas fa-th"></i>
               </button>
-              <button 
-                className={`view-btn ${view === 'list' ? 'active' : ''}`}
-                style={{
-                  width: '36px',
-                  height: '36px',
-                  border: '1.5px solid #e8e8f0',
-                  borderRadius: '8px',
-                  background: view === 'list' ? '#1a1a2e' : 'white',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: view === 'list' ? 'white' : '#4a4a68',
-                  fontSize: '0.85rem',
-                  transition: 'all 0.2s'
-                }}
+              <button
                 onClick={() => setView('list')}
+                style={{
+                  width: '30px', height: '30px', border: 'none', background: 'none',
+                  cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  color: view === 'list' ? '#1A1A1A' : '#ccc', fontSize: '0.9rem'
+                }}
               >
                 <i className="fas fa-list"></i>
               </button>
             </div>
           </div>
+        </div>
+      </div>
 
-          <div className="products-grid" style={{
-            display: 'grid',
-            gridTemplateColumns: view === 'list' ? '1fr' : 'repeat(3, 1fr)',
-            gap: '20px'
-          }}>
-            {loading ? (
-              <>
-                <SkeletonCard />
-                <SkeletonCard />
-                <SkeletonCard />
-                <SkeletonCard />
-                <SkeletonCard />
-                <SkeletonCard />
-              </>
-            ) : filteredProducts.length === 0 ? (
-              <div className="empty-state" style={{
-                textAlign: 'center',
-                padding: '80px 24px',
-                gridColumn: '1 / -1'
+      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '28px 24px 0' }}>
+        <div className="products-grid" style={{
+          display: 'grid',
+          gridTemplateColumns: view === 'list' ? '1fr' : 'repeat(4, 1fr)',
+          gap: '18px'
+        }}>
+          {loading ? (
+            <>
+              <SkeletonCard />
+              <SkeletonCard />
+              <SkeletonCard />
+              <SkeletonCard />
+              <SkeletonCard />
+              <SkeletonCard />
+              <SkeletonCard />
+              <SkeletonCard />
+            </>
+          ) : filteredProducts.length === 0 ? (
+            <div className="empty-state" style={{
+              textAlign: 'center',
+              padding: '80px 24px',
+              gridColumn: '1 / -1'
+            }}>
+              <div className="empty-icon" style={{
+                width: '80px',
+                height: '80px',
+                background: '#FAFAFA',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                margin: '0 auto 20px',
+                fontSize: '1.8rem',
+                color: '#ccc'
               }}>
-                <div className="empty-icon" style={{
-                  width: '80px',
-                  height: '80px',
-                  background: '#f8f8fc',
-                  borderRadius: '50%',
-                  display: 'flex',
+                <i className="fas fa-search"></i>
+              </div>
+              <h3 className="empty-title" style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: '1.4rem',
+                fontWeight: '600',
+                color: '#1A1A1A',
+                marginBottom: '8px'
+              }}>No Products Found</h3>
+              <p className="empty-sub" style={{
+                color: '#6B6B6B',
+                fontSize: '0.9rem',
+                marginBottom: '24px'
+              }}>Try adjusting your search or filters</p>
+              <button
+                className="btn btn-outline"
+                style={{
+                  display: 'inline-flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  margin: '0 auto 20px',
-                  fontSize: '1.8rem',
-                  color: '#ccc'
-                }}>
-                  <i className="fas fa-search"></i>
-                </div>
-                <h3 className="empty-title" style={{
-                  fontFamily: "'Playfair Display', serif",
-                  fontSize: '1.4rem',
-                  fontWeight: '600',
-                  color: '#1a1a2e',
-                  marginBottom: '8px'
-                }}>No Products Found</h3>
-                <p className="empty-sub" style={{
-                  color: '#4a4a68',
+                  gap: '8px',
+                  padding: '12px 24px',
+                  borderRadius: '2px',
+                  fontFamily: "'DM Sans', sans-serif",
                   fontSize: '0.9rem',
-                  marginBottom: '24px'
-                }}>Try adjusting your search or filters</p>
-                <button 
-                  className="btn btn-outline" 
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '8px',
-                    padding: '12px 24px',
-                    borderRadius: '10px',
-                    fontFamily: "'DM Sans', sans-serif",
-                    fontSize: '0.9rem',
-                    fontWeight: '600',
-                    cursor: 'pointer',
-                    border: '1.5px solid #1a1a2e',
-                    transition: 'all 0.2s',
-                    textDecoration: 'none',
-                    background: 'transparent',
-                    color: '#1a1a2e'
-                  }}
-                  onClick={resetFilters}
-                >
-                  Clear Filters
-                </button>
-              </div>
-            ) : (
-              filteredProducts.map(product => (
-                <ProductCard key={product.id} product={product} />
-              ))
-            )}
+                  fontWeight: '600',
+                  cursor: 'pointer',
+                  border: '1.5px solid #1A1A1A',
+                  transition: 'all 0.2s',
+                  textDecoration: 'none',
+                  background: 'transparent',
+                  color: '#1A1A1A'
+                }}
+                onClick={resetFilters}
+              >
+                Clear Filters
+              </button>
+            </div>
+          ) : (
+            filteredProducts.slice(0, visibleCount).map(product => (
+              <ProductCard key={product.id} product={product} />
+            ))
+          )}
+        </div>
+
+        {!loading && filteredProducts.length > visibleCount && (
+          <div style={{ textAlign: 'center', margin: '40px 0' }}>
+            <button
+              onClick={() => setVisibleCount(c => c + 12)}
+              style={{
+                padding: '14px 48px',
+                border: '1px solid #1A1A1A',
+                background: 'white',
+                color: '#1A1A1A',
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: '0.78rem',
+                fontWeight: '600',
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase',
+                cursor: 'pointer',
+                transition: 'all 0.2s'
+              }}
+              onMouseEnter={(e) => { e.currentTarget.style.background = '#1A1A1A'; e.currentTarget.style.color = 'white'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.background = 'white'; e.currentTarget.style.color = '#1A1A1A'; }}
+            >
+              Load More
+            </button>
           </div>
-        </main>
+        )}
+      </div>
+
+      {/* Info Accordion */}
+      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '24px 24px 64px' }}>
+        <div style={{ borderTop: '1px solid #EAEAEA' }}>
+          {[
+            { key: 'collection', label: 'About This Collection', body: "Ismora's collection spans customized jewelry — rings, bracelets, necklaces, earrings and anklets made to order — alongside a curated range of everyday accessories and essentials. We're a new UAE-based brand, and we're building the collection deliberately rather than all at once." },
+            { key: 'shipping', label: 'Shipping & Returns', body: 'We currently ship UAE-wide, with free shipping on orders over 150 AED. Items can be returned within 15 days of delivery — see our Returns Policy for full details.' },
+            { key: 'custom', label: 'Custom Orders', body: "Looking for something personalized? Many of our jewelry pieces can be customized with engravings, names, or specific sizing. Reach out via our Contact page and we'll help bring your design to life." }
+          ].map(section => (
+            <div key={section.key} style={{ borderBottom: '1px solid #EAEAEA' }}>
+              <button
+                onClick={() => setOpenInfoSection(openInfoSection === section.key ? null : section.key)}
+                style={{
+                  width: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  padding: '18px 4px',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: '0.85rem',
+                  fontWeight: 600,
+                  letterSpacing: '0.02em',
+                  color: '#1A1A1A'
+                }}
+              >
+                {section.label}
+                <span style={{ fontSize: '1.1rem', fontWeight: 400 }}>{openInfoSection === section.key ? '−' : '+'}</span>
+              </button>
+              {openInfoSection === section.key && (
+                <p style={{ padding: '0 4px 20px', color: '#6B6B6B', fontSize: '0.88rem', lineHeight: '1.7', maxWidth: '760px' }}>
+                  {section.body}
+                </p>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
 
       <Footer />

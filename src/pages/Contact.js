@@ -48,7 +48,7 @@ function Contact() {
       toast.style.cssText = `
         position: fixed; bottom: 24px; right: 24px; z-index: 300;
         display: flex; align-items: center; gap: 12px;
-        background: #1a1a2e; color: white; padding: 14px 18px;
+        background: #1A1A1A; color: white; padding: 14px 18px;
         border-radius: 12px; box-shadow: 0 16px 40px rgba(0,0,0,0.2);
         font-size: 0.875rem; font-weight: 500;
         transform: translateX(120%); opacity: 0;
@@ -86,8 +86,8 @@ function Contact() {
           box-shadow: 0 20px 40px rgba(0,0,0,0.08);
         }
         .form-input:focus {
-          border-color: #FF6B35;
-          box-shadow: 0 0 0 3px rgba(255,107,53,0.1);
+          border-color: #1A1A1A;
+          box-shadow: 0 0 0 3px rgba(255,255,255,0.1);
         }
         @media (max-width: 768px) {
           .contact-card { padding: 24px !important; }
@@ -95,7 +95,7 @@ function Contact() {
       `}</style>
 
       <section className="hero-contact" style={{
-        background: '#1a1a2e',
+        background: '#1A1A1A',
         padding: '100px 0',
         textAlign: 'center',
         position: 'relative',
@@ -104,7 +104,7 @@ function Contact() {
         <div style={{
           position: 'absolute',
           inset: 0,
-          background: 'radial-gradient(circle at 30% 50%, rgba(255,107,53,0.12) 0%, transparent 60%)'
+          background: 'radial-gradient(circle at 30% 50%, rgba(255,255,255,0.12) 0%, transparent 60%)'
         }}></div>
         <div className="section-inner" style={{
           maxWidth: '1280px',
@@ -114,7 +114,7 @@ function Contact() {
           zIndex: 1
         }}>
           <h1 className="hero-title" style={{
-            fontFamily: "'Playfair Display', serif",
+            fontFamily: "'DM Sans', sans-serif",
             fontSize: 'clamp(2.5rem, 5vw, 4rem)',
             fontWeight: '700',
             color: 'white',
@@ -144,7 +144,7 @@ function Contact() {
           }}>
             <div className="contact-card" style={{
               background: 'white',
-              border: '1px solid #e8e8f0',
+              border: '1px solid #EAEAEA',
               borderRadius: '20px',
               padding: '32px',
               textAlign: 'center',
@@ -153,14 +153,14 @@ function Contact() {
               <div className="contact-icon" style={{
                 width: '70px',
                 height: '70px',
-                background: '#f8f8fc',
+                background: '#FAFAFA',
                 borderRadius: '50%',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 margin: '0 auto 20px',
                 fontSize: '1.8rem',
-                color: '#FF6B35'
+                color: '#1A1A1A'
               }}>
                 <i className="fas fa-envelope"></i>
               </div>
@@ -168,15 +168,15 @@ function Contact() {
                 fontWeight: '600',
                 fontSize: '1.125rem',
                 marginBottom: '8px',
-                color: '#1a1a2e'
+                color: '#1A1A1A'
               }}>Email Us</h3>
               <p style={{
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 fontSize: '0.875rem',
                 marginBottom: '12px'
               }}>For inquiries, support, or feedback</p>
               <a href="mailto:ismora.ae@gmail.com" style={{
-                color: '#FF6B35',
+                color: '#1A1A1A',
                 fontWeight: '600',
                 textDecoration: 'none'
               }}>ismora.ae@gmail.com</a>
@@ -184,7 +184,7 @@ function Contact() {
 
             <div className="contact-card" style={{
               background: 'white',
-              border: '1px solid #e8e8f0',
+              border: '1px solid #EAEAEA',
               borderRadius: '20px',
               padding: '32px',
               textAlign: 'center',
@@ -193,14 +193,14 @@ function Contact() {
               <div className="contact-icon" style={{
                 width: '70px',
                 height: '70px',
-                background: '#f8f8fc',
+                background: '#FAFAFA',
                 borderRadius: '50%',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 margin: '0 auto 20px',
                 fontSize: '1.8rem',
-                color: '#FF6B35'
+                color: '#1A1A1A'
               }}>
                 <i className="fab fa-instagram"></i>
               </div>
@@ -208,15 +208,15 @@ function Contact() {
                 fontWeight: '600',
                 fontSize: '1.125rem',
                 marginBottom: '8px',
-                color: '#1a1a2e'
+                color: '#1A1A1A'
               }}>DM on Instagram</h3>
               <p style={{
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 fontSize: '0.875rem',
                 marginBottom: '12px'
               }}>Follow and message us</p>
               <a href="https://instagram.com/shopismora" target="_blank" rel="noopener noreferrer" style={{
-                color: '#FF6B35',
+                color: '#1A1A1A',
                 fontWeight: '600',
                 textDecoration: 'none'
               }}>@shopismora</a>
@@ -224,7 +224,7 @@ function Contact() {
 
             <div className="contact-card" style={{
               background: 'white',
-              border: '1px solid #e8e8f0',
+              border: '1px solid #EAEAEA',
               borderRadius: '20px',
               padding: '32px',
               textAlign: 'center',
@@ -233,14 +233,14 @@ function Contact() {
               <div className="contact-icon" style={{
                 width: '70px',
                 height: '70px',
-                background: '#f8f8fc',
+                background: '#FAFAFA',
                 borderRadius: '50%',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 margin: '0 auto 20px',
                 fontSize: '1.8rem',
-                color: '#FF6B35'
+                color: '#1A1A1A'
               }}>
                 <i className="fas fa-clock"></i>
               </div>
@@ -248,15 +248,15 @@ function Contact() {
                 fontWeight: '600',
                 fontSize: '1.125rem',
                 marginBottom: '8px',
-                color: '#1a1a2e'
+                color: '#1A1A1A'
               }}>Response Time</h3>
               <p style={{
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 fontSize: '0.875rem',
                 marginBottom: '12px'
               }}>We reply within 24 hours</p>
               <span style={{
-                color: '#1a1a2e',
+                color: '#1A1A1A',
                 fontWeight: '500'
               }}>Mon-Fri, 9am-6pm</span>
             </div>
@@ -269,14 +269,14 @@ function Contact() {
           }}>
             <div>
               <h2 style={{
-                fontFamily: "'Playfair Display', serif",
+                fontFamily: "'DM Sans', sans-serif",
                 fontSize: '1.5rem',
                 fontWeight: '700',
                 marginBottom: '16px',
-                color: '#1a1a2e'
+                color: '#1A1A1A'
               }}>Send Us a Message</h2>
               <p style={{
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 marginBottom: '24px',
                 fontSize: '0.95rem',
                 lineHeight: '1.6'
@@ -308,7 +308,7 @@ function Contact() {
                     style={{
                       width: '100%',
                       padding: '14px 18px',
-                      border: '1.5px solid #e8e8f0',
+                      border: '1.5px solid #EAEAEA',
                       borderRadius: '12px',
                       fontFamily: "'DM Sans', sans-serif",
                       fontSize: '0.9rem',
@@ -329,7 +329,7 @@ function Contact() {
                     style={{
                       width: '100%',
                       padding: '14px 18px',
-                      border: '1.5px solid #e8e8f0',
+                      border: '1.5px solid #EAEAEA',
                       borderRadius: '12px',
                       fontFamily: "'DM Sans', sans-serif",
                       fontSize: '0.9rem',
@@ -350,7 +350,7 @@ function Contact() {
                     style={{
                       width: '100%',
                       padding: '14px 18px',
-                      border: '1.5px solid #e8e8f0',
+                      border: '1.5px solid #EAEAEA',
                       borderRadius: '12px',
                       fontFamily: "'DM Sans', sans-serif",
                       fontSize: '0.9rem',
@@ -369,7 +369,7 @@ function Contact() {
                     style={{
                       width: '100%',
                       padding: '14px 18px',
-                      border: '1.5px solid #e8e8f0',
+                      border: '1.5px solid #EAEAEA',
                       borderRadius: '12px',
                       fontFamily: "'DM Sans', sans-serif",
                       fontSize: '0.9rem',
@@ -401,7 +401,7 @@ function Contact() {
                     border: 'none',
                     transition: 'all 0.2s',
                     textDecoration: 'none',
-                    background: '#FF6B35',
+                    background: '#1A1A1A',
                     color: 'white',
                     opacity: isSubmitting ? 0.7 : 1,
                     pointerEvents: isSubmitting ? 'none' : 'auto'
@@ -415,26 +415,26 @@ function Contact() {
             </div>
 
             <div className="faq-box" style={{
-              background: '#f8f8fc',
+              background: '#FAFAFA',
               borderRadius: '20px',
               padding: '32px'
             }}>
               <h2 style={{
-                fontFamily: "'Playfair Display', serif",
+                fontFamily: "'DM Sans', sans-serif",
                 fontSize: '1.5rem',
                 fontWeight: '700',
                 marginBottom: '16px',
-                color: '#1a1a2e'
+                color: '#1A1A1A'
               }}>Frequently Asked</h2>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 <div>
                   <h3 style={{
                     fontWeight: '600',
-                    color: '#1a1a2e',
+                    color: '#1A1A1A',
                     marginBottom: '4px'
                   }}>How long does shipping take?</h3>
                   <p style={{
-                    color: '#4a4a68',
+                    color: '#6B6B6B',
                     fontSize: '0.875rem',
                     marginTop: '4px'
                   }}>Standard delivery takes 3-5 business days. Express shipping available at checkout.</p>
@@ -442,11 +442,11 @@ function Contact() {
                 <div>
                   <h3 style={{
                     fontWeight: '600',
-                    color: '#1a1a2e',
+                    color: '#1A1A1A',
                     marginBottom: '4px'
                   }}>Can I return an item?</h3>
                   <p style={{
-                    color: '#4a4a68',
+                    color: '#6B6B6B',
                     fontSize: '0.875rem',
                     marginTop: '4px'
                   }}>Yes, we offer 30-day easy returns. Items must be unused and in original packaging.</p>
@@ -454,11 +454,11 @@ function Contact() {
                 <div>
                   <h3 style={{
                     fontWeight: '600',
-                    color: '#1a1a2e',
+                    color: '#1A1A1A',
                     marginBottom: '4px'
                   }}>Do you ship internationally?</h3>
                   <p style={{
-                    color: '#4a4a68',
+                    color: '#6B6B6B',
                     fontSize: '0.875rem',
                     marginTop: '4px'
                   }}>Currently shipping within UAE. International shipping coming soon!</p>
@@ -466,11 +466,11 @@ function Contact() {
                 <div>
                   <h3 style={{
                     fontWeight: '600',
-                    color: '#1a1a2e',
+                    color: '#1A1A1A',
                     marginBottom: '4px'
                   }}>How can I track my order?</h3>
                   <p style={{
-                    color: '#4a4a68',
+                    color: '#6B6B6B',
                     fontSize: '0.875rem',
                     marginTop: '4px'
                   }}>You'll receive a tracking link via email once your order ships.</p>
@@ -478,11 +478,11 @@ function Contact() {
                 <div>
                   <h3 style={{
                     fontWeight: '600',
-                    color: '#1a1a2e',
+                    color: '#1A1A1A',
                     marginBottom: '4px'
                   }}>What payment methods do you accept?</h3>
                   <p style={{
-                    color: '#4a4a68',
+                    color: '#6B6B6B',
                     fontSize: '0.875rem',
                     marginTop: '4px'
                   }}>We accept Visa, Mastercard, and Cash on Delivery (COD).</p>
