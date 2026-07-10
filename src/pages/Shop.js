@@ -1,17 +1,14 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { db } from '../firebase/config';
-import { collection, getDocs } from 'firebase/firestore';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { useCart } from '../context/CartContext';
+import { useSearch } from '../context/SearchContext';
 
 function Shop() {
   const [searchParams] = useSearchParams();
-  const [products, setProducts] = useState([]);
+  const { allProducts: products, productsLoading: loading } = useSearch();
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [categories, setCategories] = useState([]);
   const [activeCategory, setActiveCategory] = useState('all');
   const [view, setView] = useState('grid');
   const [sortBy, setSortBy] = useState('default');
@@ -25,36 +22,19 @@ function Shop() {
   const urlSearch = searchParams.get('search') || '';
   const urlCategory = searchParams.get('category') || '';
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const querySnapshot = await getDocs(collection(db, 'products'));
-        const productsData = querySnapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data()
-        }));
-        setProducts(productsData);
-        
-        const catMap = new Map();
-        productsData.forEach(p => {
-          if (p.category) {
-            const cat = p.category.trim();
-            if (!catMap.has(cat)) {
-              catMap.set(cat, { count: 0 });
-            }
-            catMap.get(cat).count++;
-          }
-        });
-        setCategories(Array.from(catMap.entries()).map(([name, data]) => ({ name, ...data })));
-        
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching products:', error);
-        setLoading(false);
+  const categories = useMemo(() => {
+    const catMap = new Map();
+    products.forEach(p => {
+      if (p.category) {
+        const cat = p.category.trim();
+        if (!catMap.has(cat)) {
+          catMap.set(cat, { count: 0 });
+        }
+        catMap.get(cat).count++;
       }
-    };
-    fetchProducts();
-  }, []);
+    });
+    return Array.from(catMap.entries()).map(([name, data]) => ({ name, ...data }));
+  }, [products]);
 
   useEffect(() => {
     if (products.length === 0) return;
@@ -171,6 +151,7 @@ function Shop() {
             className="product-img"
             src={product.image}
             alt={product.name}
+            loading="lazy"
             style={{
               width: '100%',
               height: '100%',

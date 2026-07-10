@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { db } from '../../../firebase/config';
 import { doc, addDoc, updateDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { useToast } from '../../../context/ToastContext';
+import { loadQuill } from '../../../utils/loadQuill';
 
 // ✅ ImgBB Upload Function
 const uploadToImgBB = async (file) => {
@@ -177,6 +178,8 @@ function ProductModal({ product, onClose, onSave }) {
       }
       return false;
     };
+
+    loadQuill();
 
     if (checkQuill()) return;
 

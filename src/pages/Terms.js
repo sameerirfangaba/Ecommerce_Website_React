@@ -409,7 +409,7 @@ function Terms() {
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
-            }}>Ismora is an online dropshipping store operated from Pakistan. We source products from third-party suppliers and fulfill orders through our supplier network. Ismora acts as the merchant of record for all transactions processed on our platform.</p>
+            }}>Ismora is an online dropshipping store operated from the United Arab Emirates. We source products from third-party suppliers and fulfill orders through our supplier network. Ismora acts as the merchant of record for all transactions processed on our platform.</p>
             <div className="warning-box">
               <i className="fas fa-info-circle" style={{ color: '#1A1A1A', fontSize: '1.1rem', marginTop: '2px', flexShrink: 0 }}></i>
               <p style={{

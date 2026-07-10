@@ -1,15 +1,14 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { db } from '../firebase/config';
 import { collection, getDocs, query, orderBy, limit } from 'firebase/firestore';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { useCart } from '../context/CartContext';
+import { useSearch } from '../context/SearchContext';
 
 function Home() {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [categories, setCategories] = useState([]);
+  const { allProducts: products, productsLoading: loading } = useSearch();
   const [latestBlogs, setLatestBlogs] = useState([]);
   const [blogsLoading, setBlogsLoading] = useState(true);
   const { addToCart } = useCart();
@@ -49,36 +48,19 @@ function Home() {
     }
   };
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const querySnapshot = await getDocs(collection(db, 'products'));
-        const productsData = querySnapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data()
-        }));
-        setProducts(productsData);
-        
-        const catMap = new Map();
-        productsData.forEach(p => {
-          if (p.category) {
-            const cat = p.category.trim();
-            if (!catMap.has(cat)) {
-              catMap.set(cat, { count: 0, image: p.image || '' });
-            }
-            catMap.get(cat).count++;
-          }
-        });
-        setCategories(Array.from(catMap.entries()).map(([name, data]) => ({ name, ...data })));
-        
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching products:', error);
-        setLoading(false);
+  const categories = useMemo(() => {
+    const catMap = new Map();
+    products.forEach(p => {
+      if (p.category) {
+        const cat = p.category.trim();
+        if (!catMap.has(cat)) {
+          catMap.set(cat, { count: 0, image: p.image || '' });
+        }
+        catMap.get(cat).count++;
       }
-    };
-    fetchProducts();
-  }, []);
+    });
+    return Array.from(catMap.entries()).map(([name, data]) => ({ name, ...data }));
+  }, [products]);
 
   // ✅ Fetch latest blogs
   useEffect(() => {
@@ -204,6 +186,7 @@ function Home() {
             className="product-img"
             src={product.image}
             alt={product.name}
+            loading="lazy"
             style={{
               width: '100%',
               height: '100%',
@@ -325,6 +308,7 @@ function Home() {
             src={getCatImage(category.name)}
             alt={category.name}
             draggable={false}
+            loading="lazy"
             style={{
               width: '100%',
               height: '100%',
@@ -395,6 +379,7 @@ function Home() {
           <img
             src={blog.image || 'https://placehold.co/400x200/f0f0f0/aaa?text=Blog'}
             alt={blog.title}
+            loading="lazy"
             style={{
               width: '100%',
               height: '100%',

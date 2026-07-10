@@ -364,6 +364,7 @@ function Blog() {
                     <img
                       src={blog.image || 'https://placehold.co/600x400/f0f0f0/aaa?text=Blog'}
                       alt={blog.title}
+                      loading="lazy"
                       style={{
                         width: '100%',
                         height: '100%',

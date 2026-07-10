@@ -17,8 +17,8 @@ function BlogDetail() {
       const data = await getBlogBySlug(slug);
       if (data) {
         setBlog(data);
-        await incrementViews(data.id);
-        const related = blogs.filter(b => 
+        incrementViews(data.id);
+        const related = blogs.filter(b =>
           b.id !== data.id && 
           b.category === data.category
         ).slice(0, 3);
