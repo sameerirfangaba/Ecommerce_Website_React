@@ -1,17 +1,17 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { 
-  db, 
-  collection, 
-  getDocs, 
-  getDoc, 
-  doc, 
-  addDoc, 
-  updateDoc, 
+import {
+  db,
+  collection,
+  getDocs,
+  getDoc,
+  doc,
+  addDoc,
+  updateDoc,
   deleteDoc,
   query,
   orderBy,
   where,
-  serverTimestamp 
+  serverTimestamp
 } from '../firebase/config';
 
 const BlogContext = createContext();
@@ -57,6 +57,9 @@ export const BlogProvider = ({ children }) => {
   }, []);
 
   const getBlogBySlug = async (slug) => {
+    const cached = blogs.find(b => b.slug === slug);
+    if (cached) return cached;
+
     try {
       const q = query(
         collection(db, 'blogs'),

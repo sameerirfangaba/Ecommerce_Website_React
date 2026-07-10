@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { db } from '../firebase/config';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, collection, query, where, limit, getDocs } from 'firebase/firestore';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { useCart } from '../context/CartContext';
@@ -24,6 +24,7 @@ function ProductDetail() {
   
   const [currency, setCurrency] = useState('AED');
   const [currencyPosition, setCurrencyPosition] = useState('left-space');
+  const [relatedProducts, setRelatedProducts] = useState([]);
 
   useEffect(() => {
     const loadCurrency = async () => {
@@ -50,15 +51,33 @@ function ProductDetail() {
         if (docSnap.exists()) {
           const data = { id: docSnap.id, ...docSnap.data() };
           setProduct(data);
-          
+
           const images = data.images && data.images.length > 0 ? data.images : [data.image];
           setSelectedImages(images);
           setMainImage(images[0] || '');
-          
+
           if (data.hasVariants && data.variants?.groups) {
             const initial = {};
             data.variants.groups.forEach(g => { initial[g.name] = ''; });
             setSelectedVariants(initial);
+          }
+
+          if (data.category) {
+            try {
+              const relatedQuery = query(
+                collection(db, 'products'),
+                where('category', '==', data.category),
+                limit(5)
+              );
+              const relatedSnap = await getDocs(relatedQuery);
+              const related = relatedSnap.docs
+                .map(d => ({ id: d.id, ...d.data() }))
+                .filter(p => p.id !== data.id)
+                .slice(0, 4);
+              setRelatedProducts(related);
+            } catch (relatedError) {
+              console.error('Error fetching related products:', relatedError);
+            }
           }
         }
         setLoading(false);
@@ -193,13 +212,13 @@ function ProductDetail() {
           <div style={{
             width: '48px',
             height: '48px',
-            border: '3px solid #e8e8f0',
-            borderTopColor: '#FF6B35',
+            border: '3px solid #EAEAEA',
+            borderTopColor: '#1A1A1A',
             borderRadius: '50%',
             animation: 'spin 0.8s linear infinite',
             margin: '0 auto 16px'
           }}></div>
-          <p style={{ color: '#4a4a68' }}>Loading product...</p>
+          <p style={{ color: '#6B6B6B' }}>Loading product...</p>
         </div>
         <Footer />
         <style>{`
@@ -222,7 +241,7 @@ function ProductDetail() {
           textAlign: 'center'
         }}>
           <h1 style={{ color: '#ef4444' }}>Product Not Found</h1>
-          <Link to="/shop" style={{ color: '#FF6B35', textDecoration: 'none' }}>Back to Shop</Link>
+          <Link to="/shop" style={{ color: '#1A1A1A', textDecoration: 'none' }}>Back to Shop</Link>
         </div>
         <Footer />
       </>
@@ -248,24 +267,20 @@ function ProductDetail() {
           opacity: 1;
         }
         .variant-btn.active {
-          border-color: #1a1a2e;
-          background: #f8f8fc;
+          border-color: #1A1A1A;
+          background: #FAFAFA;
           font-weight: 600;
         }
         .color-btn.active {
-          border-color: #1a1a2e;
-          box-shadow: 0 0 0 2px white, 0 0 0 4px #1a1a2e;
-        }
-        .tab-btn.active {
-          color: #1a1a2e;
-          border-bottom-color: #1a1a2e;
-        }
-        .tab-content.active {
-          display: block;
+          border-color: #1A1A1A;
+          box-shadow: 0 0 0 2px white, 0 0 0 4px #1A1A1A;
         }
         .thumb-image.active {
-          border-color: #1a1a2e;
-          box-shadow: 0 0 0 1px #1a1a2e;
+          border-color: #1A1A1A;
+          box-shadow: 0 0 0 1px #1A1A1A;
+        }
+        .main-product-img-wrap:hover .main-product-img {
+          transform: scale(1.06);
         }
         @media (max-width: 768px) {
           .product-grid { grid-template-columns: 1fr !important; gap: 0 !important; }
@@ -273,6 +288,7 @@ function ProductDetail() {
           .trust-badges { grid-template-columns: repeat(3, 1fr) !important; gap: 6px !important; }
           .trust-badge { padding: 8px 6px !important; }
           .trust-badge span { font-size: 0.62rem !important; }
+          .related-grid { grid-template-columns: repeat(2, 1fr) !important; }
         }
         @media (max-width: 420px) {
           .trust-badges { grid-template-columns: repeat(2, 1fr) !important; }
@@ -283,7 +299,7 @@ function ProductDetail() {
       <div style={{
         maxWidth: '1280px',
         margin: '0 auto',
-        padding: '24px 16px 48px'
+        padding: '32px 24px 64px'
       }}>
         {/* Breadcrumb */}
         <div style={{
@@ -291,18 +307,18 @@ function ProductDetail() {
           alignItems: 'center',
           gap: '6px',
           fontSize: '0.75rem',
-          color: '#4a4a68',
+          color: '#6B6B6B',
           flexWrap: 'wrap',
-          marginBottom: '16px'
+          marginBottom: '28px'
         }}>
-          <Link to="/" style={{ color: '#4a4a68', textDecoration: 'none' }}>Home</Link>
+          <Link to="/" style={{ color: '#6B6B6B', textDecoration: 'none' }}>Home</Link>
           <i className="fas fa-chevron-right" style={{ fontSize: '0.55rem' }}></i>
-          <Link to="/shop" style={{ color: '#4a4a68', textDecoration: 'none' }}>Shop</Link>
+          <Link to="/shop" style={{ color: '#6B6B6B', textDecoration: 'none' }}>Shop</Link>
           <i className="fas fa-chevron-right" style={{ fontSize: '0.55rem' }}></i>
-          <span style={{ color: '#1a1a2e', fontWeight: 500 }}>{product.category || '—'}</span>
+          <span style={{ color: '#1A1A1A', fontWeight: 500 }}>{product.category || '—'}</span>
           <i className="fas fa-chevron-right" style={{ fontSize: '0.55rem' }}></i>
           <span style={{
-            color: '#1a1a2e',
+            color: '#1A1A1A',
             fontWeight: 500,
             maxWidth: '140px',
             overflow: 'hidden',
@@ -314,33 +330,34 @@ function ProductDetail() {
         </div>
 
         {/* Product Grid */}
-        <div style={{
+        <div className="product-grid" style={{
           display: 'grid',
           gridTemplateColumns: '1fr 1fr',
-          gap: '48px',
+          gap: '72px',
           alignItems: 'start'
         }}>
           {/* Gallery */}
           <div className="gallery-sticky" style={{ position: 'sticky', top: '76px' }}>
-            <div style={{
+            <div className="main-product-img-wrap" style={{
               position: 'relative',
-              borderRadius: '16px',
+              borderRadius: '2px',
               overflow: 'hidden',
-              background: '#f8f8fc',
-              border: '1px solid #e8e8f0',
+              background: '#FAFAFA',
+              border: '1px solid #EAEAEA',
               marginBottom: '10px',
-              cursor: 'pointer'
+              cursor: 'zoom-in'
             }}
             onClick={() => openLightbox(selectedImages.indexOf(mainImage) >= 0 ? selectedImages.indexOf(mainImage) : 0)}
             >
               <img
+                className="main-product-img"
                 src={mainImage}
                 alt={product.name}
                 style={{
                   width: '100%',
                   aspectRatio: '1',
                   objectFit: 'cover',
-                  transition: 'transform 0.4s'
+                  transition: 'transform 0.5s ease'
                 }}
                 onError={(e) => e.target.src = 'https://placehold.co/600x600/f0f0f0/aaa?text=No+Image'}
               />
@@ -349,10 +366,10 @@ function ProductDetail() {
                   position: 'absolute',
                   top: '12px',
                   left: '12px',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   color: 'white',
                   padding: '4px 10px',
-                  borderRadius: '6px',
+                  borderRadius: '2px',
                   fontSize: '0.7rem',
                   fontWeight: 700
                 }}>Save {discount}%</div>
@@ -375,11 +392,11 @@ function ProductDetail() {
                     width: '68px',
                     height: '68px',
                     flexShrink: 0,
-                    borderRadius: '9px',
+                    borderRadius: '2px',
                     objectFit: 'cover',
                     cursor: 'pointer',
-                    border: `2px solid ${mainImage === img ? '#1a1a2e' : 'transparent'}`,
-                    boxShadow: mainImage === img ? '0 0 0 1px #1a1a2e' : 'none',
+                    border: `2px solid ${mainImage === img ? '#1A1A1A' : 'transparent'}`,
+                    boxShadow: mainImage === img ? '0 0 0 1px #1A1A1A' : 'none',
                     transition: 'all 0.2s'
                   }}
                   onClick={() => setMainImage(img)}
@@ -395,7 +412,7 @@ function ProductDetail() {
               display: 'flex',
               alignItems: 'center',
               gap: '10px',
-              marginBottom: '8px',
+              marginBottom: '14px',
               flexWrap: 'wrap'
             }}>
               <span style={{
@@ -403,9 +420,9 @@ function ProductDetail() {
                 fontWeight: 700,
                 letterSpacing: '0.08em',
                 textTransform: 'uppercase',
-                color: '#4a4a68'
+                color: '#6B6B6B'
               }}>{product.category || 'Ismora'}</span>
-              <span style={{ color: '#e8e8f0' }}>•</span>
+              <span style={{ color: '#EAEAEA' }}>•</span>
               <div style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -433,41 +450,26 @@ function ProductDetail() {
             </div>
 
             <h1 style={{
-              fontFamily: "'Playfair Display', serif",
-              fontSize: 'clamp(1.5rem, 4vw, 2.1rem)',
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: 'clamp(1.6rem, 4vw, 2.3rem)',
               fontWeight: 700,
-              color: '#1a1a2e',
-              lineHeight: '1.2',
+              color: '#1A1A1A',
+              lineHeight: '1.25',
               letterSpacing: '-0.02em',
-              marginBottom: '12px'
+              marginBottom: '16px'
             }}>{product.name}</h1>
 
             <div style={{
               display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-              marginBottom: '16px',
-              flexWrap: 'wrap'
-            }}>
-              <span style={{ color: '#fbbf24', fontSize: '0.88rem', letterSpacing: '1px' }}>★★★★★</span>
-              <span style={{ fontSize: '0.82rem', fontWeight: 700, color: '#1a1a2e' }}>4.9</span>
-              <div style={{ width: '1px', height: '13px', background: '#e8e8f0' }}></div>
-              <span style={{ fontSize: '0.82rem', color: '#4a4a68' }}>24 reviews</span>
-              <div style={{ width: '1px', height: '13px', background: '#e8e8f0' }}></div>
-              <span style={{ fontSize: '0.82rem', color: '#FF6B35', fontWeight: 600, cursor: 'pointer' }}>Write a review</span>
-            </div>
-
-            <div style={{
-              display: 'flex',
               alignItems: 'baseline',
-              gap: '8px',
-              marginBottom: '4px',
+              gap: '10px',
+              marginBottom: '18px',
               flexWrap: 'wrap'
             }}>
               <span style={{
                 fontSize: '1.75rem',
                 fontWeight: 800,
-                color: '#1a1a2e',
+                color: '#1A1A1A',
                 letterSpacing: '-0.02em'
               }}>{formatPrice(currentPrice)}</span>
               {hasDiscount && (
@@ -478,12 +480,12 @@ function ProductDetail() {
                     textDecoration: 'line-through'
                   }}>{formatPrice(product.comparePrice)}</span>
                   <span style={{
-                    background: '#dcfce7',
-                    color: '#16a34a',
+                    border: '1px solid #1A1A1A',
+                    color: '#1A1A1A',
                     fontSize: '0.7rem',
                     fontWeight: 700,
                     padding: '3px 8px',
-                    borderRadius: '6px'
+                    borderRadius: '2px'
                   }}>Save {discount}%</span>
                 </>
               )}
@@ -492,7 +494,7 @@ function ProductDetail() {
             {product.shortDesc && (
               <p style={{
                 fontSize: '0.82rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 marginBottom: '20px',
                 lineHeight: '1.6'
               }}>{product.shortDesc}</p>
@@ -508,8 +510,8 @@ function ProductDetail() {
                     justifyContent: 'space-between',
                     marginBottom: '8px'
                   }}>
-                    <span style={{ fontSize: '0.83rem', fontWeight: 600, color: '#1a1a2e' }}>{group.name}</span>
-                    <span style={{ fontSize: '0.83rem', color: '#FF6B35', fontWeight: 600 }}>{selectedVariants[group.name] || ''}</span>
+                    <span style={{ fontSize: '0.83rem', fontWeight: 600, color: '#1A1A1A' }}>{group.name}</span>
+                    <span style={{ fontSize: '0.83rem', color: '#1A1A1A', fontWeight: 600 }}>{selectedVariants[group.name] || ''}</span>
                   </div>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                     {group.values.map((value, vIdx) => {
@@ -523,12 +525,12 @@ function ProductDetail() {
                               width: '34px',
                               height: '34px',
                               borderRadius: '50%',
-                              border: `3px solid ${isSelected ? '#1a1a2e' : 'transparent'}`,
+                              border: `3px solid ${isSelected ? '#1A1A1A' : 'transparent'}`,
                               cursor: 'pointer',
                               transition: 'all 0.2s',
                               position: 'relative',
                               background: value.color || '#ccc',
-                              boxShadow: isSelected ? '0 0 0 2px white, 0 0 0 4px #1a1a2e' : 'none'
+                              boxShadow: isSelected ? '0 0 0 2px white, 0 0 0 4px #1A1A1A' : 'none'
                             }}
                             onClick={() => handleVariantSelect(group.name, value.label)}
                           />
@@ -540,13 +542,13 @@ function ProductDetail() {
                           className={`variant-btn ${isSelected ? 'active' : ''}`}
                           style={{
                             padding: '7px 14px',
-                            border: `2px solid ${isSelected ? '#1a1a2e' : '#e8e8f0'}`,
-                            borderRadius: '8px',
+                            border: `2px solid ${isSelected ? '#1A1A1A' : '#EAEAEA'}`,
+                            borderRadius: '2px',
                             fontFamily: "'DM Sans', sans-serif",
                             fontSize: '0.83rem',
                             fontWeight: isSelected ? 600 : 500,
-                            color: isSelected ? '#1a1a2e' : '#4a4a68',
-                            background: isSelected ? '#f8f8fc' : 'white',
+                            color: isSelected ? '#1A1A1A' : '#6B6B6B',
+                            background: isSelected ? '#FAFAFA' : 'white',
                             cursor: 'pointer',
                             transition: 'all 0.2s'
                           }}
@@ -565,15 +567,16 @@ function ProductDetail() {
               <div style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: '6px',
-                background: '#fef3c7',
-                border: '1px solid #fde68a',
-                borderRadius: '8px',
+                gap: '8px',
+                background: '#FAFAFA',
+                border: '1px solid #EAEAEA',
+                borderLeft: '3px solid #1A1A1A',
+                borderRadius: '2px',
                 padding: '9px 12px',
                 marginBottom: '12px',
                 fontSize: '0.78rem',
                 fontWeight: 600,
-                color: '#92400e'
+                color: '#1A1A1A'
               }}>
                 <i className="fas fa-hand-pointer"></i>
                 Please select all options to continue
@@ -582,10 +585,10 @@ function ProductDetail() {
 
             {product.customTextField?.enabled && (
               <div style={{
-                background: 'linear-gradient(135deg, #fffbeb, #fef9ee)',
-                border: '1.5px solid #fde68a',
-                borderRadius: '12px',
-                padding: '14px 16px',
+                background: '#FAFAFA',
+                border: '1px solid #EAEAEA',
+                borderRadius: '2px',
+                padding: '16px',
                 marginBottom: '16px'
               }}>
                 <div style={{
@@ -597,8 +600,8 @@ function ProductDetail() {
                   <div style={{
                     width: '24px',
                     height: '24px',
-                    background: '#FF6B35',
-                    borderRadius: '6px',
+                    background: '#1A1A1A',
+                    borderRadius: '2px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -610,7 +613,7 @@ function ProductDetail() {
                   <span style={{
                     fontSize: '0.85rem',
                     fontWeight: 700,
-                    color: '#92400e'
+                    color: '#1A1A1A'
                   }}>{product.customTextField.label}</span>
                   {product.customTextField.required && (
                     <span style={{
@@ -630,18 +633,20 @@ function ProductDetail() {
                     onChange={(e) => setCustomText(e.target.value)}
                     style={{
                       width: '100%',
-                      border: '1.5px solid #fcd34d',
-                      borderRadius: '8px',
-                      padding: '9px 12px',
+                      border: '1px solid #EAEAEA',
+                      borderRadius: '2px',
+                      padding: '10px 12px',
                       fontFamily: "'DM Sans', sans-serif",
                       fontSize: '0.875rem',
                       background: 'white',
-                      color: '#1a1a2e',
+                      color: '#1A1A1A',
                       outline: 'none',
                       transition: 'border-color 0.2s',
                       resize: 'vertical',
                       minHeight: '60px'
                     }}
+                    onFocus={(e) => e.currentTarget.style.borderColor = '#1A1A1A'}
+                    onBlur={(e) => e.currentTarget.style.borderColor = '#EAEAEA'}
                   />
                 ) : (
                   <input
@@ -651,16 +656,18 @@ function ProductDetail() {
                     onChange={(e) => setCustomText(e.target.value)}
                     style={{
                       width: '100%',
-                      border: '1.5px solid #fcd34d',
-                      borderRadius: '8px',
-                      padding: '9px 12px',
+                      border: '1px solid #EAEAEA',
+                      borderRadius: '2px',
+                      padding: '10px 12px',
                       fontFamily: "'DM Sans', sans-serif",
                       fontSize: '0.875rem',
                       background: 'white',
-                      color: '#1a1a2e',
+                      color: '#1A1A1A',
                       outline: 'none',
                       transition: 'border-color 0.2s'
                     }}
+                    onFocus={(e) => e.currentTarget.style.borderColor = '#1A1A1A'}
+                    onBlur={(e) => e.currentTarget.style.borderColor = '#EAEAEA'}
                   />
                 )}
               </div>
@@ -674,8 +681,8 @@ function ProductDetail() {
               <div style={{
                 display: 'flex',
                 alignItems: 'center',
-                border: '2px solid #e8e8f0',
-                borderRadius: '10px',
+                border: '2px solid #EAEAEA',
+                borderRadius: '2px',
                 overflow: 'hidden',
                 flexShrink: 0
               }}>
@@ -688,13 +695,13 @@ function ProductDetail() {
                     border: 'none',
                     cursor: 'pointer',
                     fontSize: '1rem',
-                    color: '#4a4a68',
+                    color: '#6B6B6B',
                     transition: 'all 0.15s',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center'
                   }}
-                  onMouseEnter={(e) => e.currentTarget.style.background = '#f8f8fc'}
+                  onMouseEnter={(e) => e.currentTarget.style.background = '#FAFAFA'}
                   onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
                 >−</button>
                 <span style={{
@@ -702,8 +709,8 @@ function ProductDetail() {
                   textAlign: 'center',
                   fontSize: '0.9rem',
                   fontWeight: 700,
-                  borderLeft: '2px solid #e8e8f0',
-                  borderRight: '2px solid #e8e8f0',
+                  borderLeft: '2px solid #EAEAEA',
+                  borderRight: '2px solid #EAEAEA',
                   height: '48px',
                   display: 'flex',
                   alignItems: 'center',
@@ -718,13 +725,13 @@ function ProductDetail() {
                     border: 'none',
                     cursor: 'pointer',
                     fontSize: '1rem',
-                    color: '#4a4a68',
+                    color: '#6B6B6B',
                     transition: 'all 0.15s',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center'
                   }}
-                  onMouseEnter={(e) => e.currentTarget.style.background = '#f8f8fc'}
+                  onMouseEnter={(e) => e.currentTarget.style.background = '#FAFAFA'}
                   onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
                 >+</button>
               </div>
@@ -735,9 +742,9 @@ function ProductDetail() {
                 style={{
                   flex: 1,
                   height: '48px',
-                  borderRadius: '10px',
+                  borderRadius: '2px',
                   border: 'none',
-                  background: '#1a1a2e',
+                  background: '#1A1A1A',
                   color: 'white',
                   fontFamily: "'DM Sans', sans-serif",
                   fontSize: '0.9rem',
@@ -752,12 +759,12 @@ function ProductDetail() {
                 }}
                 onMouseEnter={(e) => {
                   if (!e.currentTarget.disabled) {
-                    e.currentTarget.style.background = '#2d2d4e';
+                    e.currentTarget.style.background = '#333333';
                   }
                 }}
                 onMouseLeave={(e) => {
                   if (!e.currentTarget.disabled) {
-                    e.currentTarget.style.background = '#1a1a2e';
+                    e.currentTarget.style.background = '#1A1A1A';
                   }
                 }}
               >
@@ -773,9 +780,9 @@ function ProductDetail() {
               style={{
                 width: '100%',
                 padding: '13px',
-                borderRadius: '10px',
+                borderRadius: '2px',
                 border: 'none',
-                background: '#FF6B35',
+                background: '#1A1A1A',
                 color: 'white',
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: '0.9rem',
@@ -791,12 +798,12 @@ function ProductDetail() {
               }}
               onMouseEnter={(e) => {
                 if (!e.currentTarget.disabled) {
-                  e.currentTarget.style.background = '#e55a25';
+                  e.currentTarget.style.background = '#000000';
                 }
               }}
               onMouseLeave={(e) => {
                 if (!e.currentTarget.disabled) {
-                  e.currentTarget.style.background = '#FF6B35';
+                  e.currentTarget.style.background = '#1A1A1A';
                 }
               }}
             >
@@ -804,41 +811,41 @@ function ProductDetail() {
               Buy Now
             </button>
 
-            <div style={{
+            <div className="trust-badges" style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(3, 1fr)',
               gap: '8px',
               marginBottom: '18px'
             }}>
-              <div style={{
-                background: '#f8f8fc',
-                border: '1px solid #e8e8f0',
-                borderRadius: '10px',
+              <div className="trust-badge" style={{
+                background: '#FAFAFA',
+                border: '1px solid #EAEAEA',
+                borderRadius: '2px',
                 padding: '10px 8px',
                 textAlign: 'center'
               }}>
-                <i className="fas fa-truck" style={{ fontSize: '0.9rem', color: '#FF6B35', marginBottom: '4px', display: 'block' }}></i>
-                <span style={{ fontSize: '0.68rem', fontWeight: 600, color: '#4a4a68', lineHeight: '1.3', display: 'block' }}>Free shipping over 150 AED</span>
+                <i className="fas fa-truck" style={{ fontSize: '0.9rem', color: '#1A1A1A', marginBottom: '4px', display: 'block' }}></i>
+                <span style={{ fontSize: '0.68rem', fontWeight: 600, color: '#6B6B6B', lineHeight: '1.3', display: 'block' }}>Free shipping over 150 AED</span>
               </div>
-              <div style={{
-                background: '#f8f8fc',
-                border: '1px solid #e8e8f0',
-                borderRadius: '10px',
+              <div className="trust-badge" style={{
+                background: '#FAFAFA',
+                border: '1px solid #EAEAEA',
+                borderRadius: '2px',
                 padding: '10px 8px',
                 textAlign: 'center'
               }}>
-                <i className="fas fa-undo-alt" style={{ fontSize: '0.9rem', color: '#FF6B35', marginBottom: '4px', display: 'block' }}></i>
-                <span style={{ fontSize: '0.68rem', fontWeight: 600, color: '#4a4a68', lineHeight: '1.3', display: 'block' }}>15-day returns</span>
+                <i className="fas fa-undo-alt" style={{ fontSize: '0.9rem', color: '#1A1A1A', marginBottom: '4px', display: 'block' }}></i>
+                <span style={{ fontSize: '0.68rem', fontWeight: 600, color: '#6B6B6B', lineHeight: '1.3', display: 'block' }}>15-day returns</span>
               </div>
-              <div style={{
-                background: '#f8f8fc',
-                border: '1px solid #e8e8f0',
-                borderRadius: '10px',
+              <div className="trust-badge" style={{
+                background: '#FAFAFA',
+                border: '1px solid #EAEAEA',
+                borderRadius: '2px',
                 padding: '10px 8px',
                 textAlign: 'center'
               }}>
-                <i className="fas fa-shield-alt" style={{ fontSize: '0.9rem', color: '#FF6B35', marginBottom: '4px', display: 'block' }}></i>
-                <span style={{ fontSize: '0.68rem', fontWeight: 600, color: '#4a4a68', lineHeight: '1.3', display: 'block' }}>Secure checkout</span>
+                <i className="fas fa-shield-alt" style={{ fontSize: '0.9rem', color: '#1A1A1A', marginBottom: '4px', display: 'block' }}></i>
+                <span style={{ fontSize: '0.68rem', fontWeight: 600, color: '#6B6B6B', lineHeight: '1.3', display: 'block' }}>Secure checkout</span>
               </div>
             </div>
 
@@ -847,20 +854,20 @@ function ProductDetail() {
               alignItems: 'center',
               gap: '8px',
               paddingTop: '12px',
-              borderTop: '1px solid #e8e8f0'
+              borderTop: '1px solid #EAEAEA'
             }}>
-              <span style={{ fontSize: '0.78rem', fontWeight: 600, color: '#4a4a68' }}>Share:</span>
+              <span style={{ fontSize: '0.78rem', fontWeight: 600, color: '#6B6B6B' }}>Share:</span>
               <button style={{
                 width: '30px',
                 height: '30px',
-                borderRadius: '7px',
-                border: '1.5px solid #e8e8f0',
+                borderRadius: '2px',
+                border: '1.5px solid #EAEAEA',
                 background: 'white',
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 fontSize: '0.8rem',
                 transition: 'all 0.2s'
               }}>
@@ -869,14 +876,14 @@ function ProductDetail() {
               <button style={{
                 width: '30px',
                 height: '30px',
-                borderRadius: '7px',
-                border: '1.5px solid #e8e8f0',
+                borderRadius: '2px',
+                border: '1.5px solid #EAEAEA',
                 background: 'white',
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 fontSize: '0.8rem',
                 transition: 'all 0.2s'
               }}>
@@ -885,14 +892,14 @@ function ProductDetail() {
               <button style={{
                 width: '30px',
                 height: '30px',
-                borderRadius: '7px',
-                border: '1.5px solid #e8e8f0',
+                borderRadius: '2px',
+                border: '1.5px solid #EAEAEA',
                 background: 'white',
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 fontSize: '0.8rem',
                 transition: 'all 0.2s'
               }}>
@@ -906,14 +913,14 @@ function ProductDetail() {
                 style={{
                   width: '30px',
                   height: '30px',
-                  borderRadius: '7px',
-                  border: '1.5px solid #e8e8f0',
+                  borderRadius: '2px',
+                  border: '1.5px solid #EAEAEA',
                   background: 'white',
                   cursor: 'pointer',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  color: '#4a4a68',
+                  color: '#6B6B6B',
                   fontSize: '0.8rem',
                   transition: 'all 0.2s'
                 }}
@@ -924,163 +931,236 @@ function ProductDetail() {
           </div>
         </div>
 
-        {/* Tabs */}
+        {/* Accordion */}
         <div style={{
-          marginTop: '40px',
-          borderTop: '1px solid #e8e8f0',
-          paddingTop: '36px'
+          marginTop: '64px',
+          borderTop: '1px solid #EAEAEA'
         }}>
-          <div style={{
-            display: 'flex',
-            borderBottom: '1px solid #e8e8f0',
-            marginBottom: '24px',
-            overflowX: 'auto',
-            scrollbarWidth: 'none'
-          }}>
+          {/* Description */}
+          <div style={{ borderBottom: '1px solid #EAEAEA' }}>
             <button
-              className={`tab-btn ${activeTab === 'desc' ? 'active' : ''}`}
-              onClick={() => setActiveTab('desc')}
+              onClick={() => setActiveTab(activeTab === 'desc' ? null : 'desc')}
               style={{
-                padding: '10px 20px',
+                width: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                padding: '18px 4px',
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: '0.85rem',
                 fontWeight: 600,
-                color: activeTab === 'desc' ? '#1a1a2e' : '#4a4a68',
-                background: 'none',
-                border: 'none',
-                borderBottom: `2px solid ${activeTab === 'desc' ? '#1a1a2e' : 'transparent'}`,
-                marginBottom: '-1px',
-                cursor: 'pointer',
-                transition: 'all 0.2s',
-                whiteSpace: 'nowrap',
-                flexShrink: 0
+                letterSpacing: '0.04em',
+                textTransform: 'uppercase',
+                color: '#1A1A1A'
               }}
             >
               Description
+              <span style={{ fontSize: '1.1rem', fontWeight: 400 }}>{activeTab === 'desc' ? '−' : '+'}</span>
             </button>
+            {activeTab === 'desc' && (
+              <div style={{ padding: '0 4px 24px', color: '#6B6B6B', lineHeight: '1.8', fontSize: '0.88rem' }}>
+                {product.desc ? (
+                  <div
+                    className="product-description"
+                    dangerouslySetInnerHTML={{
+                      __html: product.desc
+                        .replace(/<p>/g, '<p style="margin-bottom: 1.2em;">')
+                        .replace(/<br>/g, '<br />')
+                    }}
+                  />
+                ) : (
+                  <p style={{ color: '#6B6B6B' }}>No description available.</p>
+                )}
+              </div>
+            )}
+          </div>
+
+          {/* Product Details */}
+          <div style={{ borderBottom: '1px solid #EAEAEA' }}>
             <button
-              className={`tab-btn ${activeTab === 'info' ? 'active' : ''}`}
-              onClick={() => setActiveTab('info')}
+              onClick={() => setActiveTab(activeTab === 'info' ? null : 'info')}
               style={{
-                padding: '10px 20px',
+                width: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                padding: '18px 4px',
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: '0.85rem',
                 fontWeight: 600,
-                color: activeTab === 'info' ? '#1a1a2e' : '#4a4a68',
-                background: 'none',
-                border: 'none',
-                borderBottom: `2px solid ${activeTab === 'info' ? '#1a1a2e' : 'transparent'}`,
-                marginBottom: '-1px',
-                cursor: 'pointer',
-                transition: 'all 0.2s',
-                whiteSpace: 'nowrap',
-                flexShrink: 0
+                letterSpacing: '0.04em',
+                textTransform: 'uppercase',
+                color: '#1A1A1A'
               }}
             >
               Product Details
+              <span style={{ fontSize: '1.1rem', fontWeight: 400 }}>{activeTab === 'info' ? '−' : '+'}</span>
             </button>
+            {activeTab === 'info' && (
+              <div style={{ padding: '0 4px 24px' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.88rem' }}>
+                  <tbody>
+                    <tr style={{ borderBottom: '1px solid #EAEAEA' }}>
+                      <td style={{ padding: '10px 0', fontWeight: 600, color: '#6B6B6B', width: '40%' }}>Category</td>
+                      <td style={{ padding: '10px 0', color: '#1A1A1A' }}>{product.category || '—'}</td>
+                    </tr>
+                    <tr style={{ borderBottom: '1px solid #EAEAEA' }}>
+                      <td style={{ padding: '10px 0', fontWeight: 600, color: '#6B6B6B' }}>Stock</td>
+                      <td style={{ padding: '10px 0', color: '#1A1A1A' }}>{product.stock} units</td>
+                    </tr>
+                    {product.hasVariants && (
+                      <tr style={{ borderBottom: '1px solid #EAEAEA' }}>
+                        <td style={{ padding: '10px 0', fontWeight: 600, color: '#6B6B6B' }}>Variants</td>
+                        <td style={{ padding: '10px 0', color: '#1A1A1A' }}>
+                          {product.variants?.groups?.map(g => g.name).join(', ') || '—'}
+                        </td>
+                      </tr>
+                    )}
+                    {product.customTextField?.enabled && (
+                      <tr>
+                        <td style={{ padding: '10px 0', fontWeight: 600, color: '#6B6B6B' }}>Customization</td>
+                        <td style={{ padding: '10px 0', color: '#1A1A1A' }}>{product.customTextField.label}</td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
+
+          {/* Delivery & Returns */}
+          <div style={{ borderBottom: '1px solid #EAEAEA' }}>
             <button
-              className={`tab-btn ${activeTab === 'reviews' ? 'active' : ''}`}
-              onClick={() => setActiveTab('reviews')}
+              onClick={() => setActiveTab(activeTab === 'delivery' ? null : 'delivery')}
               style={{
-                padding: '10px 20px',
+                width: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                padding: '18px 4px',
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: '0.85rem',
                 fontWeight: 600,
-                color: activeTab === 'reviews' ? '#1a1a2e' : '#4a4a68',
-                background: 'none',
-                border: 'none',
-                borderBottom: `2px solid ${activeTab === 'reviews' ? '#1a1a2e' : 'transparent'}`,
-                marginBottom: '-1px',
-                cursor: 'pointer',
-                transition: 'all 0.2s',
-                whiteSpace: 'nowrap',
-                flexShrink: 0
+                letterSpacing: '0.04em',
+                textTransform: 'uppercase',
+                color: '#1A1A1A'
               }}
             >
-              Reviews (0)
+              Delivery & Returns
+              <span style={{ fontSize: '1.1rem', fontWeight: 400 }}>{activeTab === 'delivery' ? '−' : '+'}</span>
             </button>
+            {activeTab === 'delivery' && (
+              <div style={{ padding: '0 4px 24px', color: '#6B6B6B', lineHeight: '1.8', fontSize: '0.88rem' }}>
+                <p style={{ marginBottom: '10px' }}>Free shipping across the UAE on orders over 150 AED. Orders are typically dispatched within 2-3 business days.</p>
+                <p>Not the right fit? Returns are accepted within 15 days of delivery — see our <Link to="/returns" style={{ color: '#1A1A1A' }}>Returns Policy</Link> for details.</p>
+              </div>
+            )}
           </div>
 
-          {/* Description Tab */}
-          <div style={{ display: activeTab === 'desc' ? 'block' : 'none' }}>
-            <div style={{
-              color: '#4a4a68',
-              lineHeight: '1.8',
-              fontSize: '0.88rem'
-            }}>
-              {product.desc ? (
-                <div 
-                  className="product-description"
-                  dangerouslySetInnerHTML={{ 
-                    __html: product.desc
-                      .replace(/<p>/g, '<p style="margin-bottom: 1.2em;">')
-                      .replace(/<br>/g, '<br />')
-                  }} 
-                />
-              ) : (
-                <p style={{ color: '#4a4a68' }}>No description available.</p>
-              )}
-            </div>
-          </div>
-
-          {/* Info Tab */}
-          <div style={{ display: activeTab === 'info' ? 'block' : 'none' }}>
-            <table style={{
-              width: '100%',
-              borderCollapse: 'collapse',
-              fontSize: '0.88rem'
-            }}>
-              <tbody>
-                <tr style={{ borderBottom: '1px solid #e8e8f0' }}>
-                  <td style={{ padding: '10px 0', fontWeight: 600, color: '#4a4a68', width: '40%' }}>Category</td>
-                  <td style={{ padding: '10px 0', color: '#1a1a2e' }}>{product.category || '—'}</td>
-                </tr>
-                <tr style={{ borderBottom: '1px solid #e8e8f0' }}>
-                  <td style={{ padding: '10px 0', fontWeight: 600, color: '#4a4a68' }}>Stock</td>
-                  <td style={{ padding: '10px 0', color: '#1a1a2e' }}>{product.stock} units</td>
-                </tr>
-                {product.hasVariants && (
-                  <tr style={{ borderBottom: '1px solid #e8e8f0' }}>
-                    <td style={{ padding: '10px 0', fontWeight: 600, color: '#4a4a68' }}>Variants</td>
-                    <td style={{ padding: '10px 0', color: '#1a1a2e' }}>
-                      {product.variants?.groups?.map(g => g.name).join(', ') || '—'}
-                    </td>
-                  </tr>
-                )}
-                {product.customTextField?.enabled && (
-                  <tr>
-                    <td style={{ padding: '10px 0', fontWeight: 600, color: '#4a4a68' }}>Customization</td>
-                    <td style={{ padding: '10px 0', color: '#1a1a2e' }}>{product.customTextField.label}</td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
-
-          {/* Reviews Tab */}
-          <div style={{ display: activeTab === 'reviews' ? 'block' : 'none' }}>
-            <div style={{ textAlign: 'center', padding: '36px 0' }}>
-              <div style={{
-                width: '48px',
-                height: '48px',
-                background: '#f8f8fc',
-                borderRadius: '50%',
+          {/* Reviews */}
+          <div style={{ borderBottom: '1px solid #EAEAEA' }}>
+            <button
+              onClick={() => setActiveTab(activeTab === 'reviews' ? null : 'reviews')}
+              style={{
+                width: '100%',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center',
-                margin: '0 auto 12px',
-                fontSize: '1.2rem',
-                color: '#ccc'
-              }}>
-                <i className="fas fa-star"></i>
+                justifyContent: 'space-between',
+                padding: '18px 4px',
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: '0.85rem',
+                fontWeight: 600,
+                letterSpacing: '0.04em',
+                textTransform: 'uppercase',
+                color: '#1A1A1A'
+              }}
+            >
+              Reviews
+              <span style={{ fontSize: '1.1rem', fontWeight: 400 }}>{activeTab === 'reviews' ? '−' : '+'}</span>
+            </button>
+            {activeTab === 'reviews' && (
+              <div style={{ textAlign: 'center', padding: '12px 4px 32px' }}>
+                <p style={{ fontWeight: 600, color: '#1A1A1A', marginBottom: '4px' }}>No Reviews Yet</p>
+                <p style={{ color: '#6B6B6B', fontSize: '0.85rem' }}>Be the first to review this product.</p>
               </div>
-              <p style={{ fontWeight: 600, color: '#1a1a2e', marginBottom: '4px' }}>No Reviews Yet</p>
-              <p style={{ color: '#4a4a68', fontSize: '0.85rem' }}>Be the first to review this product!</p>
-            </div>
+            )}
           </div>
         </div>
       </div>
+
+      {/* You May Also Like */}
+      {relatedProducts.length > 0 && (
+        <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '24px 24px 72px', borderTop: '1px solid #EAEAEA', marginTop: '16px' }}>
+          <h2 style={{
+            fontFamily: "'DM Sans', sans-serif",
+            fontSize: '1.5rem',
+            fontWeight: 500,
+            color: '#1A1A1A',
+            textAlign: 'center',
+            marginTop: '40px',
+            marginBottom: '32px',
+            letterSpacing: '0.02em',
+            textTransform: 'uppercase'
+          }}>You May Also Like</h2>
+          <div className="related-grid" style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(4, 1fr)',
+            gap: '20px'
+          }}>
+            {relatedProducts.map(rp => {
+              const rpDiscount = rp.comparePrice && rp.comparePrice > rp.price;
+              return (
+                <Link
+                  key={rp.id}
+                  to={`/product/${rp.id}`}
+                  style={{ textDecoration: 'none', color: 'inherit' }}
+                >
+                  <div style={{
+                    position: 'relative',
+                    aspectRatio: '1',
+                    background: '#FAFAFA',
+                    border: '1px solid #EAEAEA',
+                    overflow: 'hidden',
+                    marginBottom: '10px'
+                  }}>
+                    <img
+                      src={rp.image}
+                      alt={rp.name}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                      onError={(e) => e.target.src = 'https://placehold.co/400x400/f0f0f0/aaa?text=IMG'}
+                    />
+                  </div>
+                  <div style={{
+                    fontSize: '0.85rem',
+                    fontWeight: 500,
+                    color: '#1A1A1A',
+                    marginBottom: '4px',
+                    lineHeight: '1.3'
+                  }}>{rp.name}</div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <span style={{ fontSize: '0.85rem', fontWeight: 600, color: '#1A1A1A' }}>{formatPrice(rp.price)}</span>
+                    {rpDiscount && (
+                      <span style={{ fontSize: '0.75rem', color: '#aaa', textDecoration: 'line-through' }}>{formatPrice(rp.comparePrice)}</span>
+                    )}
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       {/* Lightbox */}
       {lightboxOpen && (
@@ -1123,7 +1203,7 @@ function ProductDetail() {
                   maxWidth: '100%',
                   maxHeight: '90vh',
                   objectFit: 'contain',
-                  borderRadius: '12px',
+                  borderRadius: '2px',
                   boxShadow: '0 32px 80px rgba(0,0,0,0.5)',
                   userSelect: 'none'
                 }}
@@ -1243,7 +1323,7 @@ function ProductDetail() {
                 gap: '8px',
                 padding: '8px 12px',
                 background: 'rgba(0,0,0,0.5)',
-                borderRadius: '12px',
+                borderRadius: '2px',
                 maxWidth: 'calc(100vw - 32px)',
                 overflowX: 'auto'
               }}>
@@ -1255,7 +1335,7 @@ function ProductDetail() {
                     style={{
                       width: '52px',
                       height: '52px',
-                      borderRadius: '7px',
+                      borderRadius: '2px',
                       objectFit: 'cover',
                       cursor: 'pointer',
                       border: `2px solid ${idx === lightboxIndex ? 'white' : 'transparent'}`,

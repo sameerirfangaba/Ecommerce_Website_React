@@ -17,8 +17,8 @@ function BlogDetail() {
       const data = await getBlogBySlug(slug);
       if (data) {
         setBlog(data);
-        await incrementViews(data.id);
-        const related = blogs.filter(b => 
+        incrementViews(data.id);
+        const related = blogs.filter(b =>
           b.id !== data.id && 
           b.category === data.category
         ).slice(0, 3);
@@ -70,7 +70,7 @@ function BlogDetail() {
             width: '60px',
             height: '60px',
             border: '4px solid #f0f0f0',
-            borderTop: '4px solid #FF6B35',
+            borderTop: '4px solid #1A1A1A',
             borderRadius: '50%',
             animation: 'spin 0.8s linear infinite',
             marginBottom: '20px'
@@ -119,7 +119,7 @@ function BlogDetail() {
           <h1 style={{ color: '#ef4444', fontSize: '2rem', marginBottom: '16px' }}>Blog Not Found</h1>
           <p style={{ color: '#6b7280', marginBottom: '24px' }}>The blog post you're looking for doesn't exist or has been removed.</p>
           <Link to="/blog" style={{ 
-            color: '#FF6B35', 
+            color: '#1A1A1A', 
             textDecoration: 'none',
             display: 'inline-flex',
             alignItems: 'center',
@@ -141,7 +141,7 @@ function BlogDetail() {
       <style>{`
         /* ✅ Blog Content Styles - Fix White Space */
         .blog-content {
-          color: #4a4a68;
+          color: #6B6B6B;
           line-height: 1.8;
           font-size: 1rem;
         }
@@ -155,8 +155,8 @@ function BlogDetail() {
         .blog-content h2, 
         .blog-content h3, 
         .blog-content h4 {
-          font-family: 'Playfair Display', serif;
-          color: #1a1a2e;
+          font-family: 'DM Sans', sans-serif;
+          color: #1A1A1A;
           margin-top: 1.5em;
           margin-bottom: 0.5em;
         }
@@ -184,17 +184,17 @@ function BlogDetail() {
         }
         
         .blog-content blockquote {
-          border-left: 4px solid #FF6B35;
+          border-left: 4px solid #1A1A1A;
           padding: 0.5em 1.5em;
           margin: 1em 0;
-          background: #f8f8fc;
+          background: #FAFAFA;
           border-radius: 0 12px 12px 0;
           font-style: italic;
-          color: #1a1a2e;
+          color: #1A1A1A;
         }
         
         .blog-content a {
-          color: #FF6B35;
+          color: #1A1A1A;
           text-decoration: underline;
         }
         
@@ -249,14 +249,14 @@ function BlogDetail() {
           alignItems: 'center',
           gap: '8px',
           fontSize: '0.85rem',
-          color: '#4a4a68',
+          color: '#6B6B6B',
           marginBottom: '24px'
         }}>
-          <Link to="/" style={{ color: '#4a4a68', textDecoration: 'none' }}>Home</Link>
+          <Link to="/" style={{ color: '#6B6B6B', textDecoration: 'none' }}>Home</Link>
           <i className="fas fa-chevron-right" style={{ fontSize: '0.6rem' }}></i>
-          <Link to="/blog" style={{ color: '#4a4a68', textDecoration: 'none' }}>Blog</Link>
+          <Link to="/blog" style={{ color: '#6B6B6B', textDecoration: 'none' }}>Blog</Link>
           <i className="fas fa-chevron-right" style={{ fontSize: '0.6rem' }}></i>
-          <span style={{ color: '#1a1a2e', fontWeight: 500 }}>{blog.title}</span>
+          <span style={{ color: '#1A1A1A', fontWeight: 500 }}>{blog.title}</span>
         </div>
 
         {/* Blog Content */}
@@ -294,7 +294,7 @@ function BlogDetail() {
                 <span style={{
                   padding: '4px 12px',
                   borderRadius: '20px',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   color: 'white',
                   fontSize: '0.75rem',
                   fontWeight: 600
@@ -308,10 +308,10 @@ function BlogDetail() {
             </div>
 
             <h1 style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: 'clamp(1.8rem, 3vw, 2.5rem)',
               fontWeight: 700,
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               marginBottom: '16px',
               lineHeight: '1.2'
             }}>
@@ -331,7 +331,7 @@ function BlogDetail() {
               <div style={{
                 marginTop: '32px',
                 paddingTop: '24px',
-                borderTop: '1px solid #e8e8f0'
+                borderTop: '1px solid #EAEAEA'
               }}>
                 <h4 style={{ fontWeight: 600, marginBottom: '12px' }}>Tags:</h4>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
@@ -340,7 +340,7 @@ function BlogDetail() {
                       padding: '4px 12px',
                       borderRadius: '20px',
                       background: '#f3f4f6',
-                      color: '#4a4a68',
+                      color: '#6B6B6B',
                       fontSize: '0.8rem'
                     }}>
                       #{tag}
@@ -355,7 +355,7 @@ function BlogDetail() {
           <div>
             <div style={{
               background: 'white',
-              border: '1px solid #e8e8f0',
+              border: '1px solid #EAEAEA',
               borderRadius: '16px',
               padding: '24px',
               marginBottom: '24px'
@@ -371,7 +371,7 @@ function BlogDetail() {
                   width: '48px',
                   height: '48px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -386,7 +386,7 @@ function BlogDetail() {
                   <div style={{ fontSize: '0.75rem', color: '#6b7280' }}>Content Writer</div>
                 </div>
               </div>
-              <p style={{ color: '#4a4a68', fontSize: '0.85rem', lineHeight: '1.6' }}>
+              <p style={{ color: '#6B6B6B', fontSize: '0.85rem', lineHeight: '1.6' }}>
                 Passionate about sharing knowledge and inspiring others through well-crafted content.
               </p>
             </div>
@@ -394,7 +394,7 @@ function BlogDetail() {
             {relatedBlogs.length > 0 && (
               <div style={{
                 background: 'white',
-                border: '1px solid #e8e8f0',
+                border: '1px solid #EAEAEA',
                 borderRadius: '16px',
                 padding: '24px'
               }}>
@@ -412,7 +412,7 @@ function BlogDetail() {
                       color: 'inherit',
                       transition: 'all 0.2s'
                     }}
-                    onMouseEnter={(e) => e.currentTarget.style.background = '#f8f8fc'}
+                    onMouseEnter={(e) => e.currentTarget.style.background = '#FAFAFA'}
                     onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
                   >
                     <img
@@ -431,7 +431,7 @@ function BlogDetail() {
                       <div style={{
                         fontSize: '0.85rem',
                         fontWeight: 600,
-                        color: '#1a1a2e',
+                        color: '#1A1A1A',
                         display: '-webkit-box',
                         WebkitLineClamp: 2,
                         WebkitBoxOrient: 'vertical',

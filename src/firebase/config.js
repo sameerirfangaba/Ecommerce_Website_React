@@ -1,10 +1,10 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs, getDoc, doc, addDoc, updateDoc, deleteDoc, query, orderBy, where, serverTimestamp, setDoc } from 'firebase/firestore';
+import { initializeFirestore, persistentLocalCache, persistentMultipleTabManager, collection, getDocs, getDoc, doc, addDoc, updateDoc, deleteDoc, query, orderBy, where, limit, serverTimestamp, setDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: "AIzaSyC85dGCrZueaxqnu-WpMaUMFzeNtBDHIdE",
-  authDomain: "www.alrafiq.shop",
+  authDomain: "www.ismora.shop",
   projectId: "ecommerce-website-e9b2b",
   storageBucket: "ecommerce-website-e9b2b.firebasestorage.app",
   messagingSenderId: "752161163712",
@@ -12,7 +12,9 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app);
+export const db = initializeFirestore(app, {
+  localCache: persistentLocalCache({ tabManager: persistentMultipleTabManager() })
+});
 export const auth = getAuth(app);
 
 // Export Firestore functions for easy use
@@ -27,6 +29,7 @@ export {
   query,
   orderBy,
   where,
+  limit,
   serverTimestamp,
   setDoc
 };

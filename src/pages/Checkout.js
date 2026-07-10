@@ -287,13 +287,13 @@ function Checkout() {
         <label className="form-label" style={{
           fontSize: '0.85rem',
           fontWeight: '600',
-          color: '#1a1a2e',
+          color: '#1A1A1A',
           display: 'flex',
           alignItems: 'center',
           gap: '4px'
         }}>
           {field.label || field.id}
-          {field.required && <span className="req" style={{ color: '#FF6B35', fontSize: '1rem' }}>*</span>}
+          {field.required && <span className="req" style={{ color: '#1A1A1A', fontSize: '1rem' }}>*</span>}
         </label>
         {input}
         {error && (
@@ -367,13 +367,13 @@ function Checkout() {
           <div className="spinner" style={{
             width: '48px',
             height: '48px',
-            border: '3px solid #e8e8f0',
-            borderTopColor: '#1a1a2e',
+            border: '3px solid #EAEAEA',
+            borderTopColor: '#1A1A1A',
             borderRadius: '50%',
             animation: 'spin 0.8s linear infinite',
             margin: '0 auto 16px'
           }}></div>
-          <p style={{ color: '#4a4a68' }}>Loading checkout...</p>
+          <p style={{ color: '#6B6B6B' }}>Loading checkout...</p>
         </div>
         <Footer />
         <style>{`
@@ -399,7 +399,7 @@ function Checkout() {
         }}>
           <div style={{
             background: 'white',
-            border: '1px solid #e8e8f0',
+            border: '1px solid #EAEAEA',
             borderRadius: '24px',
             padding: '48px',
             maxWidth: '560px',
@@ -422,21 +422,21 @@ function Checkout() {
               <i className="fas fa-check"></i>
             </div>
             <h1 style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: '1.8rem',
               fontWeight: '700',
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               marginBottom: '10px'
             }}>Order Confirmed!</h1>
             <p style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.95rem',
               lineHeight: '1.6',
               marginBottom: '28px'
             }}>Thank you for your purchase. We'll begin processing it right away.</p>
             <div style={{
-              background: '#f8f8fc',
-              border: '1px solid #e8e8f0',
+              background: '#FAFAFA',
+              border: '1px solid #EAEAEA',
               borderRadius: '12px',
               padding: '16px 20px',
               marginBottom: '28px'
@@ -446,13 +446,13 @@ function Checkout() {
                 fontWeight: '700',
                 letterSpacing: '0.08em',
                 textTransform: 'uppercase',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 marginBottom: '4px'
               }}>Order Reference</div>
               <div style={{
                 fontSize: '1.1rem',
                 fontWeight: '800',
-                color: '#1a1a2e'
+                color: '#1A1A1A'
               }}>#ISM-{orderRef.substring(0, 6).toUpperCase()}</div>
             </div>
             <div style={{
@@ -475,7 +475,7 @@ function Checkout() {
                 border: 'none',
                 transition: 'all 0.2s',
                 textDecoration: 'none',
-                background: '#1a1a2e',
+                background: '#1A1A1A',
                 color: 'white'
               }}>
                 <i className="fas fa-store"></i> Continue Shopping
@@ -491,11 +491,11 @@ function Checkout() {
                 fontSize: '0.875rem',
                 fontWeight: '600',
                 cursor: 'pointer',
-                border: '1.5px solid #1a1a2e',
+                border: '1.5px solid #1A1A1A',
                 transition: 'all 0.2s',
                 textDecoration: 'none',
                 background: 'transparent',
-                color: '#1a1a2e'
+                color: '#1A1A1A'
               }}>
                 <i className="fas fa-home"></i> Go Home
               </Link>
@@ -521,7 +521,7 @@ function Checkout() {
           <div style={{
             width: '80px',
             height: '80px',
-            background: '#f8f8fc',
+            background: '#FAFAFA',
             borderRadius: '50%',
             display: 'flex',
             alignItems: 'center',
@@ -531,12 +531,12 @@ function Checkout() {
             <i className="fas fa-shopping-bag" style={{ fontSize: '2rem', color: '#ccc' }}></i>
           </div>
           <h2 style={{ fontWeight: '700', marginBottom: '8px' }}>Your cart is empty</h2>
-          <p style={{ color: '#4a4a68', marginBottom: '24px' }}>Add some products to your cart before checking out.</p>
+          <p style={{ color: '#6B6B6B', marginBottom: '24px' }}>Add some products to your cart before checking out.</p>
           <Link to="/shop" style={{
             display: 'inline-block',
             padding: '12px 32px',
             borderRadius: '10px',
-            background: '#FF6B35',
+            background: '#1A1A1A',
             color: 'white',
             textDecoration: 'none',
             fontWeight: '600'
@@ -560,7 +560,7 @@ function Checkout() {
         
         /* PM Card Styles */
         .pm-card {
-          border: 2px solid #e8e8f0;
+          border: 2px solid #EAEAEA;
           border-radius: 12px;
           padding: 14px 18px;
           cursor: pointer;
@@ -573,8 +573,8 @@ function Checkout() {
           border-color: rgba(26,26,46,0.3);
         }
         .pm-card.selected {
-          border-color: #FF6B35;
-          background: rgba(255,107,53,0.04);
+          border-color: #1A1A1A;
+          background: rgba(255,255,255,0.04);
         }
         .pm-radio {
           width: 18px;
@@ -589,8 +589,8 @@ function Checkout() {
           justify-content: center;
         }
         .pm-card.selected .pm-radio {
-          border-color: #FF6B35;
-          background: #FF6B35;
+          border-color: #1A1A1A;
+          background: #1A1A1A;
         }
         .pm-card.selected .pm-radio::after {
           content: '';
@@ -605,18 +605,18 @@ function Checkout() {
         .form-input {
           width: 100%;
           padding: 12px 16px;
-          border: 1.5px solid #e8e8f0;
+          border: 1.5px solid #EAEAEA;
           border-radius: 10px;
           font-family: "'DM Sans', sans-serif";
           font-size: 0.9rem;
-          color: #1a1a2e;
+          color: #1A1A1A;
           background: white;
           outline: none;
           transition: all 0.2s;
         }
         .form-input:focus {
-          border-color: #FF6B35;
-          box-shadow: 0 0 0 3px rgba(255,107,53,0.08);
+          border-color: #1A1A1A;
+          box-shadow: 0 0 0 3px rgba(255,255,255,0.08);
         }
         .form-input.error {
           border-color: #ef4444;
@@ -641,7 +641,7 @@ function Checkout() {
         .step-line {
           flex: 1;
           height: 2px;
-          background: #e8e8f0;
+          background: #EAEAEA;
           margin: 0 10px;
           max-width: 40px;
         }
@@ -676,12 +676,12 @@ function Checkout() {
           <div style={{
             width: '48px',
             height: '48px',
-            border: '3px solid #e8e8f0',
-            borderTopColor: '#1a1a2e',
+            border: '3px solid #EAEAEA',
+            borderTopColor: '#1A1A1A',
             borderRadius: '50%',
             animation: 'spin 0.8s linear infinite'
           }}></div>
-          <p style={{ fontSize: '0.95rem', fontWeight: '600', color: '#1a1a2e' }}>Placing your order...</p>
+          <p style={{ fontSize: '0.95rem', fontWeight: '600', color: '#1A1A1A' }}>Placing your order...</p>
         </div>
       )}
 
@@ -721,10 +721,10 @@ function Checkout() {
                 fontSize: '0.75rem',
                 fontWeight: '700',
                 flexShrink: 0,
-                background: '#FF6B35',
+                background: '#1A1A1A',
                 color: 'white'
               }}>1</div>
-              <span className="step-label" style={{ color: '#1a1a2e', fontWeight: '600' }}>Information</span>
+              <span className="step-label" style={{ color: '#1A1A1A', fontWeight: '600' }}>Information</span>
             </div>
             <div className="step-line"></div>
             <div className="step inactive" style={{
@@ -744,10 +744,10 @@ function Checkout() {
                 fontSize: '0.75rem',
                 fontWeight: '700',
                 flexShrink: 0,
-                background: '#e8e8f0',
-                color: '#4a4a68'
+                background: '#EAEAEA',
+                color: '#6B6B6B'
               }}>2</div>
-              <span className="step-label" style={{ color: '#4a4a68' }}>Payment</span>
+              <span className="step-label" style={{ color: '#6B6B6B' }}>Payment</span>
             </div>
             <div className="step-line"></div>
             <div className="step inactive" style={{
@@ -767,27 +767,27 @@ function Checkout() {
                 fontSize: '0.75rem',
                 fontWeight: '700',
                 flexShrink: 0,
-                background: '#e8e8f0',
-                color: '#4a4a68'
+                background: '#EAEAEA',
+                color: '#6B6B6B'
               }}>3</div>
-              <span className="step-label" style={{ color: '#4a4a68' }}>Confirmation</span>
+              <span className="step-label" style={{ color: '#6B6B6B' }}>Confirmation</span>
             </div>
           </div>
 
           {/* Contact Information - Clean Design */}
           <div className="card" style={{
             background: 'white',
-            border: '1px solid #e8e8f0',
+            border: '1px solid #EAEAEA',
             borderRadius: '16px',
             padding: '28px',
             marginBottom: '16px',
             boxShadow: '0 1px 3px rgba(0,0,0,0.04)'
           }}>
             <div className="card-title" style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: '1.1rem',
               fontWeight: '700',
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               marginBottom: '20px',
               display: 'flex',
               alignItems: 'center',
@@ -797,12 +797,12 @@ function Checkout() {
                 width: '36px',
                 height: '36px',
                 borderRadius: '10px',
-                background: 'rgba(255,107,53,0.1)',
+                background: 'rgba(255,255,255,0.1)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center'
               }}>
-                <i className="fas fa-user" style={{ color: '#FF6B35', fontSize: '0.95rem' }}></i>
+                <i className="fas fa-user" style={{ color: '#1A1A1A', fontSize: '0.95rem' }}></i>
               </div>
               Contact Information
             </div>
@@ -812,17 +812,17 @@ function Checkout() {
           {/* Payment Methods - Clean Design */}
           <div className="card" style={{
             background: 'white',
-            border: '1px solid #e8e8f0',
+            border: '1px solid #EAEAEA',
             borderRadius: '16px',
             padding: '28px',
             marginBottom: '16px',
             boxShadow: '0 1px 3px rgba(0,0,0,0.04)'
           }}>
             <div className="card-title" style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: '1.1rem',
               fontWeight: '700',
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               marginBottom: '20px',
               display: 'flex',
               alignItems: 'center',
@@ -832,12 +832,12 @@ function Checkout() {
                 width: '36px',
                 height: '36px',
                 borderRadius: '10px',
-                background: 'rgba(255,107,53,0.1)',
+                background: 'rgba(255,255,255,0.1)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center'
               }}>
-                <i className="fas fa-credit-card" style={{ color: '#FF6B35', fontSize: '0.95rem' }}></i>
+                <i className="fas fa-credit-card" style={{ color: '#1A1A1A', fontSize: '0.95rem' }}></i>
               </div>
               Payment Method
             </div>
@@ -852,7 +852,7 @@ function Checkout() {
                   className={`pm-card ${selectedPayment === (method.id || '0') ? 'selected' : ''}`}
                   onClick={() => setSelectedPayment(method.id || '0')}
                   style={{
-                    border: `2px solid ${selectedPayment === (method.id || '0') ? '#FF6B35' : '#e8e8f0'}`,
+                    border: `2px solid ${selectedPayment === (method.id || '0') ? '#1A1A1A' : '#EAEAEA'}`,
                     borderRadius: '12px',
                     padding: '14px 18px',
                     cursor: 'pointer',
@@ -860,13 +860,13 @@ function Checkout() {
                     display: 'flex',
                     alignItems: 'flex-start',
                     gap: '14px',
-                    background: selectedPayment === (method.id || '0') ? 'rgba(255,107,53,0.04)' : 'white'
+                    background: selectedPayment === (method.id || '0') ? 'rgba(255,255,255,0.04)' : 'white'
                   }}
                 >
                   <div className="pm-radio" style={{
                     width: '18px',
                     height: '18px',
-                    border: `2px solid ${selectedPayment === (method.id || '0') ? '#FF6B35' : '#d1d5db'}`,
+                    border: `2px solid ${selectedPayment === (method.id || '0') ? '#1A1A1A' : '#d1d5db'}`,
                     borderRadius: '50%',
                     flexShrink: 0,
                     marginTop: '2px',
@@ -874,7 +874,7 @@ function Checkout() {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    background: selectedPayment === (method.id || '0') ? '#FF6B35' : 'transparent'
+                    background: selectedPayment === (method.id || '0') ? '#1A1A1A' : 'transparent'
                   }}>
                     {selectedPayment === (method.id || '0') && (
                       <div style={{
@@ -889,12 +889,12 @@ function Checkout() {
                     width: '36px',
                     height: '36px',
                     borderRadius: '9px',
-                    background: '#f8f8fc',
+                    background: '#FAFAFA',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     fontSize: '0.9rem',
-                    color: '#4a4a68',
+                    color: '#6B6B6B',
                     flexShrink: 0
                   }}>
                     <i className={method.icon || 'fas fa-credit-card'}></i>
@@ -903,12 +903,12 @@ function Checkout() {
                     <div className="pm-name" style={{
                       fontSize: '0.9rem',
                       fontWeight: '600',
-                      color: '#1a1a2e',
+                      color: '#1A1A1A',
                       marginBottom: '2px'
                     }}>{method.label || method.name || 'Payment'}</div>
                     <div className="pm-desc" style={{
                       fontSize: '0.78rem',
-                      color: '#4a4a68'
+                      color: '#6B6B6B'
                     }}>{method.desc || ''}</div>
                   </div>
                 </div>
@@ -919,10 +919,10 @@ function Checkout() {
                 <div className="pm-details" style={{
                   marginTop: '14px',
                   padding: '16px',
-                  background: '#f8f8fc',
+                  background: '#FAFAFA',
                   borderRadius: '10px',
                   fontSize: '0.85rem',
-                  color: '#4a4a68',
+                  color: '#6B6B6B',
                   lineHeight: '1.8'
                 }}
                 dangerouslySetInnerHTML={{
@@ -938,7 +938,7 @@ function Checkout() {
         <div>
           <div className="summary-card" style={{
             background: 'white',
-            border: '1px solid #e8e8f0',
+            border: '1px solid #EAEAEA',
             borderRadius: '16px',
             padding: '24px',
             position: 'sticky',
@@ -946,10 +946,10 @@ function Checkout() {
             boxShadow: '0 1px 3px rgba(0,0,0,0.04)'
           }}>
             <div className="summary-title" style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: '1.1rem',
               fontWeight: '700',
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               marginBottom: '20px',
               display: 'flex',
               alignItems: 'center',
@@ -959,12 +959,12 @@ function Checkout() {
                 width: '32px',
                 height: '32px',
                 borderRadius: '8px',
-                background: 'rgba(255,107,53,0.1)',
+                background: 'rgba(255,255,255,0.1)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center'
               }}>
-                <i className="fas fa-receipt" style={{ color: '#FF6B35', fontSize: '0.8rem' }}></i>
+                <i className="fas fa-receipt" style={{ color: '#1A1A1A', fontSize: '0.8rem' }}></i>
               </div>
               Order Summary
             </div>
@@ -989,7 +989,7 @@ function Checkout() {
                           height: '60px',
                           borderRadius: '10px',
                           objectFit: 'cover',
-                          border: '1px solid #e8e8f0'
+                          border: '1px solid #EAEAEA'
                         }}
                         onError={(e) => e.target.src = 'https://placehold.co/60x60/f0f0f0/aaa?text=IMG'}
                       />
@@ -1000,7 +1000,7 @@ function Checkout() {
                         minWidth: '20px',
                         height: '20px',
                         borderRadius: '50%',
-                        background: '#FF6B35',
+                        background: '#1A1A1A',
                         color: 'white',
                         fontSize: '0.6rem',
                         fontWeight: '700',
@@ -1015,14 +1015,14 @@ function Checkout() {
                       <div className="sum-name" style={{
                         fontSize: '0.85rem',
                         fontWeight: '600',
-                        color: '#1a1a2e',
+                        color: '#1A1A1A',
                         marginBottom: '3px',
                         lineHeight: '1.3'
                       }}>{item.name}</div>
                       {item.variantAttrs && (
                         <div className="sum-variant" style={{
                           fontSize: '0.7rem',
-                          color: '#4a4a68'
+                          color: '#6B6B6B'
                         }}>
                           {Object.entries(item.variantAttrs).map(([k, v]) => `${k}: ${v}`).join(' · ')}
                         </div>
@@ -1045,7 +1045,7 @@ function Checkout() {
                     <div className="sum-price" style={{
                       fontSize: '0.9rem',
                       fontWeight: '700',
-                      color: '#1a1a2e',
+                      color: '#1A1A1A',
                       flexShrink: 0
                     }}>{formatPrice((item.price || 0) * item.quantity)}</div>
                   </div>
@@ -1055,7 +1055,7 @@ function Checkout() {
 
             <div className="sum-divider" style={{
               height: '1px',
-              background: '#e8e8f0',
+              background: '#EAEAEA',
               margin: '16px 0'
             }}></div>
 
@@ -1066,8 +1066,8 @@ function Checkout() {
               marginBottom: '8px',
               fontSize: '0.875rem'
             }}>
-              <span className="lbl" style={{ color: '#4a4a68' }}>Subtotal</span>
-              <span className="val" style={{ fontWeight: '600', color: '#1a1a2e' }}>{formatPrice(subtotal)}</span>
+              <span className="lbl" style={{ color: '#6B6B6B' }}>Subtotal</span>
+              <span className="val" style={{ fontWeight: '600', color: '#1A1A1A' }}>{formatPrice(subtotal)}</span>
             </div>
 
             <div className="sum-row" style={{
@@ -1077,8 +1077,8 @@ function Checkout() {
               marginBottom: '8px',
               fontSize: '0.875rem'
             }}>
-              <span className="lbl" style={{ color: '#4a4a68' }}>Delivery</span>
-              <span className="val" style={{ fontWeight: '600', color: '#1a1a2e' }}>
+              <span className="lbl" style={{ color: '#6B6B6B' }}>Delivery</span>
+              <span className="val" style={{ fontWeight: '600', color: '#1A1A1A' }}>
                 {deliveryFee === 0 && settings.freeShippingThreshold > 0 ? (
                   <span className="free" style={{ color: '#22c55e', fontWeight: '700' }}>
                     <i className="fas fa-check" style={{ fontSize: '0.65rem', marginRight: '3px' }}></i>FREE
@@ -1097,8 +1097,8 @@ function Checkout() {
                 marginBottom: '8px',
                 fontSize: '0.875rem'
               }}>
-                <span className="lbl" style={{ color: '#4a4a68' }}>Tax</span>
-                <span className="val" style={{ fontWeight: '600', color: '#1a1a2e' }}>
+                <span className="lbl" style={{ color: '#6B6B6B' }}>Tax</span>
+                <span className="val" style={{ fontWeight: '600', color: '#1A1A1A' }}>
                   {formatPrice(tax)} ({settings.taxRate}%)
                 </span>
               </div>
@@ -1109,11 +1109,11 @@ function Checkout() {
               justifyContent: 'space-between',
               alignItems: 'center',
               paddingTop: '14px',
-              borderTop: '2px solid #FF6B35',
+              borderTop: '2px solid #1A1A1A',
               marginTop: '8px'
             }}>
-              <span className="lbl" style={{ fontSize: '1rem', fontWeight: '700', color: '#1a1a2e' }}>Total</span>
-              <span className="val" style={{ fontSize: '1.3rem', fontWeight: '800', color: '#FF6B35' }}>{formatPrice(total)}</span>
+              <span className="lbl" style={{ fontSize: '1rem', fontWeight: '700', color: '#1A1A1A' }}>Total</span>
+              <span className="val" style={{ fontSize: '1.3rem', fontWeight: '800', color: '#1A1A1A' }}>{formatPrice(total)}</span>
             </div>
 
             <button
@@ -1125,7 +1125,7 @@ function Checkout() {
                 padding: '16px',
                 borderRadius: '12px',
                 border: 'none',
-                background: '#FF6B35',
+                background: '#1A1A1A',
                 color: 'white',
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: '1rem',
@@ -1138,20 +1138,20 @@ function Checkout() {
                 gap: '10px',
                 marginTop: '16px',
                 opacity: isSubmitting ? 0.6 : 1,
-                boxShadow: '0 4px 14px rgba(255,107,53,0.35)'
+                boxShadow: '0 4px 14px rgba(255,255,255,0.35)'
               }}
               onMouseEnter={(e) => {
                 if (!isSubmitting) {
-                  e.currentTarget.style.background = '#e55a25';
+                  e.currentTarget.style.background = '#000000';
                   e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow = '0 8px 25px rgba(255,107,53,0.4)';
+                  e.currentTarget.style.boxShadow = '0 8px 25px rgba(255,255,255,0.4)';
                 }
               }}
               onMouseLeave={(e) => {
                 if (!isSubmitting) {
-                  e.currentTarget.style.background = '#FF6B35';
+                  e.currentTarget.style.background = '#1A1A1A';
                   e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 4px 14px rgba(255,107,53,0.35)';
+                  e.currentTarget.style.boxShadow = '0 4px 14px rgba(255,255,255,0.35)';
                 }
               }}
             >
@@ -1166,7 +1166,7 @@ function Checkout() {
               gap: '6px',
               marginTop: '14px',
               fontSize: '0.75rem',
-              color: '#4a4a68'
+              color: '#6B6B6B'
             }}>
               <i className="fas fa-shield-alt" style={{ color: '#22c55e' }}></i>
               Your information is secure & encrypted

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 function Footer() {
   return (
     <footer className="footer" style={{
-      background: '#111122',
+      background: '#0D0D0D',
       padding: '64px 0 0'
     }}>
       <div className="footer-inner" style={{
@@ -16,7 +16,7 @@ function Footer() {
       }}>
         <div>
           <div className="footer-brand-name" style={{
-            fontFamily: "'Playfair Display', serif",
+            fontFamily: "'DM Sans', sans-serif",
             fontSize: '1.5rem',
             fontWeight: '700',
             color: 'white',

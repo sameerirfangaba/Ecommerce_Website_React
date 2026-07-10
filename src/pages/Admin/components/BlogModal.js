@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useBlog } from '../../../context/BlogContext';
 import { useToast } from '../../../context/ToastContext';
+import { loadQuill } from '../../../utils/loadQuill';
 
 // ✅ ImgBB Upload Function
 const uploadToImgBB = async (file) => {
@@ -156,6 +157,8 @@ function BlogModal({ blog, onClose, onSave }) {
       }
       return false;
     };
+
+    loadQuill();
 
     if (checkQuill()) return;
 

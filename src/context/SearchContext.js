@@ -17,6 +17,7 @@ export const SearchProvider = ({ children }) => {
   const [searchResults, setSearchResults] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [productsLoading, setProductsLoading] = useState(true);
   const [showDropdown, setShowDropdown] = useState(false);
 
   useEffect(() => {
@@ -28,6 +29,7 @@ export const SearchProvider = ({ children }) => {
 
         if (cached && cachedTime && now - parseInt(cachedTime) < 300000) {
           setAllProducts(JSON.parse(cached));
+          setProductsLoading(false);
           return;
         }
 
@@ -37,8 +39,10 @@ export const SearchProvider = ({ children }) => {
         setAllProducts(products);
         localStorage.setItem('cached_products', JSON.stringify(products));
         localStorage.setItem('cached_products_time', now.toString());
+        setProductsLoading(false);
       } catch (error) {
         console.error('Error loading products for search:', error);
+        setProductsLoading(false);
       }
     };
     loadProducts();
@@ -79,6 +83,7 @@ export const SearchProvider = ({ children }) => {
     searchResults,
     allProducts,
     loading,
+    productsLoading,
     showDropdown,
     searchProducts,
     clearSearch,

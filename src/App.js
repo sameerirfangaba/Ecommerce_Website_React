@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Shop from './pages/Shop';
@@ -12,12 +13,14 @@ import Terms from './pages/Terms';
 import ShippingPolicy from './pages/ShippingPolicy';
 import Returns from './pages/Returns';
 import NotFound from './pages/NotFound';
-import Admin from './pages/Admin/Admin';
 import Blog from './pages/Blog';
 import BlogDetail from './pages/BlogDetail';
 import ScrollToTop from './components/ScrollToTop'; // ✅ Import
 import Disclaimer from './pages/Disclaimer';
 import CookiePolicy from './pages/CookiePolicy';
+import { BlogProvider } from './context/BlogContext';
+
+const Admin = lazy(() => import('./pages/Admin/Admin'));
 
 
 function App() {
@@ -37,9 +40,15 @@ function App() {
         <Route path="/terms" element={<Terms />} />
         <Route path="/shipping-policy" element={<ShippingPolicy />} />
         <Route path="/returns" element={<Returns />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/blog/:slug" element={<BlogDetail />} />
-        <Route path="/admin" element={<Admin />} />
+        <Route path="/blog" element={<BlogProvider><Blog /></BlogProvider>} />
+        <Route path="/blog/:slug" element={<BlogProvider><BlogDetail /></BlogProvider>} />
+        <Route path="/admin" element={
+          <BlogProvider>
+            <Suspense fallback={<div style={{ padding: '60px', textAlign: 'center' }}>Loading…</div>}>
+              <Admin />
+            </Suspense>
+          </BlogProvider>
+        } />
         <Route path="/disclaimer" element={<Disclaimer />} />
         <Route path="/cookie-policy" element={<CookiePolicy />} />
         <Route path="*" element={<NotFound />} />

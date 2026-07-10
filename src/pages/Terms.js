@@ -56,7 +56,7 @@ function Terms() {
 
       <style>{`
         .page-hero {
-          background: #1a1a2e;
+          background: #1A1A1A;
           padding: 72px 0 64px;
           position: relative;
           overflow: hidden;
@@ -64,7 +64,7 @@ function Terms() {
         .page-hero-bg {
           position: absolute;
           inset: 0;
-          background-image: radial-gradient(circle at 85% 50%, rgba(255,107,53,0.1) 0%, transparent 50%), radial-gradient(circle at 15% 20%, rgba(255,107,53,0.07) 0%, transparent 40%);
+          background-image: radial-gradient(circle at 85% 50%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(circle at 15% 20%, rgba(255,255,255,0.07) 0%, transparent 40%);
         }
         .page-hero-grid {
           position: absolute;
@@ -74,26 +74,26 @@ function Terms() {
           background-size: 60px 60px;
         }
         .toc-list a.active {
-          background: #f8f8fc;
-          color: #1a1a2e;
+          background: #FAFAFA;
+          color: #1A1A1A;
         }
         .toc-list a.active .toc-num {
-          background: #FF6B35;
+          background: #1A1A1A;
           color: white;
         }
         .info-card:hover {
-          border-color: #FF6B35;
+          border-color: #1A1A1A;
         }
         .policy-highlight {
-          background: #f8f8fc;
-          border-left: 3px solid #FF6B35;
+          background: #FAFAFA;
+          border-left: 3px solid #1A1A1A;
           border-radius: 0 10px 10px 0;
           padding: 16px 20px;
           margin: 20px 0;
         }
         .warning-box {
           background: #fff7ed;
-          border: 1px solid rgba(255,107,53,0.25);
+          border: 1px solid rgba(255,255,255,0.25);
           border-radius: 12px;
           padding: 16px 20px;
           margin: 20px 0;
@@ -137,7 +137,7 @@ function Terms() {
             }}>Home</Link>
             <span style={{ color: 'rgba(255,255,255,0.2)', fontSize: '0.75rem' }}>›</span>
             <span className="current" style={{
-              color: '#FF6B35',
+              color: '#1A1A1A',
               fontSize: '0.82rem',
               fontWeight: 500
             }}>Terms & Conditions</span>
@@ -146,9 +146,9 @@ function Terms() {
             display: 'inline-flex',
             alignItems: 'center',
             gap: '8px',
-            background: 'rgba(255,107,53,0.15)',
-            border: '1px solid rgba(255,107,53,0.3)',
-            color: '#FF6B35',
+            background: 'rgba(255,255,255,0.15)',
+            border: '1px solid rgba(255,255,255,0.3)',
+            color: '#1A1A1A',
             borderRadius: '100px',
             padding: '6px 14px',
             fontSize: '0.75rem',
@@ -160,7 +160,7 @@ function Terms() {
             <i className="fas fa-file-contract"></i> &nbsp;Legal
           </div>
           <h1 className="page-hero-title" style={{
-            fontFamily: "'Playfair Display', serif",
+            fontFamily: "'DM Sans', sans-serif",
             fontSize: 'clamp(2rem, 4vw, 3rem)',
             fontWeight: 700,
             color: 'white',
@@ -168,7 +168,7 @@ function Terms() {
             letterSpacing: '-0.02em',
             marginBottom: '14px'
           }}>
-            Terms & <em style={{ fontStyle: 'italic', color: '#FF6B35' }}>Conditions</em>
+            Terms & <em style={{ fontStyle: 'italic', color: '#1A1A1A' }}>Conditions</em>
           </h1>
           <p className="page-hero-sub" style={{
             color: 'rgba(255,255,255,0.5)',
@@ -192,7 +192,7 @@ function Terms() {
               color: 'rgba(255,255,255,0.4)',
               fontSize: '0.82rem'
             }}>
-              <i className="fas fa-calendar-alt" style={{ color: '#FF6B35', fontSize: '0.85rem' }}></i>
+              <i className="fas fa-calendar-alt" style={{ color: '#1A1A1A', fontSize: '0.85rem' }}></i>
               Last updated: January 1, 2026
             </div>
             <div className="meta-item" style={{
@@ -202,7 +202,7 @@ function Terms() {
               color: 'rgba(255,255,255,0.4)',
               fontSize: '0.82rem'
             }}>
-              <i className="fas fa-map-marker-alt" style={{ color: '#FF6B35', fontSize: '0.85rem' }}></i>
+              <i className="fas fa-map-marker-alt" style={{ color: '#1A1A1A', fontSize: '0.85rem' }}></i>
               Applies to: ismora.shop
             </div>
             <div className="meta-item" style={{
@@ -212,7 +212,7 @@ function Terms() {
               color: 'rgba(255,255,255,0.4)',
               fontSize: '0.82rem'
             }}>
-              <i className="fas fa-globe" style={{ color: '#FF6B35', fontSize: '0.85rem' }}></i>
+              <i className="fas fa-globe" style={{ color: '#1A1A1A', fontSize: '0.85rem' }}></i>
               Jurisdiction: UAE
             </div>
           </div>
@@ -234,7 +234,7 @@ function Terms() {
         <aside className="toc-sidebar" style={{ position: 'sticky', top: '90px' }}>
           <div className="toc-card" style={{
             background: 'white',
-            border: '1px solid #e8e8f0',
+            border: '1px solid #EAEAEA',
             borderRadius: '16px',
             padding: '24px',
             boxShadow: '0 4px 20px rgba(0,0,0,0.04)'
@@ -244,7 +244,7 @@ function Terms() {
               fontWeight: 700,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#4a4a68',
+              color: '#6B6B6B',
               marginBottom: '16px'
             }}>Contents</p>
             <ul className="toc-list" style={{
@@ -267,8 +267,8 @@ function Terms() {
                       borderRadius: '9px',
                       fontSize: '0.85rem',
                       fontWeight: 500,
-                      color: activeSection === section.id ? '#1a1a2e' : '#4a4a68',
-                      background: activeSection === section.id ? '#f8f8fc' : 'transparent',
+                      color: activeSection === section.id ? '#1A1A1A' : '#6B6B6B',
+                      background: activeSection === section.id ? '#FAFAFA' : 'transparent',
                       textDecoration: 'none',
                       transition: 'all 0.2s',
                       border: 'none',
@@ -282,8 +282,8 @@ function Terms() {
                       width: '22px',
                       height: '22px',
                       borderRadius: '6px',
-                      background: activeSection === section.id ? '#FF6B35' : '#e8e8f0',
-                      color: activeSection === section.id ? 'white' : '#4a4a68',
+                      background: activeSection === section.id ? '#1A1A1A' : '#EAEAEA',
+                      color: activeSection === section.id ? 'white' : '#6B6B6B',
                       fontSize: '0.68rem',
                       fontWeight: 700,
                       display: 'flex',
@@ -299,11 +299,11 @@ function Terms() {
             <div className="toc-contact" style={{
               marginTop: '20px',
               paddingTop: '20px',
-              borderTop: '1px solid #e8e8f0'
+              borderTop: '1px solid #EAEAEA'
             }}>
               <p style={{
                 fontSize: '0.8rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 marginBottom: '12px',
                 lineHeight: 1.5
               }}>Questions about our terms? We're happy to clarify.</p>
@@ -313,7 +313,7 @@ function Terms() {
                 gap: '7px',
                 fontSize: '0.82rem',
                 fontWeight: 600,
-                color: '#FF6B35',
+                color: '#1A1A1A',
                 textDecoration: 'none'
               }}>
                 <i className="fas fa-arrow-right" style={{ fontSize: '0.75rem' }}></i>
@@ -327,7 +327,7 @@ function Terms() {
         <article className="policy-body" style={{ minWidth: 0 }}>
           <div className="policy-highlight">
             <p>
-              <i className="fas fa-info-circle" style={{ color: '#FF6B35', marginRight: '8px' }}></i>
+              <i className="fas fa-info-circle" style={{ color: '#1A1A1A', marginRight: '8px' }}></i>
               These Terms & Conditions govern your use of <strong>ismora.shop</strong> and any purchase made through our platform. By accessing our website or placing an order, you agree to these terms in full.
             </p>
           </div>
@@ -342,14 +342,14 @@ function Terms() {
               fontWeight: 700,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#FF6B35',
+              color: '#1A1A1A',
               marginBottom: '8px'
             }}>Section 01</p>
             <h2 className="section-heading" style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: '1.5rem',
               fontWeight: 700,
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               letterSpacing: '-0.02em',
               marginBottom: '16px',
               lineHeight: 1.2
@@ -357,18 +357,18 @@ function Terms() {
             <div className="section-divider" style={{
               width: '40px',
               height: '3px',
-              background: '#FF6B35',
+              background: '#1A1A1A',
               borderRadius: '2px',
               marginBottom: '20px'
             }}></div>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
             }}>By accessing or using ismora.shop, browsing products, or placing an order, you confirm that you have read, understood, and agree to be bound by these Terms & Conditions.</p>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
@@ -385,14 +385,14 @@ function Terms() {
               fontWeight: 700,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#FF6B35',
+              color: '#1A1A1A',
               marginBottom: '8px'
             }}>Section 02</p>
             <h2 className="section-heading" style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: '1.5rem',
               fontWeight: 700,
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               letterSpacing: '-0.02em',
               marginBottom: '16px',
               lineHeight: 1.2
@@ -400,18 +400,18 @@ function Terms() {
             <div className="section-divider" style={{
               width: '40px',
               height: '3px',
-              background: '#FF6B35',
+              background: '#1A1A1A',
               borderRadius: '2px',
               marginBottom: '20px'
             }}></div>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
-            }}>Ismora is an online dropshipping store operated from Pakistan. We source products from third-party suppliers and fulfill orders through our supplier network. Ismora acts as the merchant of record for all transactions processed on our platform.</p>
+            }}>Ismora is an online dropshipping store operated from the United Arab Emirates. We source products from third-party suppliers and fulfill orders through our supplier network. Ismora acts as the merchant of record for all transactions processed on our platform.</p>
             <div className="warning-box">
-              <i className="fas fa-info-circle" style={{ color: '#FF6B35', fontSize: '1.1rem', marginTop: '2px', flexShrink: 0 }}></i>
+              <i className="fas fa-info-circle" style={{ color: '#1A1A1A', fontSize: '1.1rem', marginTop: '2px', flexShrink: 0 }}></i>
               <p style={{
                 fontSize: '0.88rem',
                 color: '#7c3a10',
@@ -432,14 +432,14 @@ function Terms() {
               fontWeight: 700,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#FF6B35',
+              color: '#1A1A1A',
               marginBottom: '8px'
             }}>Section 03</p>
             <h2 className="section-heading" style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: '1.5rem',
               fontWeight: 700,
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               letterSpacing: '-0.02em',
               marginBottom: '16px',
               lineHeight: 1.2
@@ -447,12 +447,12 @@ function Terms() {
             <div className="section-divider" style={{
               width: '40px',
               height: '3px',
-              background: '#FF6B35',
+              background: '#1A1A1A',
               borderRadius: '2px',
               marginBottom: '20px'
             }}></div>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
@@ -470,7 +470,7 @@ function Terms() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -478,7 +478,7 @@ function Terms() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -489,7 +489,7 @@ function Terms() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -497,7 +497,7 @@ function Terms() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -508,7 +508,7 @@ function Terms() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -516,7 +516,7 @@ function Terms() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -527,7 +527,7 @@ function Terms() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -535,7 +535,7 @@ function Terms() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -546,7 +546,7 @@ function Terms() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -554,7 +554,7 @@ function Terms() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -569,7 +569,7 @@ function Terms() {
             }}>
               <div className="info-card" style={{
                 background: 'white',
-                border: '1px solid #e8e8f0',
+                border: '1px solid #EAEAEA',
                 borderRadius: '12px',
                 padding: '18px',
                 transition: 'border-color 0.2s'
@@ -578,29 +578,29 @@ function Terms() {
                   width: '38px',
                   height: '38px',
                   borderRadius: '10px',
-                  background: 'rgba(255,107,53,0.1)',
+                  background: 'rgba(255,255,255,0.1)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   marginBottom: '12px'
                 }}>
-                  <i className="fas fa-check-circle" style={{ color: '#FF6B35', fontSize: '0.9rem' }}></i>
+                  <i className="fas fa-check-circle" style={{ color: '#1A1A1A', fontSize: '0.9rem' }}></i>
                 </div>
                 <div className="info-card-title" style={{
                   fontSize: '0.85rem',
                   fontWeight: 700,
-                  color: '#1a1a2e',
+                  color: '#1A1A1A',
                   marginBottom: '6px'
                 }}>Order Confirmation</div>
                 <div className="info-card-text" style={{
                   fontSize: '0.82rem',
-                  color: '#4a4a68',
+                  color: '#6B6B6B',
                   lineHeight: 1.55
                 }}>You'll receive a confirmation email after we accept your order.</div>
               </div>
               <div className="info-card" style={{
                 background: 'white',
-                border: '1px solid #e8e8f0',
+                border: '1px solid #EAEAEA',
                 borderRadius: '12px',
                 padding: '18px',
                 transition: 'border-color 0.2s'
@@ -609,23 +609,23 @@ function Terms() {
                   width: '38px',
                   height: '38px',
                   borderRadius: '10px',
-                  background: 'rgba(255,107,53,0.1)',
+                  background: 'rgba(255,255,255,0.1)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   marginBottom: '12px'
                 }}>
-                  <i className="fas fa-times-circle" style={{ color: '#FF6B35', fontSize: '0.9rem' }}></i>
+                  <i className="fas fa-times-circle" style={{ color: '#1A1A1A', fontSize: '0.9rem' }}></i>
                 </div>
                 <div className="info-card-title" style={{
                   fontSize: '0.85rem',
                   fontWeight: 700,
-                  color: '#1a1a2e',
+                  color: '#1A1A1A',
                   marginBottom: '6px'
                 }}>Order Cancellations</div>
                 <div className="info-card-text" style={{
                   fontSize: '0.82rem',
-                  color: '#4a4a68',
+                  color: '#6B6B6B',
                   lineHeight: 1.55
                 }}>Cancel within 12 hours of placing your order by contacting support.</div>
               </div>
@@ -642,14 +642,14 @@ function Terms() {
               fontWeight: 700,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#FF6B35',
+              color: '#1A1A1A',
               marginBottom: '8px'
             }}>Section 04</p>
             <h2 className="section-heading" style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: '1.5rem',
               fontWeight: 700,
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               letterSpacing: '-0.02em',
               marginBottom: '16px',
               lineHeight: 1.2
@@ -657,12 +657,12 @@ function Terms() {
             <div className="section-divider" style={{
               width: '40px',
               height: '3px',
-              background: '#FF6B35',
+              background: '#1A1A1A',
               borderRadius: '2px',
               marginBottom: '20px'
             }}></div>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
@@ -680,7 +680,7 @@ function Terms() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -688,7 +688,7 @@ function Terms() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -699,7 +699,7 @@ function Terms() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -707,7 +707,7 @@ function Terms() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -718,7 +718,7 @@ function Terms() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -726,7 +726,7 @@ function Terms() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -737,7 +737,7 @@ function Terms() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -745,7 +745,7 @@ function Terms() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -756,7 +756,7 @@ function Terms() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -764,7 +764,7 @@ function Terms() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -783,14 +783,14 @@ function Terms() {
               fontWeight: 700,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#FF6B35',
+              color: '#1A1A1A',
               marginBottom: '8px'
             }}>Section 05</p>
             <h2 className="section-heading" style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: '1.5rem',
               fontWeight: 700,
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               letterSpacing: '-0.02em',
               marginBottom: '16px',
               lineHeight: 1.2
@@ -798,12 +798,12 @@ function Terms() {
             <div className="section-divider" style={{
               width: '40px',
               height: '3px',
-              background: '#FF6B35',
+              background: '#1A1A1A',
               borderRadius: '2px',
               marginBottom: '20px'
             }}></div>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
@@ -821,7 +821,7 @@ function Terms() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -829,18 +829,18 @@ function Terms() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
-                Return requests must be raised within <strong style={{ color: '#1a1a2e' }}>7 days</strong> of receiving your order.
+                Return requests must be raised within <strong style={{ color: '#1A1A1A' }}>7 days</strong> of receiving your order.
               </li>
               <li style={{
                 display: 'flex',
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -848,7 +848,7 @@ function Terms() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -859,7 +859,7 @@ function Terms() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -867,7 +867,7 @@ function Terms() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -878,7 +878,7 @@ function Terms() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -886,7 +886,7 @@ function Terms() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -897,7 +897,7 @@ function Terms() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -905,7 +905,7 @@ function Terms() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -913,7 +913,7 @@ function Terms() {
               </li>
             </ul>
             <div className="warning-box">
-              <i className="fas fa-exclamation-triangle" style={{ color: '#FF6B35', fontSize: '1.1rem', marginTop: '2px', flexShrink: 0 }}></i>
+              <i className="fas fa-exclamation-triangle" style={{ color: '#1A1A1A', fontSize: '1.1rem', marginTop: '2px', flexShrink: 0 }}></i>
               <p style={{
                 fontSize: '0.88rem',
                 color: '#7c3a10',
@@ -934,14 +934,14 @@ function Terms() {
               fontWeight: 700,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#FF6B35',
+              color: '#1A1A1A',
               marginBottom: '8px'
             }}>Section 06</p>
             <h2 className="section-heading" style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: '1.5rem',
               fontWeight: 700,
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               letterSpacing: '-0.02em',
               marginBottom: '16px',
               lineHeight: 1.2
@@ -949,12 +949,12 @@ function Terms() {
             <div className="section-divider" style={{
               width: '40px',
               height: '3px',
-              background: '#FF6B35',
+              background: '#1A1A1A',
               borderRadius: '2px',
               marginBottom: '20px'
             }}></div>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
@@ -972,7 +972,7 @@ function Terms() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -980,7 +980,7 @@ function Terms() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -991,7 +991,7 @@ function Terms() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -999,7 +999,7 @@ function Terms() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -1010,7 +1010,7 @@ function Terms() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -1018,7 +1018,7 @@ function Terms() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -1029,7 +1029,7 @@ function Terms() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -1037,7 +1037,7 @@ function Terms() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -1056,14 +1056,14 @@ function Terms() {
               fontWeight: 700,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#FF6B35',
+              color: '#1A1A1A',
               marginBottom: '8px'
             }}>Section 07</p>
             <h2 className="section-heading" style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: '1.5rem',
               fontWeight: 700,
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               letterSpacing: '-0.02em',
               marginBottom: '16px',
               lineHeight: 1.2
@@ -1071,18 +1071,18 @@ function Terms() {
             <div className="section-divider" style={{
               width: '40px',
               height: '3px',
-              background: '#FF6B35',
+              background: '#1A1A1A',
               borderRadius: '2px',
               marginBottom: '20px'
             }}></div>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
             }}>By using ismora.shop, you agree to use the website only for lawful purposes and in a manner that does not infringe the rights of others.</p>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
@@ -1100,7 +1100,7 @@ function Terms() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -1108,7 +1108,7 @@ function Terms() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -1119,7 +1119,7 @@ function Terms() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -1127,7 +1127,7 @@ function Terms() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -1138,7 +1138,7 @@ function Terms() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -1146,7 +1146,7 @@ function Terms() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -1157,7 +1157,7 @@ function Terms() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -1165,7 +1165,7 @@ function Terms() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -1176,7 +1176,7 @@ function Terms() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -1184,7 +1184,7 @@ function Terms() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -1203,14 +1203,14 @@ function Terms() {
               fontWeight: 700,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#FF6B35',
+              color: '#1A1A1A',
               marginBottom: '8px'
             }}>Section 08</p>
             <h2 className="section-heading" style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: '1.5rem',
               fontWeight: 700,
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               letterSpacing: '-0.02em',
               marginBottom: '16px',
               lineHeight: 1.2
@@ -1218,18 +1218,18 @@ function Terms() {
             <div className="section-divider" style={{
               width: '40px',
               height: '3px',
-              background: '#FF6B35',
+              background: '#1A1A1A',
               borderRadius: '2px',
               marginBottom: '20px'
             }}></div>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
             }}>All content on ismora.shop — including but not limited to the logo, brand name, text, images, design, and code — is the intellectual property of Ismora or its licensors.</p>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
@@ -1246,14 +1246,14 @@ function Terms() {
               fontWeight: 700,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#FF6B35',
+              color: '#1A1A1A',
               marginBottom: '8px'
             }}>Section 09</p>
             <h2 className="section-heading" style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: '1.5rem',
               fontWeight: 700,
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               letterSpacing: '-0.02em',
               marginBottom: '16px',
               lineHeight: 1.2
@@ -1261,12 +1261,12 @@ function Terms() {
             <div className="section-divider" style={{
               width: '40px',
               height: '3px',
-              background: '#FF6B35',
+              background: '#1A1A1A',
               borderRadius: '2px',
               marginBottom: '20px'
             }}></div>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
@@ -1284,7 +1284,7 @@ function Terms() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -1292,7 +1292,7 @@ function Terms() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -1303,7 +1303,7 @@ function Terms() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -1311,7 +1311,7 @@ function Terms() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -1322,7 +1322,7 @@ function Terms() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -1330,7 +1330,7 @@ function Terms() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -1340,7 +1340,7 @@ function Terms() {
             <div className="policy-highlight">
               <p style={{
                 fontSize: '0.9rem',
-                color: '#1a1a2e',
+                color: '#1A1A1A',
                 lineHeight: 1.65,
                 fontWeight: 500,
                 margin: 0
@@ -1358,14 +1358,14 @@ function Terms() {
               fontWeight: 700,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#FF6B35',
+              color: '#1A1A1A',
               marginBottom: '8px'
             }}>Section 10</p>
             <h2 className="section-heading" style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: '1.5rem',
               fontWeight: 700,
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               letterSpacing: '-0.02em',
               marginBottom: '16px',
               lineHeight: 1.2
@@ -1373,18 +1373,18 @@ function Terms() {
             <div className="section-divider" style={{
               width: '40px',
               height: '3px',
-              background: '#FF6B35',
+              background: '#1A1A1A',
               borderRadius: '2px',
               marginBottom: '20px'
             }}></div>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
             }}>These Terms & Conditions are governed by and construed in accordance with the laws of UAE. Any disputes arising from these terms or your use of Ismora shall be subject to the exclusive jurisdiction of the courts of UAE.</p>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
@@ -1401,14 +1401,14 @@ function Terms() {
               fontWeight: 700,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#FF6B35',
+              color: '#1A1A1A',
               marginBottom: '8px'
             }}>Section 11</p>
             <h2 className="section-heading" style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: '1.5rem',
               fontWeight: 700,
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               letterSpacing: '-0.02em',
               marginBottom: '16px',
               lineHeight: 1.2
@@ -1416,12 +1416,12 @@ function Terms() {
             <div className="section-divider" style={{
               width: '40px',
               height: '3px',
-              background: '#FF6B35',
+              background: '#1A1A1A',
               borderRadius: '2px',
               marginBottom: '20px'
             }}></div>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
@@ -1434,7 +1434,7 @@ function Terms() {
             }}>
               <div className="info-card" style={{
                 background: 'white',
-                border: '1px solid #e8e8f0',
+                border: '1px solid #EAEAEA',
                 borderRadius: '12px',
                 padding: '18px',
                 transition: 'border-color 0.2s'
@@ -1443,23 +1443,23 @@ function Terms() {
                   width: '38px',
                   height: '38px',
                   borderRadius: '10px',
-                  background: 'rgba(255,107,53,0.1)',
+                  background: 'rgba(255,255,255,0.1)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   marginBottom: '12px'
                 }}>
-                  <i className="fas fa-envelope" style={{ color: '#FF6B35', fontSize: '0.9rem' }}></i>
+                  <i className="fas fa-envelope" style={{ color: '#1A1A1A', fontSize: '0.9rem' }}></i>
                 </div>
                 <div className="info-card-title" style={{
                   fontSize: '0.85rem',
                   fontWeight: 700,
-                  color: '#1a1a2e',
+                  color: '#1A1A1A',
                   marginBottom: '6px'
                 }}>Email Us</div>
                 <div className="info-card-text" style={{
                   fontSize: '0.82rem',
-                  color: '#4a4a68',
+                  color: '#6B6B6B',
                   lineHeight: 1.55
                 }}>
                   ismora.ae@gmail.com<br />
@@ -1468,7 +1468,7 @@ function Terms() {
               </div>
               <div className="info-card" style={{
                 background: 'white',
-                border: '1px solid #e8e8f0',
+                border: '1px solid #EAEAEA',
                 borderRadius: '12px',
                 padding: '18px',
                 transition: 'border-color 0.2s'
@@ -1477,26 +1477,26 @@ function Terms() {
                   width: '38px',
                   height: '38px',
                   borderRadius: '10px',
-                  background: 'rgba(255,107,53,0.1)',
+                  background: 'rgba(255,255,255,0.1)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   marginBottom: '12px'
                 }}>
-                  <i className="fas fa-headset" style={{ color: '#FF6B35', fontSize: '0.9rem' }}></i>
+                  <i className="fas fa-headset" style={{ color: '#1A1A1A', fontSize: '0.9rem' }}></i>
                 </div>
                 <div className="info-card-title" style={{
                   fontSize: '0.85rem',
                   fontWeight: 700,
-                  color: '#1a1a2e',
+                  color: '#1A1A1A',
                   marginBottom: '6px'
                 }}>Contact Page</div>
                 <div className="info-card-text" style={{
                   fontSize: '0.82rem',
-                  color: '#4a4a68',
+                  color: '#6B6B6B',
                   lineHeight: 1.55
                 }}>
-                  <Link to="/contact-us" style={{ color: '#FF6B35', fontWeight: 600, textDecoration: 'none' }}>Visit our Contact Page</Link>
+                  <Link to="/contact-us" style={{ color: '#1A1A1A', fontWeight: 600, textDecoration: 'none' }}>Visit our Contact Page</Link>
                   <br />to send us a message.
                 </div>
               </div>

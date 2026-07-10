@@ -52,7 +52,7 @@ function Returns() {
 
       <style>{`
         .page-hero {
-          background: #1a1a2e;
+          background: #1A1A1A;
           padding: 72px 0 64px;
           position: relative;
           overflow: hidden;
@@ -60,7 +60,7 @@ function Returns() {
         .page-hero-bg {
           position: absolute;
           inset: 0;
-          background-image: radial-gradient(circle at 60% 50%, rgba(255,107,53,0.1) 0%, transparent 50%), radial-gradient(circle at 10% 20%, rgba(255,107,53,0.07) 0%, transparent 40%);
+          background-image: radial-gradient(circle at 60% 50%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(circle at 10% 20%, rgba(255,255,255,0.07) 0%, transparent 40%);
         }
         .page-hero-grid {
           position: absolute;
@@ -71,31 +71,31 @@ function Returns() {
         }
         .stat-card {
           background: white;
-          border: 1px solid #e8e8f0;
+          border: 1px solid #EAEAEA;
           border-radius: 16px;
           padding: 24px 20px;
           text-align: center;
           box-shadow: 0 8px 32px rgba(0,0,0,0.07);
         }
         .stat-num {
-          font-family: 'Playfair Display', serif;
+          font-family: 'DM Sans', sans-serif;
           font-size: 1.8rem;
           font-weight: 700;
-          color: #FF6B35;
+          color: #1A1A1A;
           line-height: 1;
           margin-bottom: 6px;
         }
         .stat-label {
           font-size: 0.82rem;
           font-weight: 500;
-          color: #4a4a68;
+          color: #6B6B6B;
         }
         .toc-list a.active {
-          background: #f8f8fc;
-          color: #1a1a2e;
+          background: #FAFAFA;
+          color: #1A1A1A;
         }
         .toc-list a.active .toc-num {
-          background: #FF6B35;
+          background: #1A1A1A;
           color: white;
         }
         .elig-card.yes {
@@ -121,13 +121,13 @@ function Returns() {
           color: #ef4444;
         }
         .step-card:hover {
-          border-color: rgba(255,107,53,0.3);
+          border-color: rgba(255,255,255,0.3);
         }
         .step-num-badge {
           width: 36px;
           height: 36px;
           border-radius: 10px;
-          background: #1a1a2e;
+          background: #1A1A1A;
           color: white;
           font-size: 0.82rem;
           font-weight: 800;
@@ -138,7 +138,7 @@ function Returns() {
         }
         .warning-box {
           background: #fff7ed;
-          border: 1px solid rgba(255,107,53,0.25);
+          border: 1px solid rgba(255,255,255,0.25);
           border-radius: 12px;
           padding: 16px 20px;
           margin: 20px 0;
@@ -147,14 +147,14 @@ function Returns() {
           align-items: flex-start;
         }
         .policy-highlight {
-          background: #f8f8fc;
-          border-left: 3px solid #FF6B35;
+          background: #FAFAFA;
+          border-left: 3px solid #1A1A1A;
           border-radius: 0 10px 10px 0;
           padding: 16px 20px;
           margin: 20px 0;
         }
         .contact-cta {
-          background: #1a1a2e;
+          background: #1A1A1A;
           border-radius: 20px;
           padding: 48px;
           text-align: center;
@@ -166,7 +166,7 @@ function Returns() {
           content: '';
           position: absolute;
           inset: 0;
-          background: radial-gradient(circle at 30% 50%, rgba(255,107,53,0.15), transparent 60%), radial-gradient(circle at 70% 50%, rgba(255,107,53,0.08), transparent 60%);
+          background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.15), transparent 60%), radial-gradient(circle at 70% 50%, rgba(255,255,255,0.08), transparent 60%);
         }
         .contact-cta-content {
           position: relative;
@@ -212,7 +212,7 @@ function Returns() {
             }}>Home</Link>
             <span style={{ color: 'rgba(255,255,255,0.2)', fontSize: '0.75rem' }}>›</span>
             <span className="current" style={{
-              color: '#FF6B35',
+              color: '#1A1A1A',
               fontSize: '0.82rem',
               fontWeight: 500
             }}>Returns & Refunds</span>
@@ -221,9 +221,9 @@ function Returns() {
             display: 'inline-flex',
             alignItems: 'center',
             gap: '8px',
-            background: 'rgba(255,107,53,0.15)',
-            border: '1px solid rgba(255,107,53,0.3)',
-            color: '#FF6B35',
+            background: 'rgba(255,255,255,0.15)',
+            border: '1px solid rgba(255,255,255,0.3)',
+            color: '#1A1A1A',
             borderRadius: '100px',
             padding: '6px 14px',
             fontSize: '0.75rem',
@@ -235,7 +235,7 @@ function Returns() {
             <i className="fas fa-undo-alt"></i> &nbsp;Returns
           </div>
           <h1 className="page-hero-title" style={{
-            fontFamily: "'Playfair Display', serif",
+            fontFamily: "'DM Sans', sans-serif",
             fontSize: 'clamp(2rem, 4vw, 3rem)',
             fontWeight: 700,
             color: 'white',
@@ -243,7 +243,7 @@ function Returns() {
             letterSpacing: '-0.02em',
             marginBottom: '14px'
           }}>
-            Returns & <em style={{ fontStyle: 'italic', color: '#FF6B35' }}>Refunds</em>
+            Returns & <em style={{ fontStyle: 'italic', color: '#1A1A1A' }}>Refunds</em>
           </h1>
           <p className="page-hero-sub" style={{
             color: 'rgba(255,255,255,0.5)',
@@ -267,7 +267,7 @@ function Returns() {
               color: 'rgba(255,255,255,0.4)',
               fontSize: '0.82rem'
             }}>
-              <i className="fas fa-calendar-alt" style={{ color: '#FF6B35', fontSize: '0.85rem' }}></i>
+              <i className="fas fa-calendar-alt" style={{ color: '#1A1A1A', fontSize: '0.85rem' }}></i>
               Last updated: January 1, 2026
             </div>
             <div className="meta-item" style={{
@@ -277,7 +277,7 @@ function Returns() {
               color: 'rgba(255,255,255,0.4)',
               fontSize: '0.82rem'
             }}>
-              <i className="fas fa-clock" style={{ color: '#FF6B35', fontSize: '0.85rem' }}></i>
+              <i className="fas fa-clock" style={{ color: '#1A1A1A', fontSize: '0.85rem' }}></i>
               7-day return window
             </div>
           </div>
@@ -328,7 +328,7 @@ function Returns() {
         <aside className="toc-sidebar" style={{ position: 'sticky', top: '90px' }}>
           <div className="toc-card" style={{
             background: 'white',
-            border: '1px solid #e8e8f0',
+            border: '1px solid #EAEAEA',
             borderRadius: '16px',
             padding: '24px',
             boxShadow: '0 4px 20px rgba(0,0,0,0.04)'
@@ -338,7 +338,7 @@ function Returns() {
               fontWeight: 700,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#4a4a68',
+              color: '#6B6B6B',
               marginBottom: '16px'
             }}>Contents</p>
             <ul className="toc-list" style={{
@@ -361,8 +361,8 @@ function Returns() {
                       borderRadius: '9px',
                       fontSize: '0.85rem',
                       fontWeight: 500,
-                      color: activeSection === section.id ? '#1a1a2e' : '#4a4a68',
-                      background: activeSection === section.id ? '#f8f8fc' : 'transparent',
+                      color: activeSection === section.id ? '#1A1A1A' : '#6B6B6B',
+                      background: activeSection === section.id ? '#FAFAFA' : 'transparent',
                       textDecoration: 'none',
                       transition: 'all 0.2s',
                       border: 'none',
@@ -376,8 +376,8 @@ function Returns() {
                       width: '22px',
                       height: '22px',
                       borderRadius: '6px',
-                      background: activeSection === section.id ? '#FF6B35' : '#e8e8f0',
-                      color: activeSection === section.id ? 'white' : '#4a4a68',
+                      background: activeSection === section.id ? '#1A1A1A' : '#EAEAEA',
+                      color: activeSection === section.id ? 'white' : '#6B6B6B',
                       fontSize: '0.68rem',
                       fontWeight: 700,
                       display: 'flex',
@@ -393,11 +393,11 @@ function Returns() {
             <div className="toc-contact" style={{
               marginTop: '20px',
               paddingTop: '20px',
-              borderTop: '1px solid #e8e8f0'
+              borderTop: '1px solid #EAEAEA'
             }}>
               <p style={{
                 fontSize: '0.8rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 marginBottom: '12px',
                 lineHeight: 1.5
               }}>Want to start a return? Contact us first.</p>
@@ -407,7 +407,7 @@ function Returns() {
                 gap: '7px',
                 fontSize: '0.82rem',
                 fontWeight: 600,
-                color: '#FF6B35',
+                color: '#1A1A1A',
                 textDecoration: 'none'
               }}>
                 <i className="fas fa-arrow-right" style={{ fontSize: '0.75rem' }}></i>
@@ -421,7 +421,7 @@ function Returns() {
         <article className="policy-body" style={{ minWidth: 0 }}>
           <div className="policy-highlight">
             <p>
-              <i className="fas fa-heart" style={{ color: '#FF6B35', marginRight: '8px' }}></i>
+              <i className="fas fa-heart" style={{ color: '#1A1A1A', marginRight: '8px' }}></i>
               Your satisfaction is our priority. We accept returns for defective, damaged, or incorrect items within <strong>7 days</strong> of delivery. Please read this policy carefully before initiating a return.
             </p>
           </div>
@@ -436,14 +436,14 @@ function Returns() {
               fontWeight: 700,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#FF6B35',
+              color: '#1A1A1A',
               marginBottom: '8px'
             }}>Section 01</p>
             <h2 className="section-heading" style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: '1.5rem',
               fontWeight: 700,
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               letterSpacing: '-0.02em',
               marginBottom: '16px',
               lineHeight: 1.2
@@ -451,12 +451,12 @@ function Returns() {
             <div className="section-divider" style={{
               width: '40px',
               height: '3px',
-              background: '#FF6B35',
+              background: '#1A1A1A',
               borderRadius: '2px',
               marginBottom: '20px'
             }}></div>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
@@ -508,7 +508,7 @@ function Returns() {
                 }}>
                   <li style={{
                     fontSize: '0.83rem',
-                    color: '#4a4a68',
+                    color: '#6B6B6B',
                     display: 'flex',
                     alignItems: 'flex-start',
                     gap: '8px',
@@ -519,7 +519,7 @@ function Returns() {
                   </li>
                   <li style={{
                     fontSize: '0.83rem',
-                    color: '#4a4a68',
+                    color: '#6B6B6B',
                     display: 'flex',
                     alignItems: 'flex-start',
                     gap: '8px',
@@ -530,7 +530,7 @@ function Returns() {
                   </li>
                   <li style={{
                     fontSize: '0.83rem',
-                    color: '#4a4a68',
+                    color: '#6B6B6B',
                     display: 'flex',
                     alignItems: 'flex-start',
                     gap: '8px',
@@ -541,7 +541,7 @@ function Returns() {
                   </li>
                   <li style={{
                     fontSize: '0.83rem',
-                    color: '#4a4a68',
+                    color: '#6B6B6B',
                     display: 'flex',
                     alignItems: 'flex-start',
                     gap: '8px',
@@ -552,7 +552,7 @@ function Returns() {
                   </li>
                   <li style={{
                     fontSize: '0.83rem',
-                    color: '#4a4a68',
+                    color: '#6B6B6B',
                     display: 'flex',
                     alignItems: 'flex-start',
                     gap: '8px',
@@ -604,7 +604,7 @@ function Returns() {
                 }}>
                   <li style={{
                     fontSize: '0.83rem',
-                    color: '#4a4a68',
+                    color: '#6B6B6B',
                     display: 'flex',
                     alignItems: 'flex-start',
                     gap: '8px',
@@ -615,7 +615,7 @@ function Returns() {
                   </li>
                   <li style={{
                     fontSize: '0.83rem',
-                    color: '#4a4a68',
+                    color: '#6B6B6B',
                     display: 'flex',
                     alignItems: 'flex-start',
                     gap: '8px',
@@ -626,7 +626,7 @@ function Returns() {
                   </li>
                   <li style={{
                     fontSize: '0.83rem',
-                    color: '#4a4a68',
+                    color: '#6B6B6B',
                     display: 'flex',
                     alignItems: 'flex-start',
                     gap: '8px',
@@ -637,7 +637,7 @@ function Returns() {
                   </li>
                   <li style={{
                     fontSize: '0.83rem',
-                    color: '#4a4a68',
+                    color: '#6B6B6B',
                     display: 'flex',
                     alignItems: 'flex-start',
                     gap: '8px',
@@ -648,7 +648,7 @@ function Returns() {
                   </li>
                   <li style={{
                     fontSize: '0.83rem',
-                    color: '#4a4a68',
+                    color: '#6B6B6B',
                     display: 'flex',
                     alignItems: 'flex-start',
                     gap: '8px',
@@ -661,7 +661,7 @@ function Returns() {
               </div>
             </div>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
@@ -678,14 +678,14 @@ function Returns() {
               fontWeight: 700,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#FF6B35',
+              color: '#1A1A1A',
               marginBottom: '8px'
             }}>Section 02</p>
             <h2 className="section-heading" style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: '1.5rem',
               fontWeight: 700,
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               letterSpacing: '-0.02em',
               marginBottom: '16px',
               lineHeight: 1.2
@@ -693,12 +693,12 @@ function Returns() {
             <div className="section-divider" style={{
               width: '40px',
               height: '3px',
-              background: '#FF6B35',
+              background: '#1A1A1A',
               borderRadius: '2px',
               marginBottom: '20px'
             }}></div>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
@@ -714,7 +714,7 @@ function Returns() {
                 display: 'flex',
                 gap: '16px',
                 background: 'white',
-                border: '1px solid #e8e8f0',
+                border: '1px solid #EAEAEA',
                 borderRadius: '14px',
                 padding: '18px 20px',
                 transition: 'border-color 0.2s'
@@ -724,15 +724,15 @@ function Returns() {
                   <div className="step-info-title" style={{
                     fontSize: '0.9rem',
                     fontWeight: 700,
-                    color: '#1a1a2e',
+                    color: '#1A1A1A',
                     marginBottom: '4px'
                   }}>Contact Our Support Team</div>
                   <div className="step-info-desc" style={{
                     fontSize: '0.83rem',
-                    color: '#4a4a68',
+                    color: '#6B6B6B',
                     lineHeight: 1.55
                   }}>
-                    Within 7 days of receiving your order, <Link to="/contact-us" style={{ color: '#FF6B35', fontWeight: 600 }}>contact us</Link> via our contact page or email at ismora.ae@gmail.com.
+                    Within 7 days of receiving your order, <Link to="/contact-us" style={{ color: '#1A1A1A', fontWeight: 600 }}>contact us</Link> via our contact page or email at ismora.ae@gmail.com.
                   </div>
                 </div>
               </div>
@@ -741,7 +741,7 @@ function Returns() {
                 display: 'flex',
                 gap: '16px',
                 background: 'white',
-                border: '1px solid #e8e8f0',
+                border: '1px solid #EAEAEA',
                 borderRadius: '14px',
                 padding: '18px 20px',
                 transition: 'border-color 0.2s'
@@ -751,12 +751,12 @@ function Returns() {
                   <div className="step-info-title" style={{
                     fontSize: '0.9rem',
                     fontWeight: 700,
-                    color: '#1a1a2e',
+                    color: '#1A1A1A',
                     marginBottom: '4px'
                   }}>Provide Order Details</div>
                   <div className="step-info-desc" style={{
                     fontSize: '0.83rem',
-                    color: '#4a4a68',
+                    color: '#6B6B6B',
                     lineHeight: 1.55
                   }}>Share your order reference number (e.g. #ISM-XXXXXX), a description of the issue, and clear photos of the item and its condition.</div>
                 </div>
@@ -766,7 +766,7 @@ function Returns() {
                 display: 'flex',
                 gap: '16px',
                 background: 'white',
-                border: '1px solid #e8e8f0',
+                border: '1px solid #EAEAEA',
                 borderRadius: '14px',
                 padding: '18px 20px',
                 transition: 'border-color 0.2s'
@@ -776,12 +776,12 @@ function Returns() {
                   <div className="step-info-title" style={{
                     fontSize: '0.9rem',
                     fontWeight: 700,
-                    color: '#1a1a2e',
+                    color: '#1A1A1A',
                     marginBottom: '4px'
                   }}>We Review Your Request</div>
                   <div className="step-info-desc" style={{
                     fontSize: '0.83rem',
-                    color: '#4a4a68',
+                    color: '#6B6B6B',
                     lineHeight: 1.55
                   }}>Our team will review your case within 24–48 hours and confirm whether your return is approved.</div>
                 </div>
@@ -791,7 +791,7 @@ function Returns() {
                 display: 'flex',
                 gap: '16px',
                 background: 'white',
-                border: '1px solid #e8e8f0',
+                border: '1px solid #EAEAEA',
                 borderRadius: '14px',
                 padding: '18px 20px',
                 transition: 'border-color 0.2s'
@@ -801,12 +801,12 @@ function Returns() {
                   <div className="step-info-title" style={{
                     fontSize: '0.9rem',
                     fontWeight: 700,
-                    color: '#1a1a2e',
+                    color: '#1A1A1A',
                     marginBottom: '4px'
                   }}>Ship the Item Back</div>
                   <div className="step-info-desc" style={{
                     fontSize: '0.83rem',
-                    color: '#4a4a68',
+                    color: '#6B6B6B',
                     lineHeight: 1.55
                   }}>If approved, we'll provide return instructions. For eligible defective/wrong item cases, we cover return shipping costs.</div>
                 </div>
@@ -816,7 +816,7 @@ function Returns() {
                 display: 'flex',
                 gap: '16px',
                 background: 'white',
-                border: '1px solid #e8e8f0',
+                border: '1px solid #EAEAEA',
                 borderRadius: '14px',
                 padding: '18px 20px',
                 transition: 'border-color 0.2s'
@@ -826,12 +826,12 @@ function Returns() {
                   <div className="step-info-title" style={{
                     fontSize: '0.9rem',
                     fontWeight: 700,
-                    color: '#1a1a2e',
+                    color: '#1A1A1A',
                     marginBottom: '4px'
                   }}>Refund or Replacement Issued</div>
                   <div className="step-info-desc" style={{
                     fontSize: '0.83rem',
-                    color: '#4a4a68',
+                    color: '#6B6B6B',
                     lineHeight: 1.55
                   }}>Once we receive and inspect the returned item, we process your refund or send a replacement within 5–10 business days.</div>
                 </div>
@@ -849,14 +849,14 @@ function Returns() {
               fontWeight: 700,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#FF6B35',
+              color: '#1A1A1A',
               marginBottom: '8px'
             }}>Section 03</p>
             <h2 className="section-heading" style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: '1.5rem',
               fontWeight: 700,
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               letterSpacing: '-0.02em',
               marginBottom: '16px',
               lineHeight: 1.2
@@ -864,12 +864,12 @@ function Returns() {
             <div className="section-divider" style={{
               width: '40px',
               height: '3px',
-              background: '#FF6B35',
+              background: '#1A1A1A',
               borderRadius: '2px',
               marginBottom: '20px'
             }}></div>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
@@ -887,7 +887,7 @@ function Returns() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -895,18 +895,18 @@ function Returns() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
-                Approved refunds are processed within <strong style={{ color: '#1a1a2e' }}>5–10 business days</strong> of receiving the returned item.
+                Approved refunds are processed within <strong style={{ color: '#1A1A1A' }}>5–10 business days</strong> of receiving the returned item.
               </li>
               <li style={{
                 display: 'flex',
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -914,18 +914,18 @@ function Returns() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
-                Refunds are issued to your <strong style={{ color: '#1a1a2e' }}>original payment method</strong> where possible.
+                Refunds are issued to your <strong style={{ color: '#1A1A1A' }}>original payment method</strong> where possible.
               </li>
               <li style={{
                 display: 'flex',
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -933,18 +933,18 @@ function Returns() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
-                For Cash on Delivery orders, refunds are issued via <strong style={{ color: '#1a1a2e' }}>bank transfer</strong> — please provide your bank details when contacting us.
+                For Cash on Delivery orders, refunds are issued via <strong style={{ color: '#1A1A1A' }}>bank transfer</strong> — please provide your bank details when contacting us.
               </li>
               <li style={{
                 display: 'flex',
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -952,7 +952,7 @@ function Returns() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -963,7 +963,7 @@ function Returns() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -971,7 +971,7 @@ function Returns() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -979,19 +979,19 @@ function Returns() {
               </li>
             </ul>
             <div className="policy-highlight" style={{
-              background: '#f8f8fc',
-              borderLeft: '3px solid #FF6B35',
+              background: '#FAFAFA',
+              borderLeft: '3px solid #1A1A1A',
               borderRadius: '0 10px 10px 0',
               padding: '16px 20px',
               margin: '20px 0'
             }}>
               <p style={{
                 fontSize: '0.9rem',
-                color: '#1a1a2e',
+                color: '#1A1A1A',
                 lineHeight: 1.65,
                 fontWeight: 500,
                 margin: 0
-              }}>If you haven't received your refund within 10 business days of approval, please first check your bank account, then contact your bank. If the issue persists, <Link to="/contact-us" style={{ color: '#FF6B35' }}>contact our support team</Link>.</p>
+              }}>If you haven't received your refund within 10 business days of approval, please first check your bank account, then contact your bank. If the issue persists, <Link to="/contact-us" style={{ color: '#1A1A1A' }}>contact our support team</Link>.</p>
             </div>
           </section>
 
@@ -1005,14 +1005,14 @@ function Returns() {
               fontWeight: 700,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#FF6B35',
+              color: '#1A1A1A',
               marginBottom: '8px'
             }}>Section 04</p>
             <h2 className="section-heading" style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: '1.5rem',
               fontWeight: 700,
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               letterSpacing: '-0.02em',
               marginBottom: '16px',
               lineHeight: 1.2
@@ -1020,12 +1020,12 @@ function Returns() {
             <div className="section-divider" style={{
               width: '40px',
               height: '3px',
-              background: '#FF6B35',
+              background: '#1A1A1A',
               borderRadius: '2px',
               marginBottom: '20px'
             }}></div>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
@@ -1043,7 +1043,7 @@ function Returns() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -1051,7 +1051,7 @@ function Returns() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -1062,7 +1062,7 @@ function Returns() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -1070,7 +1070,7 @@ function Returns() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -1081,7 +1081,7 @@ function Returns() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -1089,11 +1089,11 @@ function Returns() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
-                Exchanges for size or color preferences are <strong style={{ color: '#1a1a2e' }}>not available</strong> — please choose carefully before ordering.
+                Exchanges for size or color preferences are <strong style={{ color: '#1A1A1A' }}>not available</strong> — please choose carefully before ordering.
               </li>
             </ul>
           </section>
@@ -1108,14 +1108,14 @@ function Returns() {
               fontWeight: 700,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#FF6B35',
+              color: '#1A1A1A',
               marginBottom: '8px'
             }}>Section 05</p>
             <h2 className="section-heading" style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: '1.5rem',
               fontWeight: 700,
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               letterSpacing: '-0.02em',
               marginBottom: '16px',
               lineHeight: 1.2
@@ -1123,12 +1123,12 @@ function Returns() {
             <div className="section-divider" style={{
               width: '40px',
               height: '3px',
-              background: '#FF6B35',
+              background: '#1A1A1A',
               borderRadius: '2px',
               marginBottom: '20px'
             }}></div>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
@@ -1136,7 +1136,7 @@ function Returns() {
 
             <div className="warning-box" style={{
               background: '#fff7ed',
-              border: '1px solid rgba(255,107,53,0.25)',
+              border: '1px solid rgba(255,255,255,0.25)',
               borderRadius: '12px',
               padding: '16px 20px',
               margin: '20px 0',
@@ -1144,7 +1144,7 @@ function Returns() {
               gap: '14px',
               alignItems: 'flex-start'
             }}>
-              <i className="fas fa-camera" style={{ color: '#FF6B35', fontSize: '1.1rem', marginTop: '2px', flexShrink: 0 }}></i>
+              <i className="fas fa-camera" style={{ color: '#1A1A1A', fontSize: '1.1rem', marginTop: '2px', flexShrink: 0 }}></i>
               <p style={{
                 fontSize: '0.88rem',
                 color: '#7c3a10',
@@ -1167,7 +1167,7 @@ function Returns() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -1175,7 +1175,7 @@ function Returns() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -1186,7 +1186,7 @@ function Returns() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -1194,7 +1194,7 @@ function Returns() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -1205,7 +1205,7 @@ function Returns() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -1213,7 +1213,7 @@ function Returns() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -1224,7 +1224,7 @@ function Returns() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -1232,7 +1232,7 @@ function Returns() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -1251,14 +1251,14 @@ function Returns() {
               fontWeight: 700,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#FF6B35',
+              color: '#1A1A1A',
               marginBottom: '8px'
             }}>Section 06</p>
             <h2 className="section-heading" style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: '1.5rem',
               fontWeight: 700,
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               letterSpacing: '-0.02em',
               marginBottom: '16px',
               lineHeight: 1.2
@@ -1266,12 +1266,12 @@ function Returns() {
             <div className="section-divider" style={{
               width: '40px',
               height: '3px',
-              background: '#FF6B35',
+              background: '#1A1A1A',
               borderRadius: '2px',
               marginBottom: '20px'
             }}></div>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
@@ -1289,7 +1289,7 @@ function Returns() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -1297,18 +1297,18 @@ function Returns() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
-                Items purchased during <strong style={{ color: '#1a1a2e' }}>sale, clearance, or promotional events</strong> (unless defective)
+                Items purchased during <strong style={{ color: '#1A1A1A' }}>sale, clearance, or promotional events</strong> (unless defective)
               </li>
               <li style={{
                 display: 'flex',
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -1316,18 +1316,18 @@ function Returns() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
-                Items that have been <strong style={{ color: '#1a1a2e' }}>used, washed, or altered</strong> from their original state
+                Items that have been <strong style={{ color: '#1A1A1A' }}>used, washed, or altered</strong> from their original state
               </li>
               <li style={{
                 display: 'flex',
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -1335,18 +1335,18 @@ function Returns() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
-                Items without <strong style={{ color: '#1a1a2e' }}>original packaging</strong>
+                Items without <strong style={{ color: '#1A1A1A' }}>original packaging</strong>
               </li>
               <li style={{
                 display: 'flex',
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -1354,18 +1354,18 @@ function Returns() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
-                Items returned after the <strong style={{ color: '#1a1a2e' }}>7-day window</strong> without prior approval
+                Items returned after the <strong style={{ color: '#1A1A1A' }}>7-day window</strong> without prior approval
               </li>
               <li style={{
                 display: 'flex',
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -1373,7 +1373,7 @@ function Returns() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -1384,7 +1384,7 @@ function Returns() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -1392,7 +1392,7 @@ function Returns() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -1411,14 +1411,14 @@ function Returns() {
               fontWeight: 700,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#FF6B35',
+              color: '#1A1A1A',
               marginBottom: '8px'
             }}>Section 07</p>
             <h2 className="section-heading" style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: '1.5rem',
               fontWeight: 700,
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               letterSpacing: '-0.02em',
               marginBottom: '16px',
               lineHeight: 1.2
@@ -1426,12 +1426,12 @@ function Returns() {
             <div className="section-divider" style={{
               width: '40px',
               height: '3px',
-              background: '#FF6B35',
+              background: '#1A1A1A',
               borderRadius: '2px',
               marginBottom: '20px'
             }}></div>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
@@ -1440,7 +1440,7 @@ function Returns() {
             <div className="contact-cta">
               <div className="contact-cta-content">
                 <h3 style={{
-                  fontFamily: "'Playfair Display', serif",
+                  fontFamily: "'DM Sans', sans-serif",
                   fontSize: '1.6rem',
                   fontWeight: 700,
                   color: 'white',
@@ -1471,7 +1471,7 @@ function Returns() {
                     border: 'none',
                     transition: 'all 0.2s',
                     textDecoration: 'none',
-                    background: '#FF6B35',
+                    background: '#1A1A1A',
                     color: 'white'
                   }}>
                     <i className="fas fa-envelope"></i> Start a Return

@@ -52,7 +52,7 @@ function ShippingPolicy() {
 
       <style>{`
         .page-hero {
-          background: #1a1a2e;
+          background: #1A1A1A;
           padding: 72px 0 64px;
           position: relative;
           overflow: hidden;
@@ -60,7 +60,7 @@ function ShippingPolicy() {
         .page-hero-bg {
           position: absolute;
           inset: 0;
-          background-image: radial-gradient(circle at 80% 50%, rgba(255,107,53,0.1) 0%, transparent 50%), radial-gradient(circle at 20% 20%, rgba(255,107,53,0.07) 0%, transparent 40%);
+          background-image: radial-gradient(circle at 80% 50%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(circle at 20% 20%, rgba(255,255,255,0.07) 0%, transparent 40%);
         }
         .page-hero-grid {
           position: absolute;
@@ -70,34 +70,34 @@ function ShippingPolicy() {
           background-size: 60px 60px;
         }
         .highlight-card:hover {
-          border-color: #FF6B35;
+          border-color: #1A1A1A;
           transform: translateY(-2px);
         }
         .highlight-icon {
           width: 48px;
           height: 48px;
           border-radius: 14px;
-          background: rgba(255,107,53,0.1);
+          background: rgba(255,255,255,0.1);
           display: flex;
           align-items: center;
           justify-content: center;
           margin: 0 auto 14px;
         }
         .highlight-icon i {
-          color: #FF6B35;
+          color: #1A1A1A;
           font-size: 1.1rem;
         }
         .toc-list a.active {
-          background: #f8f8fc;
-          color: #1a1a2e;
+          background: #FAFAFA;
+          color: #1A1A1A;
         }
         .toc-list a.active .toc-num {
-          background: #FF6B35;
+          background: #1A1A1A;
           color: white;
         }
         .policy-highlight {
-          background: #f8f8fc;
-          border-left: 3px solid #FF6B35;
+          background: #FAFAFA;
+          border-left: 3px solid #1A1A1A;
           border-radius: 0 10px 10px 0;
           padding: 16px 20px;
           margin: 20px 0;
@@ -109,14 +109,14 @@ function ShippingPolicy() {
           top: 44px;
           bottom: -8px;
           width: 2px;
-          background: #e8e8f0;
+          background: #EAEAEA;
         }
         .tl-dot {
           width: 40px;
           height: 40px;
           border-radius: 12px;
-          background: rgba(255,107,53,0.1);
-          border: 2px solid rgba(255,107,53,0.2);
+          background: rgba(255,255,255,0.1);
+          border: 2px solid rgba(255,255,255,0.2);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -124,7 +124,7 @@ function ShippingPolicy() {
           margin-bottom: 24px;
         }
         .tl-dot i {
-          color: #FF6B35;
+          color: #1A1A1A;
           font-size: 0.85rem;
         }
         .ship-table {
@@ -132,11 +132,11 @@ function ShippingPolicy() {
           border-collapse: collapse;
           border-radius: 12px;
           overflow: hidden;
-          border: 1px solid #e8e8f0;
+          border: 1px solid #EAEAEA;
           margin: 20px 0;
         }
         .ship-table th {
-          background: #1a1a2e;
+          background: #1A1A1A;
           color: white;
           padding: 13px 16px;
           font-size: 0.8rem;
@@ -147,14 +147,14 @@ function ShippingPolicy() {
         .ship-table td {
           padding: 13px 16px;
           font-size: 0.875rem;
-          color: #4a4a68;
-          border-bottom: 1px solid #e8e8f0;
+          color: #6B6B6B;
+          border-bottom: 1px solid #EAEAEA;
         }
         .ship-table tr:last-child td {
           border-bottom: none;
         }
         .ship-table tr:nth-child(even) td {
-          background: #f8f8fc;
+          background: #FAFAFA;
         }
         .free-tag {
           display: inline-flex;
@@ -207,7 +207,7 @@ function ShippingPolicy() {
             }}>Home</Link>
             <span style={{ color: 'rgba(255,255,255,0.2)', fontSize: '0.75rem' }}>›</span>
             <span className="current" style={{
-              color: '#FF6B35',
+              color: '#1A1A1A',
               fontSize: '0.82rem',
               fontWeight: 500
             }}>Shipping Policy</span>
@@ -216,9 +216,9 @@ function ShippingPolicy() {
             display: 'inline-flex',
             alignItems: 'center',
             gap: '8px',
-            background: 'rgba(255,107,53,0.15)',
-            border: '1px solid rgba(255,107,53,0.3)',
-            color: '#FF6B35',
+            background: 'rgba(255,255,255,0.15)',
+            border: '1px solid rgba(255,255,255,0.3)',
+            color: '#1A1A1A',
             borderRadius: '100px',
             padding: '6px 14px',
             fontSize: '0.75rem',
@@ -230,7 +230,7 @@ function ShippingPolicy() {
             <i className="fas fa-shipping-fast"></i> &nbsp;Shipping
           </div>
           <h1 className="page-hero-title" style={{
-            fontFamily: "'Playfair Display', serif",
+            fontFamily: "'DM Sans', sans-serif",
             fontSize: 'clamp(2rem, 4vw, 3rem)',
             fontWeight: 700,
             color: 'white',
@@ -238,7 +238,7 @@ function ShippingPolicy() {
             letterSpacing: '-0.02em',
             marginBottom: '14px'
           }}>
-            Shipping <em style={{ fontStyle: 'italic', color: '#FF6B35' }}>Policy</em>
+            Shipping <em style={{ fontStyle: 'italic', color: '#1A1A1A' }}>Policy</em>
           </h1>
           <p className="page-hero-sub" style={{
             color: 'rgba(255,255,255,0.5)',
@@ -262,7 +262,7 @@ function ShippingPolicy() {
               color: 'rgba(255,255,255,0.4)',
               fontSize: '0.82rem'
             }}>
-              <i className="fas fa-calendar-alt" style={{ color: '#FF6B35', fontSize: '0.85rem' }}></i>
+              <i className="fas fa-calendar-alt" style={{ color: '#1A1A1A', fontSize: '0.85rem' }}></i>
               Last updated: January 1, 2026
             </div>
             <div className="meta-item" style={{
@@ -272,7 +272,7 @@ function ShippingPolicy() {
               color: 'rgba(255,255,255,0.4)',
               fontSize: '0.82rem'
             }}>
-              <i className="fas fa-map-marker-alt" style={{ color: '#FF6B35', fontSize: '0.85rem' }}></i>
+              <i className="fas fa-map-marker-alt" style={{ color: '#1A1A1A', fontSize: '0.85rem' }}></i>
               Shipping within UAE
             </div>
           </div>
@@ -295,7 +295,7 @@ function ShippingPolicy() {
         }}>
           <div className="highlight-card" style={{
             background: 'white',
-            border: '1px solid #e8e8f0',
+            border: '1px solid #EAEAEA',
             borderRadius: '16px',
             padding: '22px 20px',
             textAlign: 'center',
@@ -308,18 +308,18 @@ function ShippingPolicy() {
             <div className="highlight-title" style={{
               fontSize: '0.9rem',
               fontWeight: 700,
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               marginBottom: '4px'
             }}>3–7 Business Days</div>
             <div className="highlight-sub" style={{
               fontSize: '0.78rem',
-              color: '#4a4a68'
+              color: '#6B6B6B'
             }}>Standard delivery timeframe</div>
           </div>
 
           <div className="highlight-card" style={{
             background: 'white',
-            border: '1px solid #e8e8f0',
+            border: '1px solid #EAEAEA',
             borderRadius: '16px',
             padding: '22px 20px',
             textAlign: 'center',
@@ -332,18 +332,18 @@ function ShippingPolicy() {
             <div className="highlight-title" style={{
               fontSize: '0.9rem',
               fontWeight: 700,
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               marginBottom: '4px'
             }}>Free Shipping</div>
             <div className="highlight-sub" style={{
               fontSize: '0.78rem',
-              color: '#4a4a68'
+              color: '#6B6B6B'
             }}>On qualifying orders</div>
           </div>
 
           <div className="highlight-card" style={{
             background: 'white',
-            border: '1px solid #e8e8f0',
+            border: '1px solid #EAEAEA',
             borderRadius: '16px',
             padding: '22px 20px',
             textAlign: 'center',
@@ -356,18 +356,18 @@ function ShippingPolicy() {
             <div className="highlight-title" style={{
               fontSize: '0.9rem',
               fontWeight: 700,
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               marginBottom: '4px'
             }}>Order Tracking</div>
             <div className="highlight-sub" style={{
               fontSize: '0.78rem',
-              color: '#4a4a68'
+              color: '#6B6B6B'
             }}>Track via email or WhatsApp</div>
           </div>
 
           <div className="highlight-card" style={{
             background: 'white',
-            border: '1px solid #e8e8f0',
+            border: '1px solid #EAEAEA',
             borderRadius: '16px',
             padding: '22px 20px',
             textAlign: 'center',
@@ -380,12 +380,12 @@ function ShippingPolicy() {
             <div className="highlight-title" style={{
               fontSize: '0.9rem',
               fontWeight: 700,
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               marginBottom: '4px'
             }}>Safe Packaging</div>
             <div className="highlight-sub" style={{
               fontSize: '0.78rem',
-              color: '#4a4a68'
+              color: '#6B6B6B'
             }}>Orders packed securely</div>
           </div>
         </div>
@@ -406,7 +406,7 @@ function ShippingPolicy() {
         <aside className="toc-sidebar" style={{ position: 'sticky', top: '90px' }}>
           <div className="toc-card" style={{
             background: 'white',
-            border: '1px solid #e8e8f0',
+            border: '1px solid #EAEAEA',
             borderRadius: '16px',
             padding: '24px',
             boxShadow: '0 4px 20px rgba(0,0,0,0.04)'
@@ -416,7 +416,7 @@ function ShippingPolicy() {
               fontWeight: 700,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#4a4a68',
+              color: '#6B6B6B',
               marginBottom: '16px'
             }}>Contents</p>
             <ul className="toc-list" style={{
@@ -439,8 +439,8 @@ function ShippingPolicy() {
                       borderRadius: '9px',
                       fontSize: '0.85rem',
                       fontWeight: 500,
-                      color: activeSection === section.id ? '#1a1a2e' : '#4a4a68',
-                      background: activeSection === section.id ? '#f8f8fc' : 'transparent',
+                      color: activeSection === section.id ? '#1A1A1A' : '#6B6B6B',
+                      background: activeSection === section.id ? '#FAFAFA' : 'transparent',
                       textDecoration: 'none',
                       transition: 'all 0.2s',
                       border: 'none',
@@ -454,8 +454,8 @@ function ShippingPolicy() {
                       width: '22px',
                       height: '22px',
                       borderRadius: '6px',
-                      background: activeSection === section.id ? '#FF6B35' : '#e8e8f0',
-                      color: activeSection === section.id ? 'white' : '#4a4a68',
+                      background: activeSection === section.id ? '#1A1A1A' : '#EAEAEA',
+                      color: activeSection === section.id ? 'white' : '#6B6B6B',
                       fontSize: '0.68rem',
                       fontWeight: 700,
                       display: 'flex',
@@ -471,11 +471,11 @@ function ShippingPolicy() {
             <div className="toc-contact" style={{
               marginTop: '20px',
               paddingTop: '20px',
-              borderTop: '1px solid #e8e8f0'
+              borderTop: '1px solid #EAEAEA'
             }}>
               <p style={{
                 fontSize: '0.8rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 marginBottom: '12px',
                 lineHeight: 1.5
               }}>Shipping question? We're happy to help.</p>
@@ -485,7 +485,7 @@ function ShippingPolicy() {
                 gap: '7px',
                 fontSize: '0.82rem',
                 fontWeight: 600,
-                color: '#FF6B35',
+                color: '#1A1A1A',
                 textDecoration: 'none'
               }}>
                 <i className="fas fa-arrow-right" style={{ fontSize: '0.75rem' }}></i>
@@ -499,7 +499,7 @@ function ShippingPolicy() {
         <article className="policy-body" style={{ minWidth: 0 }}>
           <div className="policy-highlight">
             <p>
-              <i className="fas fa-info-circle" style={{ color: '#FF6B35', marginRight: '8px' }}></i>
+              <i className="fas fa-info-circle" style={{ color: '#1A1A1A', marginRight: '8px' }}></i>
               Ismora is a dropshipping store. Products are shipped directly from our verified suppliers to your doorstep. All shipping timelines below reflect standard processing and courier transit times.
             </p>
           </div>
@@ -514,14 +514,14 @@ function ShippingPolicy() {
               fontWeight: 700,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#FF6B35',
+              color: '#1A1A1A',
               marginBottom: '8px'
             }}>Section 01</p>
             <h2 className="section-heading" style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: '1.5rem',
               fontWeight: 700,
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               letterSpacing: '-0.02em',
               marginBottom: '16px',
               lineHeight: 1.2
@@ -529,12 +529,12 @@ function ShippingPolicy() {
             <div className="section-divider" style={{
               width: '40px',
               height: '3px',
-              background: '#FF6B35',
+              background: '#1A1A1A',
               borderRadius: '2px',
               marginBottom: '20px'
             }}></div>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
@@ -558,12 +558,12 @@ function ShippingPolicy() {
                   <div className="tl-title" style={{
                     fontSize: '0.9rem',
                     fontWeight: 700,
-                    color: '#1a1a2e',
+                    color: '#1A1A1A',
                     marginBottom: '4px'
                   }}>Order Confirmed</div>
                   <div className="tl-desc" style={{
                     fontSize: '0.85rem',
-                    color: '#4a4a68',
+                    color: '#6B6B6B',
                     lineHeight: 1.6
                   }}>Your order is received and you get a confirmation with your order reference number.</div>
                 </div>
@@ -581,12 +581,12 @@ function ShippingPolicy() {
                   <div className="tl-title" style={{
                     fontSize: '0.9rem',
                     fontWeight: 700,
-                    color: '#1a1a2e',
+                    color: '#1A1A1A',
                     marginBottom: '4px'
                   }}>Processing (1–2 days)</div>
                   <div className="tl-desc" style={{
                     fontSize: '0.85rem',
-                    color: '#4a4a68',
+                    color: '#6B6B6B',
                     lineHeight: 1.6
                   }}>We forward your order to the supplier who picks, packs, and prepares your item for dispatch.</div>
                 </div>
@@ -604,12 +604,12 @@ function ShippingPolicy() {
                   <div className="tl-title" style={{
                     fontSize: '0.9rem',
                     fontWeight: 700,
-                    color: '#1a1a2e',
+                    color: '#1A1A1A',
                     marginBottom: '4px'
                   }}>Dispatched</div>
                   <div className="tl-desc" style={{
                     fontSize: '0.85rem',
-                    color: '#4a4a68',
+                    color: '#6B6B6B',
                     lineHeight: 1.6
                   }}>Your order is handed to a courier partner. You receive tracking information via email or WhatsApp.</div>
                 </div>
@@ -627,12 +627,12 @@ function ShippingPolicy() {
                   <div className="tl-title" style={{
                     fontSize: '0.9rem',
                     fontWeight: 700,
-                    color: '#1a1a2e',
+                    color: '#1A1A1A',
                     marginBottom: '4px'
                   }}>Delivered to You</div>
                   <div className="tl-desc" style={{
                     fontSize: '0.85rem',
-                    color: '#4a4a68',
+                    color: '#6B6B6B',
                     lineHeight: 1.6
                   }}>Your package arrives at your specified delivery address. Enjoy your order!</div>
                 </div>
@@ -650,14 +650,14 @@ function ShippingPolicy() {
               fontWeight: 700,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#FF6B35',
+              color: '#1A1A1A',
               marginBottom: '8px'
             }}>Section 02</p>
             <h2 className="section-heading" style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: '1.5rem',
               fontWeight: 700,
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               letterSpacing: '-0.02em',
               marginBottom: '16px',
               lineHeight: 1.2
@@ -665,12 +665,12 @@ function ShippingPolicy() {
             <div className="section-divider" style={{
               width: '40px',
               height: '3px',
-              background: '#FF6B35',
+              background: '#1A1A1A',
               borderRadius: '2px',
               marginBottom: '20px'
             }}></div>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
@@ -703,7 +703,7 @@ function ShippingPolicy() {
               </tbody>
             </table>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
@@ -720,14 +720,14 @@ function ShippingPolicy() {
               fontWeight: 700,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#FF6B35',
+              color: '#1A1A1A',
               marginBottom: '8px'
             }}>Section 03</p>
             <h2 className="section-heading" style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: '1.5rem',
               fontWeight: 700,
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               letterSpacing: '-0.02em',
               marginBottom: '16px',
               lineHeight: 1.2
@@ -735,7 +735,7 @@ function ShippingPolicy() {
             <div className="section-divider" style={{
               width: '40px',
               height: '3px',
-              background: '#FF6B35',
+              background: '#1A1A1A',
               borderRadius: '2px',
               marginBottom: '20px'
             }}></div>
@@ -764,7 +764,7 @@ function ShippingPolicy() {
             </table>
             <div className="policy-highlight">
               <p>
-                <i className="fas fa-tag" style={{ color: '#FF6B35', marginRight: '8px' }}></i>
+                <i className="fas fa-tag" style={{ color: '#1A1A1A', marginRight: '8px' }}></i>
                 The exact free shipping threshold and delivery fee are displayed clearly on the checkout page before you confirm your order. No surprises!
               </p>
             </div>
@@ -780,14 +780,14 @@ function ShippingPolicy() {
               fontWeight: 700,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#FF6B35',
+              color: '#1A1A1A',
               marginBottom: '8px'
             }}>Section 04</p>
             <h2 className="section-heading" style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: '1.5rem',
               fontWeight: 700,
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               letterSpacing: '-0.02em',
               marginBottom: '16px',
               lineHeight: 1.2
@@ -795,12 +795,12 @@ function ShippingPolicy() {
             <div className="section-divider" style={{
               width: '40px',
               height: '3px',
-              background: '#FF6B35',
+              background: '#1A1A1A',
               borderRadius: '2px',
               marginBottom: '20px'
             }}></div>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
@@ -818,7 +818,7 @@ function ShippingPolicy() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -826,18 +826,18 @@ function ShippingPolicy() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
-                <strong style={{ color: '#1a1a2e' }}>Email:</strong> A tracking number and courier name will be sent to the email address provided at checkout.
+                <strong style={{ color: '#1A1A1A' }}>Email:</strong> A tracking number and courier name will be sent to the email address provided at checkout.
               </li>
               <li style={{
                 display: 'flex',
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -845,15 +845,15 @@ function ShippingPolicy() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
-                <strong style={{ color: '#1a1a2e' }}>WhatsApp:</strong> If you provided a WhatsApp number, we may send tracking updates directly to you.
+                <strong style={{ color: '#1A1A1A' }}>WhatsApp:</strong> If you provided a WhatsApp number, we may send tracking updates directly to you.
               </li>
             </ul>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
@@ -870,14 +870,14 @@ function ShippingPolicy() {
               fontWeight: 700,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#FF6B35',
+              color: '#1A1A1A',
               marginBottom: '8px'
             }}>Section 05</p>
             <h2 className="section-heading" style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: '1.5rem',
               fontWeight: 700,
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               letterSpacing: '-0.02em',
               marginBottom: '16px',
               lineHeight: 1.2
@@ -885,12 +885,12 @@ function ShippingPolicy() {
             <div className="section-divider" style={{
               width: '40px',
               height: '3px',
-              background: '#FF6B35',
+              background: '#1A1A1A',
               borderRadius: '2px',
               marginBottom: '20px'
             }}></div>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
@@ -908,7 +908,7 @@ function ShippingPolicy() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -916,7 +916,7 @@ function ShippingPolicy() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -927,7 +927,7 @@ function ShippingPolicy() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -935,7 +935,7 @@ function ShippingPolicy() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -943,11 +943,11 @@ function ShippingPolicy() {
               </li>
             </ul>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
-            }}>For <strong>international shipping</strong>, please <Link to="/contact-us" style={{ color: '#FF6B35', fontWeight: 600 }}>contact us</Link> to check availability for your specific location.</p>
+            }}>For <strong>international shipping</strong>, please <Link to="/contact-us" style={{ color: '#1A1A1A', fontWeight: 600 }}>contact us</Link> to check availability for your specific location.</p>
           </section>
 
           {/* SECTION 6 - Lost Orders */}
@@ -960,14 +960,14 @@ function ShippingPolicy() {
               fontWeight: 700,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#FF6B35',
+              color: '#1A1A1A',
               marginBottom: '8px'
             }}>Section 06</p>
             <h2 className="section-heading" style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: '1.5rem',
               fontWeight: 700,
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               letterSpacing: '-0.02em',
               marginBottom: '16px',
               lineHeight: 1.2
@@ -975,12 +975,12 @@ function ShippingPolicy() {
             <div className="section-divider" style={{
               width: '40px',
               height: '3px',
-              background: '#FF6B35',
+              background: '#1A1A1A',
               borderRadius: '2px',
               marginBottom: '20px'
             }}></div>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
@@ -998,7 +998,7 @@ function ShippingPolicy() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -1006,7 +1006,7 @@ function ShippingPolicy() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -1017,7 +1017,7 @@ function ShippingPolicy() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -1025,7 +1025,7 @@ function ShippingPolicy() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -1036,7 +1036,7 @@ function ShippingPolicy() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -1044,7 +1044,7 @@ function ShippingPolicy() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -1055,7 +1055,7 @@ function ShippingPolicy() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -1063,7 +1063,7 @@ function ShippingPolicy() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -1074,7 +1074,7 @@ function ShippingPolicy() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -1082,7 +1082,7 @@ function ShippingPolicy() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -1092,7 +1092,7 @@ function ShippingPolicy() {
             <div className="policy-highlight">
               <p style={{
                 fontSize: '0.9rem',
-                color: '#1a1a2e',
+                color: '#1A1A1A',
                 lineHeight: 1.65,
                 fontWeight: 500,
                 margin: 0
@@ -1110,14 +1110,14 @@ function ShippingPolicy() {
               fontWeight: 700,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#FF6B35',
+              color: '#1A1A1A',
               marginBottom: '8px'
             }}>Section 07</p>
             <h2 className="section-heading" style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: '1.5rem',
               fontWeight: 700,
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               letterSpacing: '-0.02em',
               marginBottom: '16px',
               lineHeight: 1.2
@@ -1125,12 +1125,12 @@ function ShippingPolicy() {
             <div className="section-divider" style={{
               width: '40px',
               height: '3px',
-              background: '#FF6B35',
+              background: '#1A1A1A',
               borderRadius: '2px',
               marginBottom: '20px'
             }}></div>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
@@ -1144,7 +1144,7 @@ function ShippingPolicy() {
             }}>
               <div style={{
                 background: 'white',
-                border: '1px solid #e8e8f0',
+                border: '1px solid #EAEAEA',
                 borderRadius: '12px',
                 padding: '20px'
               }}>
@@ -1152,23 +1152,23 @@ function ShippingPolicy() {
                   width: '38px',
                   height: '38px',
                   borderRadius: '10px',
-                  background: 'rgba(255,107,53,0.1)',
+                  background: 'rgba(255,255,255,0.1)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   marginBottom: '12px'
                 }}>
-                  <i className="fas fa-envelope" style={{ color: '#FF6B35' }}></i>
+                  <i className="fas fa-envelope" style={{ color: '#1A1A1A' }}></i>
                 </div>
                 <div style={{
                   fontSize: '0.85rem',
                   fontWeight: 700,
-                  color: '#1a1a2e',
+                  color: '#1A1A1A',
                   marginBottom: '4px'
                 }}>Email Us</div>
                 <div style={{
                   fontSize: '0.82rem',
-                  color: '#4a4a68'
+                  color: '#6B6B6B'
                 }}>
                   ismora.ae@gmail.com<br />
                   Response within 24 hours
@@ -1176,7 +1176,7 @@ function ShippingPolicy() {
               </div>
               <div style={{
                 background: 'white',
-                border: '1px solid #e8e8f0',
+                border: '1px solid #EAEAEA',
                 borderRadius: '12px',
                 padding: '20px'
               }}>
@@ -1184,25 +1184,25 @@ function ShippingPolicy() {
                   width: '38px',
                   height: '38px',
                   borderRadius: '10px',
-                  background: 'rgba(255,107,53,0.1)',
+                  background: 'rgba(255,255,255,0.1)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   marginBottom: '12px'
                 }}>
-                  <i className="fas fa-headset" style={{ color: '#FF6B35' }}></i>
+                  <i className="fas fa-headset" style={{ color: '#1A1A1A' }}></i>
                 </div>
                 <div style={{
                   fontSize: '0.85rem',
                   fontWeight: 700,
-                  color: '#1a1a2e',
+                  color: '#1A1A1A',
                   marginBottom: '4px'
                 }}>Contact Page</div>
                 <div style={{
                   fontSize: '0.82rem',
-                  color: '#4a4a68'
+                  color: '#6B6B6B'
                 }}>
-                  <Link to="/contact-us" style={{ color: '#FF6B35', fontWeight: 600, textDecoration: 'none' }}>Visit Contact Page</Link>
+                  <Link to="/contact-us" style={{ color: '#1A1A1A', fontWeight: 600, textDecoration: 'none' }}>Visit Contact Page</Link>
                   <br />Send us a message directly
                 </div>
               </div>

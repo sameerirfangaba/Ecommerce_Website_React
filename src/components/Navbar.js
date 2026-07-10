@@ -7,6 +7,7 @@ import CartDrawer from './CartDrawer';
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
+  const [marqueeVisible, setMarqueeVisible] = useState(true);
   const { cartCount, isCartOpen, toggleCart, closeCart } = useCart();
   const { searchQuery, searchResults, loading, showDropdown, searchProducts, clearSearch, setShowDropdown } = useSearch();
   const location = useLocation();
@@ -84,253 +85,250 @@ function Navbar() {
 
   return (
     <>
-      {/* MARQUEE */}
-      <div className="marquee-announce" style={{
-        background: '#FF6B35',
-        color: 'white',
-        overflow: 'hidden',
-        position: 'relative',
-        zIndex: 101
-      }}>
-        <div className="marquee-track" style={{
-          overflow: 'hidden',
-          whiteSpace: 'nowrap',
-          padding: '10px 0'
+      {/* ANNOUNCEMENT BAR */}
+      {marqueeVisible && (
+        <div className="marquee-announce" style={{
+          background: '#1A1A1A',
+          color: 'rgba(255,255,255,0.85)',
+          position: 'relative',
+          zIndex: 101
         }}>
-          <div className="marquee-content" style={{
-            display: 'inline-block',
-            whiteSpace: 'nowrap',
-            animation: 'marqueeScroll 25s linear infinite',
-            fontSize: '0.875rem',
-            fontWeight: '500',
+          <div className="marquee-text" style={{
+            textAlign: 'center',
+            padding: '11px 48px',
+            fontSize: '0.78rem',
+            fontWeight: '400',
             fontFamily: "'DM Sans', sans-serif",
-            letterSpacing: '0.3px'
+            letterSpacing: '0.12em',
+            textTransform: 'uppercase',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis'
           }}>
-            🚚 Ismora is a Dropshipping Store  ✦  Free shipping on orders over 150 AED  ✦  Premium quality guaranteed  ✦  Easy 30-day returns  ✦  24/7 customer support  ✦  
-            🚚 Ismora is a Dropshipping Store  ✦  Free shipping on orders over 150 AED  ✦  Premium quality guaranteed  ✦  Easy 30-day returns  ✦  24/7 customer support  ✦  
-            🚚 Ismora is a Dropshipping Store  ✦  Free shipping on orders over 150 AED  ✦  Premium quality guaranteed  ✦  Easy 30-day returns  ✦  24/7 customer support  ✦  
+            <span>Complimentary Shipping Across the UAE</span>
+            <span className="marquee-secondary">&nbsp;·&nbsp;Custom Jewelry Made to Order</span>
           </div>
+          <button
+            className="close-marquee"
+            onClick={() => setMarqueeVisible(false)}
+            style={{
+              position: 'absolute',
+              right: '16px',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              background: 'transparent',
+              border: 'none',
+              color: 'rgba(255,255,255,0.5)',
+              width: '24px',
+              height: '24px',
+              cursor: 'pointer',
+              fontSize: '0.75rem',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              transition: 'color 0.2s',
+              zIndex: 102,
+              fontFamily: "'DM Sans', sans-serif"
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.9)'}
+            onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.5)'}
+          >
+            ✕
+          </button>
         </div>
-        <button className="close-marquee" style={{
-          position: 'absolute',
-          right: '16px',
-          top: '50%',
-          transform: 'translateY(-50%)',
-          background: 'rgba(255,255,255,0.2)',
-          border: 'none',
-          color: 'white',
-          width: '28px',
-          height: '28px',
-          borderRadius: '50%',
-          cursor: 'pointer',
-          fontSize: '0.8rem',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          transition: 'background 0.2s',
-          zIndex: 102,
-          fontFamily: "'DM Sans', sans-serif"
-        }}
-        onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.35)'}
-        onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.2)'}
-        >
-          ✕
-        </button>
-      </div>
+      )}
 
       {/* NAVBAR */}
       <header className="navbar" style={{
-        background: '#1a1a2e',
-        borderBottom: '1px solid rgba(255,255,255,0.06)',
+        background: 'white',
+        borderBottom: '1px solid #EAEAEA',
         position: 'sticky',
         top: 0,
         zIndex: 100,
         transition: 'box-shadow 0.3s ease',
-        boxShadow: scrolled ? '0 4px 24px rgba(0,0,0,0.4)' : 'none'
+        boxShadow: scrolled ? '0 4px 24px rgba(0,0,0,0.06)' : 'none'
       }}>
         <div className="nav-inner" style={{
           maxWidth: '1280px',
           margin: '0 auto',
           padding: '0 24px',
-          height: '70px',
-          display: 'flex',
+          height: '76px',
+          display: 'grid',
+          gridTemplateColumns: '1fr auto 1fr',
           alignItems: 'center',
-          justifyContent: 'space-between',
           gap: '20px'
         }}>
-          {/* Hamburger */}
-          <button className="hamburger" onClick={() => setMobileMenu(true)} style={{
-            display: 'none',
-            flexDirection: 'column',
-            gap: '5px',
-            background: 'none',
-            border: 'none',
-            cursor: 'pointer',
-            padding: '8px'
-          }}>
-            <span style={{ width: '24px', height: '2.5px', background: 'rgba(255,255,255,0.9)', borderRadius: '2px', display: 'block' }}></span>
-            <span style={{ width: '24px', height: '2.5px', background: 'rgba(255,255,255,0.9)', borderRadius: '2px', display: 'block' }}></span>
-            <span style={{ width: '24px', height: '2.5px', background: 'rgba(255,255,255,0.9)', borderRadius: '2px', display: 'block' }}></span>
-          </button>
+          {/* Left: Hamburger + Logo */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '14px', justifySelf: 'start', gridColumn: 1 }}>
+            <button className="hamburger" onClick={() => setMobileMenu(true)} style={{
+              display: 'none',
+              flexDirection: 'column',
+              gap: '5px',
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              padding: '8px'
+            }}>
+              <span style={{ width: '22px', height: '1.5px', background: '#1A1A1A', display: 'block' }}></span>
+              <span style={{ width: '22px', height: '1.5px', background: '#1A1A1A', display: 'block' }}></span>
+              <span style={{ width: '22px', height: '1.5px', background: '#1A1A1A', display: 'block' }}></span>
+            </button>
 
-          {/* Logo */}
-          <Link to="/" className="nav-logo" style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '10px',
-            textDecoration: 'none',
-            flexShrink: 0
-          }}>
-            <div style={{
-              width: '38px',
-              height: '38px',
-              background: '#FF6B35',
-              borderRadius: '10px',
+            <Link to="/" className="nav-logo" style={{
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center'
+              gap: '8px',
+              textDecoration: 'none',
+              flexShrink: 0
             }}>
-              <i className="fas fa-store" style={{ color: 'white', fontSize: '1rem' }}></i>
-            </div>
-            <span style={{
-              fontFamily: "'Playfair Display', serif",
-              fontSize: '1.4rem',
-              fontWeight: 700,
-              color: 'white',
-              letterSpacing: '-0.02em'
-            }}>Ismora</span>
-          </Link>
+              <img src="/icon.png" alt="Ismora" style={{ height: '28px', width: 'auto', display: 'block' }} />
+              {/* <span style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: '1.6rem',
+                fontWeight: 800,
+                color: '#1A1A1A',
+                letterSpacing: '0.02em'
+              }}>ISMORA</span> */}
+            </Link>
+          </div>
 
           {/* Nav Links */}
           <ul className="nav-links" style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '6px',
+            gap: '4px',
             listStyle: 'none',
             margin: 0,
-            padding: 0
+            padding: 0,
+            justifySelf: 'center',
+            gridColumn: 2
           }}>
             <li>
               <Link to="/" style={{
-                padding: '8px 18px',
-                borderRadius: '8px',
-                fontSize: '0.9rem',
-                fontWeight: '500',
+                padding: '8px 16px',
+                fontSize: '0.78rem',
+                fontWeight: '600',
+                letterSpacing: '0.06em',
+                textTransform: 'uppercase',
                 fontFamily: "'DM Sans', sans-serif",
-                color: isActive('/') ? '#FF6B35' : 'rgba(255,255,255,0.7)',
+                color: '#1A1A1A',
                 textDecoration: 'none',
-                transition: 'all 0.2s',
-                background: isActive('/') ? 'rgba(255,107,53,0.1)' : 'transparent'
+                borderBottom: isActive('/') ? '1.5px solid #1A1A1A' : '1.5px solid transparent',
+                transition: 'all 0.2s'
               }}>
                 Home
               </Link>
             </li>
             <li>
               <Link to="/shop" style={{
-                padding: '8px 18px',
-                borderRadius: '8px',
-                fontSize: '0.9rem',
-                fontWeight: '500',
+                padding: '8px 16px',
+                fontSize: '0.78rem',
+                fontWeight: '600',
+                letterSpacing: '0.06em',
+                textTransform: 'uppercase',
                 fontFamily: "'DM Sans', sans-serif",
-                color: isActive('/shop') ? '#FF6B35' : 'rgba(255,255,255,0.7)',
+                color: '#1A1A1A',
                 textDecoration: 'none',
-                transition: 'all 0.2s',
-                background: isActive('/shop') ? 'rgba(255,107,53,0.1)' : 'transparent'
+                borderBottom: isActive('/shop') ? '1.5px solid #1A1A1A' : '1.5px solid transparent',
+                transition: 'all 0.2s'
               }}>
                 Shop
               </Link>
             </li>
             <li>
               <Link to="/about-us" style={{
-                padding: '8px 18px',
-                borderRadius: '8px',
-                fontSize: '0.9rem',
-                fontWeight: '500',
+                padding: '8px 16px',
+                fontSize: '0.78rem',
+                fontWeight: '600',
+                letterSpacing: '0.06em',
+                textTransform: 'uppercase',
                 fontFamily: "'DM Sans', sans-serif",
-                color: isActive('/about-us') ? '#FF6B35' : 'rgba(255,255,255,0.7)',
+                color: '#1A1A1A',
                 textDecoration: 'none',
-                transition: 'all 0.2s',
-                background: isActive('/about-us') ? 'rgba(255,107,53,0.1)' : 'transparent'
+                borderBottom: isActive('/about-us') ? '1.5px solid #1A1A1A' : '1.5px solid transparent',
+                transition: 'all 0.2s'
               }}>
                 About
               </Link>
             </li>
             <li>
               <Link to="/blog" style={{
-                padding: '8px 18px',
-                borderRadius: '8px',
-                fontSize: '0.9rem',
-                fontWeight: '500',
+                padding: '8px 16px',
+                fontSize: '0.78rem',
+                fontWeight: '600',
+                letterSpacing: '0.06em',
+                textTransform: 'uppercase',
                 fontFamily: "'DM Sans', sans-serif",
-                color: isActive('/blog') ? '#FF6B35' : 'rgba(255,255,255,0.7)',
+                color: '#1A1A1A',
                 textDecoration: 'none',
-                transition: 'all 0.2s',
-                background: isActive('/blog') ? 'rgba(255,107,53,0.1)' : 'transparent'
+                borderBottom: isActive('/blog') ? '1.5px solid #1A1A1A' : '1.5px solid transparent',
+                transition: 'all 0.2s'
               }}>
                 Blog
               </Link>
             </li>
             <li>
               <Link to="/contact-us" style={{
-                padding: '8px 18px',
-                borderRadius: '8px',
-                fontSize: '0.9rem',
-                fontWeight: '500',
+                padding: '8px 16px',
+                fontSize: '0.78rem',
+                fontWeight: '600',
+                letterSpacing: '0.06em',
+                textTransform: 'uppercase',
                 fontFamily: "'DM Sans', sans-serif",
-                color: isActive('/contact-us') ? '#FF6B35' : 'rgba(255,255,255,0.7)',
+                color: '#1A1A1A',
                 textDecoration: 'none',
-                transition: 'all 0.2s',
-                background: isActive('/contact-us') ? 'rgba(255,107,53,0.1)' : 'transparent'
+                borderBottom: isActive('/contact-us') ? '1.5px solid #1A1A1A' : '1.5px solid transparent',
+                transition: 'all 0.2s'
               }}>
                 Contact
               </Link>
             </li>
           </ul>
 
-          {/* Search */}
+          {/* Right: Search + Actions */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '18px', justifySelf: 'end', gridColumn: 3 }}>
           <div className="nav-search" style={{
-            flex: '1',
-            maxWidth: '280px',
+            width: '200px',
             position: 'relative',
             display: 'flex',
             alignItems: 'center'
           }} ref={searchRef}>
             <i className="fas fa-search" style={{
               position: 'absolute',
-              left: '14px',
+              left: '2px',
               top: '50%',
               transform: 'translateY(-50%)',
-              color: 'rgba(255,255,255,0.4)',
-              fontSize: '0.85rem',
+              color: '#6B6B6B',
+              fontSize: '0.78rem',
               pointerEvents: 'none'
             }}></i>
             <input
               ref={inputRef}
               type="text"
-              placeholder="Search products..."
+              placeholder="Search"
               value={inputValue}
               onChange={(e) => handleSearchInput(e.target.value)}
               onKeyDown={handleSearchSubmit}
-              onFocus={() => {
+              onFocus={(e) => {
                 if (inputValue.trim()) {
                   setShowDropdown(true);
                 }
+                e.currentTarget.style.borderBottomColor = '#1A1A1A';
               }}
               style={{
                 width: '100%',
-                padding: '10px 16px 10px 40px',
-                border: '1.5px solid rgba(255,255,255,0.12)',
-                borderRadius: '10px',
+                padding: '8px 8px 8px 22px',
+                border: 'none',
+                borderBottom: '1px solid #EAEAEA',
                 fontFamily: "'DM Sans', sans-serif",
-                fontSize: '0.875rem',
+                fontSize: '0.82rem',
                 fontWeight: '400',
-                background: 'rgba(255,255,255,0.07)',
-                color: 'white',
-                transition: 'all 0.3s',
+                background: 'transparent',
+                color: '#1A1A1A',
+                transition: 'border-color 0.3s',
                 outline: 'none'
               }}
-              onFocus={(e) => e.currentTarget.style.borderColor = '#FF6B35'}
-              onBlur={(e) => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)'}
+              onBlur={(e) => e.currentTarget.style.borderBottomColor = '#EAEAEA'}
             />
 
             {/* Search Dropdown */}
@@ -338,12 +336,13 @@ function Navbar() {
               <div style={{
                 position: 'absolute',
                 top: 'calc(100% + 10px)',
-                left: 0,
-                width: '100%',
+                right: 0,
+                width: '360px',
+                maxWidth: '90vw',
                 background: 'white',
-                borderRadius: '12px',
+                borderRadius: '2px',
                 boxShadow: '0 8px 40px rgba(0,0,0,0.18)',
-                border: '1px solid rgba(0,0,0,0.07)',
+                border: '1px solid #EAEAEA',
                 overflow: 'hidden',
                 zIndex: 999,
                 maxHeight: '460px',
@@ -407,7 +406,7 @@ function Navbar() {
                             <div style={{
                               fontSize: '0.85rem',
                               fontWeight: 600,
-                              color: '#1a1a2e',
+                              color: '#1A1A1A',
                               whiteSpace: 'nowrap',
                               overflow: 'hidden',
                               textOverflow: 'ellipsis'
@@ -418,21 +417,26 @@ function Navbar() {
                               display: 'flex',
                               alignItems: 'center',
                               gap: '6px',
-                              marginTop: '2px'
+                              marginTop: '3px',
+                              flexWrap: 'nowrap'
                             }}>
                               <span style={{
-                                fontSize: '0.7rem',
+                                fontSize: '0.68rem',
                                 color: '#9ca3af',
-                                background: '#f3f4f6',
-                                padding: '1px 6px',
-                                borderRadius: '4px'
+                                overflow: 'hidden',
+                                textOverflow: 'ellipsis',
+                                whiteSpace: 'nowrap',
+                                minWidth: 0
                               }}>
                                 {product.category || 'General'}
                               </span>
                               <span style={{
-                                fontSize: '0.85rem',
-                                fontWeight: 800,
-                                color: '#FF6B35'
+                                fontSize: '0.82rem',
+                                fontWeight: 700,
+                                color: '#1A1A1A',
+                                whiteSpace: 'nowrap',
+                                flexShrink: 0,
+                                marginLeft: 'auto'
                               }}>
                                 {formatPrice(product.price)}
                               </span>
@@ -440,10 +444,12 @@ function Navbar() {
                                 <span style={{
                                   fontSize: '0.65rem',
                                   color: 'white',
-                                  background: '#ef4444',
-                                  borderRadius: '4px',
+                                  background: '#1A1A1A',
+                                  borderRadius: '2px',
                                   padding: '1px 5px',
-                                  fontWeight: 700
+                                  fontWeight: 700,
+                                  whiteSpace: 'nowrap',
+                                  flexShrink: 0
                                 }}>
                                   -{discount}%
                                 </span>
@@ -468,10 +474,10 @@ function Navbar() {
                         fontWeight: 600,
                         transition: 'color 0.15s'
                       }}
-                      onMouseEnter={(e) => e.currentTarget.style.color = '#FF6B35'}
+                      onMouseEnter={(e) => e.currentTarget.style.color = '#1A1A1A'}
                       onMouseLeave={(e) => e.currentTarget.style.color = '#6b7280'}
                     >
-                      <i className="fas fa-search" style={{ color: '#FF6B35' }}></i>
+                      <i className="fas fa-search" style={{ color: '#1A1A1A' }}></i>
                       See all results for "{inputValue}"
                     </div>
                   </>
@@ -484,80 +490,37 @@ function Navbar() {
           <div className="nav-actions" style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '8px'
+            gap: '20px'
           }}>
-            {/* <button className="nav-icon-btn" title="Wishlist" style={{
-              width: '42px',
-              height: '42px',
-              borderRadius: '10px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              background: 'rgba(255,255,255,0.06)',
-              border: '1.5px solid rgba(255,255,255,0.08)',
-              cursor: 'pointer',
-              color: 'rgba(255,255,255,0.75)',
-              fontSize: '1rem',
-              transition: 'all 0.25s',
-              position: 'relative',
-              fontFamily: "'DM Sans', sans-serif"
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = '#FF6B35';
-              e.currentTarget.style.borderColor = '#FF6B35';
-              e.currentTarget.style.color = 'white';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'rgba(255,255,255,0.06)';
-              e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)';
-              e.currentTarget.style.color = 'rgba(255,255,255,0.75)';
-            }}
-            >
-              <i className="far fa-heart"></i>
-            </button> */}
-            
-            <button 
-              className="nav-icon-btn" 
+            <button
+              className="nav-icon-btn"
               onClick={toggleCart}
               title="Cart"
               style={{
-                width: '42px',
-                height: '42px',
-                borderRadius: '10px',
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                color: '#1A1A1A',
+                fontSize: '1.05rem',
+                transition: 'opacity 0.2s',
+                position: 'relative',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center',
-                background: 'rgba(255,255,255,0.06)',
-                border: '1.5px solid rgba(255,255,255,0.08)',
-                cursor: 'pointer',
-                color: 'rgba(255,255,255,0.75)',
-                fontSize: '1rem',
-                transition: 'all 0.25s',
-                position: 'relative',
-                textDecoration: 'none',
-                fontFamily: "'DM Sans', sans-serif"
+                padding: 0
               }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = '#FF6B35';
-                e.currentTarget.style.borderColor = '#FF6B35';
-                e.currentTarget.style.color = 'white';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'rgba(255,255,255,0.06)';
-                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)';
-                e.currentTarget.style.color = 'rgba(255,255,255,0.75)';
-              }}
+              onMouseEnter={(e) => e.currentTarget.style.opacity = '0.6'}
+              onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
             >
               <i className="fas fa-shopping-bag"></i>
               {cartCount > 0 && (
                 <span className="cart-badge" style={{
                   position: 'absolute',
-                  top: '-4px',
-                  right: '-4px',
-                  minWidth: '20px',
-                  height: '20px',
+                  top: '-7px',
+                  right: '-9px',
+                  minWidth: '16px',
+                  height: '16px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   color: 'white',
                   fontSize: '0.6rem',
                   fontWeight: '700',
@@ -565,11 +528,11 @@ function Navbar() {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  border: '2px solid #1a1a2e',
-                  padding: '0 5px'
+                  padding: '0 4px'
                 }}>{cartCount}</span>
               )}
             </button>
+          </div>
           </div>
         </div>
       </header>
@@ -597,33 +560,24 @@ function Navbar() {
           <div className="nav-logo" style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '10px',
+            gap: '8px',
             textDecoration: 'none'
           }}>
-            <div style={{
-              width: '38px',
-              height: '38px',
-              background: '#FF6B35',
-              borderRadius: '10px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}>
-              <i className="fas fa-store" style={{ color: 'white', fontSize: '0.9rem' }}></i>
-            </div>
-            <span style={{
-              fontFamily: "'Playfair Display', serif",
-              fontSize: '1.3rem',
-              fontWeight: 700,
-              color: '#1a1a2e'
-            }}>Ismora</span>
+            <img src="/icon.png" alt="Ismora" style={{ height: '24px', width: 'auto', display: 'block' }} />
+            {/* <span style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: '1.4rem',
+              fontWeight: 800,
+              color: '#1A1A1A',
+              letterSpacing: '0.02em'
+            }}>ISMORA</span> */}
           </div>
           <button className="drawer-close" onClick={() => setMobileMenu(false)} style={{
             background: 'none',
             border: 'none',
             fontSize: '1.5rem',
             cursor: 'pointer',
-            color: '#4a4a68',
+            color: '#6B6B6B',
             width: '40px',
             height: '40px',
             display: 'flex',
@@ -633,7 +587,7 @@ function Navbar() {
             transition: 'background 0.2s',
             fontFamily: "'DM Sans', sans-serif"
           }}
-          onMouseEnter={(e) => e.currentTarget.style.background = '#f8f8fc'}
+          onMouseEnter={(e) => e.currentTarget.style.background = '#FAFAFA'}
           onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
           >
             ✕
@@ -649,80 +603,80 @@ function Navbar() {
             borderRadius: '10px',
             fontSize: '1rem',
             fontWeight: '500',
-            fontFamily: "'DM Sans', sans-serif",
-            color: isActive('/') ? '#1a1a2e' : '#4a4a68',
+            fontFamily: "'Bebas Neue', sans-serif",
+            color: isActive('/') ? '#1A1A1A' : '#6B6B6B',
             textDecoration: 'none',
             display: 'flex',
             alignItems: 'center',
             gap: '12px',
             transition: 'all 0.2s',
-            background: isActive('/') ? '#f8f8fc' : 'transparent'
+            background: isActive('/') ? '#FAFAFA' : 'transparent'
           }}>
-            <i className="fas fa-home" style={{ width: '20px', textAlign: 'center', color: '#FF6B35' }}></i>Home
+            <i className="fas fa-home" style={{ width: '20px', textAlign: 'center', color: '#1A1A1A' }}></i>Home
           </Link>
           <Link to="/shop" onClick={() => setMobileMenu(false)} style={{
             padding: '14px 16px',
             borderRadius: '10px',
             fontSize: '1rem',
             fontWeight: '500',
-            fontFamily: "'DM Sans', sans-serif",
-            color: isActive('/shop') ? '#1a1a2e' : '#4a4a68',
+            fontFamily: "'Bebas Neue', sans-serif",
+            color: isActive('/shop') ? '#1A1A1A' : '#6B6B6B',
             textDecoration: 'none',
             display: 'flex',
             alignItems: 'center',
             gap: '12px',
             transition: 'all 0.2s',
-            background: isActive('/shop') ? '#f8f8fc' : 'transparent'
+            background: isActive('/shop') ? '#FAFAFA' : 'transparent'
           }}>
-            <i className="fas fa-store" style={{ width: '20px', textAlign: 'center', color: '#FF6B35' }}></i>Shop
+            <i className="fas fa-store" style={{ width: '20px', textAlign: 'center', color: '#1A1A1A' }}></i>Shop
           </Link>
           <Link to="/about-us" onClick={() => setMobileMenu(false)} style={{
             padding: '14px 16px',
             borderRadius: '10px',
             fontSize: '1rem',
             fontWeight: '500',
-            fontFamily: "'DM Sans', sans-serif",
-            color: isActive('/about-us') ? '#1a1a2e' : '#4a4a68',
+            fontFamily: "'Bebas Neue', sans-serif",
+            color: isActive('/about-us') ? '#1A1A1A' : '#6B6B6B',
             textDecoration: 'none',
             display: 'flex',
             alignItems: 'center',
             gap: '12px',
             transition: 'all 0.2s',
-            background: isActive('/about-us') ? '#f8f8fc' : 'transparent'
+            background: isActive('/about-us') ? '#FAFAFA' : 'transparent'
           }}>
-            <i className="fas fa-info-circle" style={{ width: '20px', textAlign: 'center', color: '#FF6B35' }}></i>About
+            <i className="fas fa-info-circle" style={{ width: '20px', textAlign: 'center', color: '#1A1A1A' }}></i>About
           </Link>
           <Link to="/blog" onClick={() => setMobileMenu(false)} style={{
             padding: '14px 16px',
             borderRadius: '10px',
             fontSize: '1rem',
             fontWeight: '500',
-            fontFamily: "'DM Sans', sans-serif",
-            color: isActive('/blog') ? '#1a1a2e' : '#4a4a68',
+            fontFamily: "'Bebas Neue', sans-serif",
+            color: isActive('/blog') ? '#1A1A1A' : '#6B6B6B',
             textDecoration: 'none',
             display: 'flex',
             alignItems: 'center',
             gap: '12px',
             transition: 'all 0.2s',
-            background: isActive('/blog') ? '#f8f8fc' : 'transparent'
+            background: isActive('/blog') ? '#FAFAFA' : 'transparent'
           }}>
-            <i className="fas fa-newspaper" style={{ width: '20px', textAlign: 'center', color: '#FF6B35' }}></i>Blog
+            <i className="fas fa-newspaper" style={{ width: '20px', textAlign: 'center', color: '#1A1A1A' }}></i>Blog
           </Link>
           <Link to="/contact-us" onClick={() => setMobileMenu(false)} style={{
             padding: '14px 16px',
             borderRadius: '10px',
             fontSize: '1rem',
             fontWeight: '500',
-            fontFamily: "'DM Sans', sans-serif",
-            color: isActive('/contact-us') ? '#1a1a2e' : '#4a4a68',
+            fontFamily: "'Bebas Neue', sans-serif",
+            color: isActive('/contact-us') ? '#1A1A1A' : '#6B6B6B',
             textDecoration: 'none',
             display: 'flex',
             alignItems: 'center',
             gap: '12px',
             transition: 'all 0.2s',
-            background: isActive('/contact-us') ? '#f8f8fc' : 'transparent'
+            background: isActive('/contact-us') ? '#FAFAFA' : 'transparent'
           }}>
-            <i className="fas fa-envelope" style={{ width: '20px', textAlign: 'center', color: '#FF6B35' }}></i>Contact
+            <i className="fas fa-envelope" style={{ width: '20px', textAlign: 'center', color: '#1A1A1A' }}></i>Contact
           </Link>
         </nav>
       </div>
@@ -760,17 +714,42 @@ function Navbar() {
           .nav-search {
             display: none !important;
           }
+          .nav-inner {
+            height: 62px !important;
+            padding: 0 16px !important;
+          }
+          .nav-inner .nav-logo {
+            position: absolute !important;
+            left: 50% !important;
+            top: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            max-width: 130px !important;
+            z-index: 1 !important;
+          }
+          .nav-inner .nav-logo img {
+            max-width: 100% !important;
+            height: 22px !important;
+            width: auto !important;
+          }
+          .nav-actions {
+            position: relative !important;
+            z-index: 2 !important;
+          }
+          .marquee-text {
+            padding: 10px 32px !important;
+            font-size: 0.68rem !important;
+            letter-spacing: 0.04em !important;
+          }
+          .marquee-secondary {
+            display: none !important;
+          }
+          .close-marquee {
+            right: 8px !important;
+          }
         }
-        
+
         .nav-links a:hover {
-          color: white !important;
-          background: rgba(255,255,255,0.08) !important;
-        }
-        
-        .nav-icon-btn:hover {
-          background: #FF6B35 !important;
-          border-color: #FF6B35 !important;
-          color: white !important;
+          border-bottom-color: #1A1A1A !important;
         }
       `}</style>
     </>

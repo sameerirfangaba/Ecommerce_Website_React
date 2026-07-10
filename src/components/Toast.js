@@ -90,7 +90,7 @@ function Toast({ message, type = 'success', duration = 3000, onClose }) {
             {type === 'success' ? 'Success!' : type === 'error' ? 'Error!' : type === 'warning' ? 'Warning!' : 'Info'}
           </div>
           <div style={{
-            color: '#4a4a68',
+            color: '#6B6B6B',
             fontSize: '0.85rem',
             lineHeight: '1.4'
           }}>

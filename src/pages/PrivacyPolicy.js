@@ -55,7 +55,7 @@ function PrivacyPolicy() {
 
       <style>{`
         .page-hero {
-          background: #1a1a2e;
+          background: #1A1A1A;
           padding: 72px 0 64px;
           position: relative;
           overflow: hidden;
@@ -63,7 +63,7 @@ function PrivacyPolicy() {
         .page-hero-bg {
           position: absolute;
           inset: 0;
-          background-image: radial-gradient(circle at 15% 50%, rgba(255,107,53,0.1) 0%, transparent 50%), radial-gradient(circle at 85% 20%, rgba(255,107,53,0.07) 0%, transparent 40%);
+          background-image: radial-gradient(circle at 15% 50%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(circle at 85% 20%, rgba(255,255,255,0.07) 0%, transparent 40%);
         }
         .page-hero-grid {
           position: absolute;
@@ -73,19 +73,19 @@ function PrivacyPolicy() {
           background-size: 60px 60px;
         }
         .toc-list a.active {
-          background: #f8f8fc;
-          color: #1a1a2e;
+          background: #FAFAFA;
+          color: #1A1A1A;
         }
         .toc-list a.active .toc-num {
-          background: #FF6B35;
+          background: #1A1A1A;
           color: white;
         }
         .info-card:hover {
-          border-color: #FF6B35;
+          border-color: #1A1A1A;
         }
         .policy-highlight {
-          background: #f8f8fc;
-          border-left: 3px solid #FF6B35;
+          background: #FAFAFA;
+          border-left: 3px solid #1A1A1A;
           border-radius: 0 10px 10px 0;
           padding: 16px 20px;
           margin: 20px 0;
@@ -125,7 +125,7 @@ function PrivacyPolicy() {
             }}>Home</Link>
             <span style={{ color: 'rgba(255,255,255,0.2)', fontSize: '0.75rem' }}>›</span>
             <span className="current" style={{
-              color: '#FF6B35',
+              color: '#1A1A1A',
               fontSize: '0.82rem',
               fontWeight: 500
             }}>Privacy Policy</span>
@@ -134,9 +134,9 @@ function PrivacyPolicy() {
             display: 'inline-flex',
             alignItems: 'center',
             gap: '8px',
-            background: 'rgba(255,107,53,0.15)',
-            border: '1px solid rgba(255,107,53,0.3)',
-            color: '#FF6B35',
+            background: 'rgba(255,255,255,0.15)',
+            border: '1px solid rgba(255,255,255,0.3)',
+            color: '#1A1A1A',
             borderRadius: '100px',
             padding: '6px 14px',
             fontSize: '0.75rem',
@@ -148,7 +148,7 @@ function PrivacyPolicy() {
             <i className="fas fa-shield-alt"></i> &nbsp;Legal
           </div>
           <h1 className="page-hero-title" style={{
-            fontFamily: "'Playfair Display', serif",
+            fontFamily: "'DM Sans', sans-serif",
             fontSize: 'clamp(2rem, 4vw, 3rem)',
             fontWeight: 700,
             color: 'white',
@@ -156,7 +156,7 @@ function PrivacyPolicy() {
             letterSpacing: '-0.02em',
             marginBottom: '14px'
           }}>
-            Privacy <em style={{ fontStyle: 'italic', color: '#FF6B35' }}>Policy</em>
+            Privacy <em style={{ fontStyle: 'italic', color: '#1A1A1A' }}>Policy</em>
           </h1>
           <p className="page-hero-sub" style={{
             color: 'rgba(255,255,255,0.5)',
@@ -180,7 +180,7 @@ function PrivacyPolicy() {
               color: 'rgba(255,255,255,0.4)',
               fontSize: '0.82rem'
             }}>
-              <i className="fas fa-calendar-alt" style={{ color: '#FF6B35', fontSize: '0.85rem' }}></i>
+              <i className="fas fa-calendar-alt" style={{ color: '#1A1A1A', fontSize: '0.85rem' }}></i>
               Last updated: January 1, 2026
             </div>
             <div className="meta-item" style={{
@@ -190,7 +190,7 @@ function PrivacyPolicy() {
               color: 'rgba(255,255,255,0.4)',
               fontSize: '0.82rem'
             }}>
-              <i className="fas fa-map-marker-alt" style={{ color: '#FF6B35', fontSize: '0.85rem' }}></i>
+              <i className="fas fa-map-marker-alt" style={{ color: '#1A1A1A', fontSize: '0.85rem' }}></i>
               Applies to: ismora.shop
             </div>
             <div className="meta-item" style={{
@@ -200,7 +200,7 @@ function PrivacyPolicy() {
               color: 'rgba(255,255,255,0.4)',
               fontSize: '0.82rem'
             }}>
-              <i className="fas fa-globe" style={{ color: '#FF6B35', fontSize: '0.85rem' }}></i>
+              <i className="fas fa-globe" style={{ color: '#1A1A1A', fontSize: '0.85rem' }}></i>
               Jurisdiction: UAE
             </div>
           </div>
@@ -220,7 +220,7 @@ function PrivacyPolicy() {
         <aside className="toc-sidebar" style={{ position: 'sticky', top: '90px' }}>
           <div className="toc-card" style={{
             background: 'white',
-            border: '1px solid #e8e8f0',
+            border: '1px solid #EAEAEA',
             borderRadius: '16px',
             padding: '24px',
             boxShadow: '0 4px 20px rgba(0,0,0,0.04)'
@@ -230,7 +230,7 @@ function PrivacyPolicy() {
               fontWeight: 700,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#4a4a68',
+              color: '#6B6B6B',
               marginBottom: '16px'
             }}>Contents</p>
             <ul className="toc-list" style={{
@@ -253,8 +253,8 @@ function PrivacyPolicy() {
                       borderRadius: '9px',
                       fontSize: '0.85rem',
                       fontWeight: 500,
-                      color: activeSection === section.id ? '#1a1a2e' : '#4a4a68',
-                      background: activeSection === section.id ? '#f8f8fc' : 'transparent',
+                      color: activeSection === section.id ? '#1A1A1A' : '#6B6B6B',
+                      background: activeSection === section.id ? '#FAFAFA' : 'transparent',
                       textDecoration: 'none',
                       transition: 'all 0.2s',
                       border: 'none',
@@ -268,8 +268,8 @@ function PrivacyPolicy() {
                       width: '22px',
                       height: '22px',
                       borderRadius: '6px',
-                      background: activeSection === section.id ? '#FF6B35' : '#e8e8f0',
-                      color: activeSection === section.id ? 'white' : '#4a4a68',
+                      background: activeSection === section.id ? '#1A1A1A' : '#EAEAEA',
+                      color: activeSection === section.id ? 'white' : '#6B6B6B',
                       fontSize: '0.68rem',
                       fontWeight: 700,
                       display: 'flex',
@@ -285,11 +285,11 @@ function PrivacyPolicy() {
             <div className="toc-contact" style={{
               marginTop: '20px',
               paddingTop: '20px',
-              borderTop: '1px solid #e8e8f0'
+              borderTop: '1px solid #EAEAEA'
             }}>
               <p style={{
                 fontSize: '0.8rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 marginBottom: '12px',
                 lineHeight: 1.5
               }}>Questions about our privacy practices? We're here to help.</p>
@@ -299,7 +299,7 @@ function PrivacyPolicy() {
                 gap: '7px',
                 fontSize: '0.82rem',
                 fontWeight: 600,
-                color: '#FF6B35',
+                color: '#1A1A1A',
                 textDecoration: 'none'
               }}>
                 <i className="fas fa-arrow-right" style={{ fontSize: '0.75rem' }}></i>
@@ -312,7 +312,7 @@ function PrivacyPolicy() {
         <article className="policy-body" style={{ minWidth: 0 }}>
           <div className="policy-highlight">
             <p>
-              <i className="fas fa-info-circle" style={{ color: '#FF6B35', marginRight: '8px' }}></i>
+              <i className="fas fa-info-circle" style={{ color: '#1A1A1A', marginRight: '8px' }}></i>
               This Privacy Policy explains what data we collect when you visit <strong>ismora.shop</strong>, how we use it, and your rights regarding that data. By using our website, you agree to the practices described here.
             </p>
           </div>
@@ -326,14 +326,14 @@ function PrivacyPolicy() {
               fontWeight: 700,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#FF6B35',
+              color: '#1A1A1A',
               marginBottom: '8px'
             }}>Section 01</p>
             <h2 className="section-heading" style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: '1.5rem',
               fontWeight: 700,
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               letterSpacing: '-0.02em',
               marginBottom: '16px',
               lineHeight: 1.2
@@ -341,12 +341,12 @@ function PrivacyPolicy() {
             <div className="section-divider" style={{
               width: '40px',
               height: '3px',
-              background: '#FF6B35',
+              background: '#1A1A1A',
               borderRadius: '2px',
               marginBottom: '20px'
             }}></div>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
@@ -360,7 +360,7 @@ function PrivacyPolicy() {
             }}>
               <div className="info-card" style={{
                 background: 'white',
-                border: '1px solid #e8e8f0',
+                border: '1px solid #EAEAEA',
                 borderRadius: '12px',
                 padding: '18px',
                 transition: 'border-color 0.2s'
@@ -369,29 +369,29 @@ function PrivacyPolicy() {
                   width: '38px',
                   height: '38px',
                   borderRadius: '10px',
-                  background: 'rgba(255,107,53,0.1)',
+                  background: 'rgba(255,255,255,0.1)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   marginBottom: '12px'
                 }}>
-                  <i className="fas fa-user" style={{ color: '#FF6B35', fontSize: '0.9rem' }}></i>
+                  <i className="fas fa-user" style={{ color: '#1A1A1A', fontSize: '0.9rem' }}></i>
                 </div>
                 <div className="info-card-title" style={{
                   fontSize: '0.85rem',
                   fontWeight: 700,
-                  color: '#1a1a2e',
+                  color: '#1A1A1A',
                   marginBottom: '6px'
                 }}>Personal Information</div>
                 <div className="info-card-text" style={{
                   fontSize: '0.82rem',
-                  color: '#4a4a68',
+                  color: '#6B6B6B',
                   lineHeight: 1.55
                 }}>Name, email address, phone number, and billing/shipping address provided during checkout.</div>
               </div>
               <div className="info-card" style={{
                 background: 'white',
-                border: '1px solid #e8e8f0',
+                border: '1px solid #EAEAEA',
                 borderRadius: '12px',
                 padding: '18px',
                 transition: 'border-color 0.2s'
@@ -400,29 +400,29 @@ function PrivacyPolicy() {
                   width: '38px',
                   height: '38px',
                   borderRadius: '10px',
-                  background: 'rgba(255,107,53,0.1)',
+                  background: 'rgba(255,255,255,0.1)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   marginBottom: '12px'
                 }}>
-                  <i className="fas fa-credit-card" style={{ color: '#FF6B35', fontSize: '0.9rem' }}></i>
+                  <i className="fas fa-credit-card" style={{ color: '#1A1A1A', fontSize: '0.9rem' }}></i>
                 </div>
                 <div className="info-card-title" style={{
                   fontSize: '0.85rem',
                   fontWeight: 700,
-                  color: '#1a1a2e',
+                  color: '#1A1A1A',
                   marginBottom: '6px'
                 }}>Payment Details</div>
                 <div className="info-card-text" style={{
                   fontSize: '0.82rem',
-                  color: '#4a4a68',
+                  color: '#6B6B6B',
                   lineHeight: 1.55
                 }}>Order amounts and payment method type. Full card numbers are never stored on our servers.</div>
               </div>
               <div className="info-card" style={{
                 background: 'white',
-                border: '1px solid #e8e8f0',
+                border: '1px solid #EAEAEA',
                 borderRadius: '12px',
                 padding: '18px',
                 transition: 'border-color 0.2s'
@@ -431,29 +431,29 @@ function PrivacyPolicy() {
                   width: '38px',
                   height: '38px',
                   borderRadius: '10px',
-                  background: 'rgba(255,107,53,0.1)',
+                  background: 'rgba(255,255,255,0.1)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   marginBottom: '12px'
                 }}>
-                  <i className="fas fa-desktop" style={{ color: '#FF6B35', fontSize: '0.9rem' }}></i>
+                  <i className="fas fa-desktop" style={{ color: '#1A1A1A', fontSize: '0.9rem' }}></i>
                 </div>
                 <div className="info-card-title" style={{
                   fontSize: '0.85rem',
                   fontWeight: 700,
-                  color: '#1a1a2e',
+                  color: '#1A1A1A',
                   marginBottom: '6px'
                 }}>Device & Usage Data</div>
                 <div className="info-card-text" style={{
                   fontSize: '0.82rem',
-                  color: '#4a4a68',
+                  color: '#6B6B6B',
                   lineHeight: 1.55
                 }}>IP address, browser type, pages visited, time spent, and referring URLs via analytics.</div>
               </div>
               <div className="info-card" style={{
                 background: 'white',
-                border: '1px solid #e8e8f0',
+                border: '1px solid #EAEAEA',
                 borderRadius: '12px',
                 padding: '18px',
                 transition: 'border-color 0.2s'
@@ -462,23 +462,23 @@ function PrivacyPolicy() {
                   width: '38px',
                   height: '38px',
                   borderRadius: '10px',
-                  background: 'rgba(255,107,53,0.1)',
+                  background: 'rgba(255,255,255,0.1)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   marginBottom: '12px'
                 }}>
-                  <i className="fas fa-comments" style={{ color: '#FF6B35', fontSize: '0.9rem' }}></i>
+                  <i className="fas fa-comments" style={{ color: '#1A1A1A', fontSize: '0.9rem' }}></i>
                 </div>
                 <div className="info-card-title" style={{
                   fontSize: '0.85rem',
                   fontWeight: 700,
-                  color: '#1a1a2e',
+                  color: '#1A1A1A',
                   marginBottom: '6px'
                 }}>Communications</div>
                 <div className="info-card-text" style={{
                   fontSize: '0.82rem',
-                  color: '#4a4a68',
+                  color: '#6B6B6B',
                   lineHeight: 1.55
                 }}>Messages you send us via contact forms, emails, or customer support channels.</div>
               </div>
@@ -494,14 +494,14 @@ function PrivacyPolicy() {
               fontWeight: 700,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#FF6B35',
+              color: '#1A1A1A',
               marginBottom: '8px'
             }}>Section 02</p>
             <h2 className="section-heading" style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: '1.5rem',
               fontWeight: 700,
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               letterSpacing: '-0.02em',
               marginBottom: '16px',
               lineHeight: 1.2
@@ -509,12 +509,12 @@ function PrivacyPolicy() {
             <div className="section-divider" style={{
               width: '40px',
               height: '3px',
-              background: '#FF6B35',
+              background: '#1A1A1A',
               borderRadius: '2px',
               marginBottom: '20px'
             }}></div>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
@@ -532,7 +532,7 @@ function PrivacyPolicy() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -540,7 +540,7 @@ function PrivacyPolicy() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -551,7 +551,7 @@ function PrivacyPolicy() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -559,7 +559,7 @@ function PrivacyPolicy() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -570,7 +570,7 @@ function PrivacyPolicy() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -578,7 +578,7 @@ function PrivacyPolicy() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -589,7 +589,7 @@ function PrivacyPolicy() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -597,7 +597,7 @@ function PrivacyPolicy() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -608,7 +608,7 @@ function PrivacyPolicy() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -616,7 +616,7 @@ function PrivacyPolicy() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -627,7 +627,7 @@ function PrivacyPolicy() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -635,7 +635,7 @@ function PrivacyPolicy() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -653,14 +653,14 @@ function PrivacyPolicy() {
               fontWeight: 700,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#FF6B35',
+              color: '#1A1A1A',
               marginBottom: '8px'
             }}>Section 03</p>
             <h2 className="section-heading" style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: '1.5rem',
               fontWeight: 700,
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               letterSpacing: '-0.02em',
               marginBottom: '16px',
               lineHeight: 1.2
@@ -668,12 +668,12 @@ function PrivacyPolicy() {
             <div className="section-divider" style={{
               width: '40px',
               height: '3px',
-              background: '#FF6B35',
+              background: '#1A1A1A',
               borderRadius: '2px',
               marginBottom: '20px'
             }}></div>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
@@ -691,7 +691,7 @@ function PrivacyPolicy() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -699,18 +699,18 @@ function PrivacyPolicy() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
-                <strong style={{ color: '#1a1a2e' }}>Suppliers & Fulfillment Partners:</strong> Your shipping name and address are shared with our product suppliers to dispatch your order.
+                <strong style={{ color: '#1A1A1A' }}>Suppliers & Fulfillment Partners:</strong> Your shipping name and address are shared with our product suppliers to dispatch your order.
               </li>
               <li style={{
                 display: 'flex',
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -718,18 +718,18 @@ function PrivacyPolicy() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
-                <strong style={{ color: '#1a1a2e' }}>Delivery Services:</strong> Courier companies receive your contact details and address for delivery coordination.
+                <strong style={{ color: '#1A1A1A' }}>Delivery Services:</strong> Courier companies receive your contact details and address for delivery coordination.
               </li>
               <li style={{
                 display: 'flex',
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -737,18 +737,18 @@ function PrivacyPolicy() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
-                <strong style={{ color: '#1a1a2e' }}>Payment Processors:</strong> Payment gateways process your transaction data under their own privacy policies.
+                <strong style={{ color: '#1A1A1A' }}>Payment Processors:</strong> Payment gateways process your transaction data under their own privacy policies.
               </li>
               <li style={{
                 display: 'flex',
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -756,18 +756,18 @@ function PrivacyPolicy() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
-                <strong style={{ color: '#1a1a2e' }}>Analytics Providers:</strong> Aggregated, anonymized usage data may be shared with Google Analytics to understand site performance.
+                <strong style={{ color: '#1A1A1A' }}>Analytics Providers:</strong> Aggregated, anonymized usage data may be shared with Google Analytics to understand site performance.
               </li>
               <li style={{
                 display: 'flex',
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -775,17 +775,17 @@ function PrivacyPolicy() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
-                <strong style={{ color: '#1a1a2e' }}>Legal Requirements:</strong> We may disclose information when required by law or to protect our rights.
+                <strong style={{ color: '#1A1A1A' }}>Legal Requirements:</strong> We may disclose information when required by law or to protect our rights.
               </li>
             </ul>
             <div className="policy-highlight">
               <p style={{
                 fontSize: '0.9rem',
-                color: '#1a1a2e',
+                color: '#1A1A1A',
                 lineHeight: 1.65,
                 fontWeight: 500,
                 margin: 0
@@ -802,14 +802,14 @@ function PrivacyPolicy() {
               fontWeight: 700,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#FF6B35',
+              color: '#1A1A1A',
               marginBottom: '8px'
             }}>Section 04</p>
             <h2 className="section-heading" style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: '1.5rem',
               fontWeight: 700,
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               letterSpacing: '-0.02em',
               marginBottom: '16px',
               lineHeight: 1.2
@@ -817,12 +817,12 @@ function PrivacyPolicy() {
             <div className="section-divider" style={{
               width: '40px',
               height: '3px',
-              background: '#FF6B35',
+              background: '#1A1A1A',
               borderRadius: '2px',
               marginBottom: '20px'
             }}></div>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
@@ -840,7 +840,7 @@ function PrivacyPolicy() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -848,18 +848,18 @@ function PrivacyPolicy() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
-                <strong style={{ color: '#1a1a2e' }}>Essential Cookies:</strong> Required for the website to function — including cart storage and session management.
+                <strong style={{ color: '#1A1A1A' }}>Essential Cookies:</strong> Required for the website to function — including cart storage and session management.
               </li>
               <li style={{
                 display: 'flex',
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -867,18 +867,18 @@ function PrivacyPolicy() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
-                <strong style={{ color: '#1a1a2e' }}>Analytics Cookies:</strong> Google Analytics cookies help us understand how visitors interact with our site.
+                <strong style={{ color: '#1A1A1A' }}>Analytics Cookies:</strong> Google Analytics cookies help us understand how visitors interact with our site.
               </li>
               <li style={{
                 display: 'flex',
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -886,15 +886,15 @@ function PrivacyPolicy() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
-                <strong style={{ color: '#1a1a2e' }}>Advertising Cookies:</strong> Google AdSense may use cookies to serve relevant ads based on your browsing history.
+                <strong style={{ color: '#1A1A1A' }}>Advertising Cookies:</strong> Google AdSense may use cookies to serve relevant ads based on your browsing history.
               </li>
             </ul>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
@@ -910,14 +910,14 @@ function PrivacyPolicy() {
               fontWeight: 700,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#FF6B35',
+              color: '#1A1A1A',
               marginBottom: '8px'
             }}>Section 05</p>
             <h2 className="section-heading" style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: '1.5rem',
               fontWeight: 700,
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               letterSpacing: '-0.02em',
               marginBottom: '16px',
               lineHeight: 1.2
@@ -925,12 +925,12 @@ function PrivacyPolicy() {
             <div className="section-divider" style={{
               width: '40px',
               height: '3px',
-              background: '#FF6B35',
+              background: '#1A1A1A',
               borderRadius: '2px',
               marginBottom: '20px'
             }}></div>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
@@ -948,7 +948,7 @@ function PrivacyPolicy() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -956,7 +956,7 @@ function PrivacyPolicy() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -967,7 +967,7 @@ function PrivacyPolicy() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -975,7 +975,7 @@ function PrivacyPolicy() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -986,7 +986,7 @@ function PrivacyPolicy() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -994,7 +994,7 @@ function PrivacyPolicy() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -1005,7 +1005,7 @@ function PrivacyPolicy() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -1013,7 +1013,7 @@ function PrivacyPolicy() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
@@ -1021,7 +1021,7 @@ function PrivacyPolicy() {
               </li>
             </ul>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
@@ -1037,14 +1037,14 @@ function PrivacyPolicy() {
               fontWeight: 700,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#FF6B35',
+              color: '#1A1A1A',
               marginBottom: '8px'
             }}>Section 06</p>
             <h2 className="section-heading" style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: '1.5rem',
               fontWeight: 700,
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               letterSpacing: '-0.02em',
               marginBottom: '16px',
               lineHeight: 1.2
@@ -1052,12 +1052,12 @@ function PrivacyPolicy() {
             <div className="section-divider" style={{
               width: '40px',
               height: '3px',
-              background: '#FF6B35',
+              background: '#1A1A1A',
               borderRadius: '2px',
               marginBottom: '20px'
             }}></div>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
@@ -1075,7 +1075,7 @@ function PrivacyPolicy() {
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -1083,18 +1083,18 @@ function PrivacyPolicy() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
-                <strong style={{ color: '#1a1a2e' }}>Access:</strong> Request a copy of the personal data we hold about you
+                <strong style={{ color: '#1A1A1A' }}>Access:</strong> Request a copy of the personal data we hold about you
               </li>
               <li style={{
                 display: 'flex',
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -1102,18 +1102,18 @@ function PrivacyPolicy() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
-                <strong style={{ color: '#1a1a2e' }}>Correction:</strong> Ask us to update or correct inaccurate information
+                <strong style={{ color: '#1A1A1A' }}>Correction:</strong> Ask us to update or correct inaccurate information
               </li>
               <li style={{
                 display: 'flex',
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -1121,18 +1121,18 @@ function PrivacyPolicy() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
-                <strong style={{ color: '#1a1a2e' }}>Deletion:</strong> Request that we delete your personal data (subject to legal retention requirements)
+                <strong style={{ color: '#1A1A1A' }}>Deletion:</strong> Request that we delete your personal data (subject to legal retention requirements)
               </li>
               <li style={{
                 display: 'flex',
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -1140,18 +1140,18 @@ function PrivacyPolicy() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
-                <strong style={{ color: '#1a1a2e' }}>Opt-Out:</strong> Unsubscribe from marketing emails at any time using the link in our emails
+                <strong style={{ color: '#1A1A1A' }}>Opt-Out:</strong> Unsubscribe from marketing emails at any time using the link in our emails
               </li>
               <li style={{
                 display: 'flex',
                 alignItems: 'flex-start',
                 gap: '12px',
                 fontSize: '0.93rem',
-                color: '#4a4a68',
+                color: '#6B6B6B',
                 lineHeight: 1.6
               }}>
                 <span style={{
@@ -1159,11 +1159,11 @@ function PrivacyPolicy() {
                   width: '7px',
                   height: '7px',
                   borderRadius: '50%',
-                  background: '#FF6B35',
+                  background: '#1A1A1A',
                   flexShrink: 0,
                   marginTop: '8px'
                 }}></span>
-                <strong style={{ color: '#1a1a2e' }}>Portability:</strong> Request your data in a portable, machine-readable format
+                <strong style={{ color: '#1A1A1A' }}>Portability:</strong> Request your data in a portable, machine-readable format
               </li>
             </ul>
           </section>
@@ -1177,14 +1177,14 @@ function PrivacyPolicy() {
               fontWeight: 700,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#FF6B35',
+              color: '#1A1A1A',
               marginBottom: '8px'
             }}>Section 07</p>
             <h2 className="section-heading" style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: '1.5rem',
               fontWeight: 700,
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               letterSpacing: '-0.02em',
               marginBottom: '16px',
               lineHeight: 1.2
@@ -1192,12 +1192,12 @@ function PrivacyPolicy() {
             <div className="section-divider" style={{
               width: '40px',
               height: '3px',
-              background: '#FF6B35',
+              background: '#1A1A1A',
               borderRadius: '2px',
               marginBottom: '20px'
             }}></div>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
@@ -1213,14 +1213,14 @@ function PrivacyPolicy() {
               fontWeight: 700,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#FF6B35',
+              color: '#1A1A1A',
               marginBottom: '8px'
             }}>Section 08</p>
             <h2 className="section-heading" style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: '1.5rem',
               fontWeight: 700,
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               letterSpacing: '-0.02em',
               marginBottom: '16px',
               lineHeight: 1.2
@@ -1228,12 +1228,12 @@ function PrivacyPolicy() {
             <div className="section-divider" style={{
               width: '40px',
               height: '3px',
-              background: '#FF6B35',
+              background: '#1A1A1A',
               borderRadius: '2px',
               marginBottom: '20px'
             }}></div>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
@@ -1249,14 +1249,14 @@ function PrivacyPolicy() {
               fontWeight: 700,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#FF6B35',
+              color: '#1A1A1A',
               marginBottom: '8px'
             }}>Section 09</p>
             <h2 className="section-heading" style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: '1.5rem',
               fontWeight: 700,
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               letterSpacing: '-0.02em',
               marginBottom: '16px',
               lineHeight: 1.2
@@ -1264,18 +1264,18 @@ function PrivacyPolicy() {
             <div className="section-divider" style={{
               width: '40px',
               height: '3px',
-              background: '#FF6B35',
+              background: '#1A1A1A',
               borderRadius: '2px',
               marginBottom: '20px'
             }}></div>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
             }}>We may update this Privacy Policy from time to time to reflect changes in our practices or legal requirements. When we make material changes, we will update the "Last updated" date at the top of this page.</p>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
@@ -1291,14 +1291,14 @@ function PrivacyPolicy() {
               fontWeight: 700,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#FF6B35',
+              color: '#1A1A1A',
               marginBottom: '8px'
             }}>Section 10</p>
             <h2 className="section-heading" style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontSize: '1.5rem',
               fontWeight: 700,
-              color: '#1a1a2e',
+              color: '#1A1A1A',
               letterSpacing: '-0.02em',
               marginBottom: '16px',
               lineHeight: 1.2
@@ -1306,12 +1306,12 @@ function PrivacyPolicy() {
             <div className="section-divider" style={{
               width: '40px',
               height: '3px',
-              background: '#FF6B35',
+              background: '#1A1A1A',
               borderRadius: '2px',
               marginBottom: '20px'
             }}></div>
             <p className="policy-text" style={{
-              color: '#4a4a68',
+              color: '#6B6B6B',
               fontSize: '0.93rem',
               lineHeight: 1.75,
               marginBottom: '14px'
@@ -1324,7 +1324,7 @@ function PrivacyPolicy() {
             }}>
               <div className="info-card" style={{
                 background: 'white',
-                border: '1px solid #e8e8f0',
+                border: '1px solid #EAEAEA',
                 borderRadius: '12px',
                 padding: '18px',
                 transition: 'border-color 0.2s'
@@ -1333,23 +1333,23 @@ function PrivacyPolicy() {
                   width: '38px',
                   height: '38px',
                   borderRadius: '10px',
-                  background: 'rgba(255,107,53,0.1)',
+                  background: 'rgba(255,255,255,0.1)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   marginBottom: '12px'
                 }}>
-                  <i className="fas fa-envelope" style={{ color: '#FF6B35', fontSize: '0.9rem' }}></i>
+                  <i className="fas fa-envelope" style={{ color: '#1A1A1A', fontSize: '0.9rem' }}></i>
                 </div>
                 <div className="info-card-title" style={{
                   fontSize: '0.85rem',
                   fontWeight: 700,
-                  color: '#1a1a2e',
+                  color: '#1A1A1A',
                   marginBottom: '6px'
                 }}>Email Us</div>
                 <div className="info-card-text" style={{
                   fontSize: '0.82rem',
-                  color: '#4a4a68',
+                  color: '#6B6B6B',
                   lineHeight: 1.55
                 }}>
                   ismora.ae@gmail.com<br />
@@ -1358,7 +1358,7 @@ function PrivacyPolicy() {
               </div>
               <div className="info-card" style={{
                 background: 'white',
-                border: '1px solid #e8e8f0',
+                border: '1px solid #EAEAEA',
                 borderRadius: '12px',
                 padding: '18px',
                 transition: 'border-color 0.2s'
@@ -1367,26 +1367,26 @@ function PrivacyPolicy() {
                   width: '38px',
                   height: '38px',
                   borderRadius: '10px',
-                  background: 'rgba(255,107,53,0.1)',
+                  background: 'rgba(255,255,255,0.1)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   marginBottom: '12px'
                 }}>
-                  <i className="fas fa-headset" style={{ color: '#FF6B35', fontSize: '0.9rem' }}></i>
+                  <i className="fas fa-headset" style={{ color: '#1A1A1A', fontSize: '0.9rem' }}></i>
                 </div>
                 <div className="info-card-title" style={{
                   fontSize: '0.85rem',
                   fontWeight: 700,
-                  color: '#1a1a2e',
+                  color: '#1A1A1A',
                   marginBottom: '6px'
                 }}>Contact Page</div>
                 <div className="info-card-text" style={{
                   fontSize: '0.82rem',
-                  color: '#4a4a68',
+                  color: '#6B6B6B',
                   lineHeight: 1.55
                 }}>
-                  <Link to="/contact-us" style={{ color: '#FF6B35', fontWeight: 600, textDecoration: 'none' }}>Visit our Contact Page</Link>
+                  <Link to="/contact-us" style={{ color: '#1A1A1A', fontWeight: 600, textDecoration: 'none' }}>Visit our Contact Page</Link>
                   <br />to send us a message.
                 </div>
               </div>

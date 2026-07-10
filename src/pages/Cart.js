@@ -20,7 +20,7 @@ function Cart() {
           <div style={{
             width: '80px',
             height: '80px',
-            background: '#f8f8fc',
+            background: '#FAFAFA',
             borderRadius: '50%',
             display: 'flex',
             alignItems: 'center',
@@ -30,7 +30,7 @@ function Cart() {
             <i className="fas fa-shopping-bag" style={{ fontSize: '2rem', color: '#ccc' }}></i>
           </div>
           <h2 style={{ fontWeight: '700', marginBottom: '8px' }}>Your cart is empty</h2>
-          <Link to="/shop" style={{ color: '#FF6B35', textDecoration: 'none', fontWeight: '600' }}>Continue Shopping →</Link>
+          <Link to="/shop" style={{ color: '#1A1A1A', textDecoration: 'none', fontWeight: '600' }}>Continue Shopping →</Link>
         </div>
         <Footer />
       </>
@@ -41,7 +41,7 @@ function Cart() {
     <>
       <Navbar />
       <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '40px 24px' }}>
-        <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: '2.5rem', fontWeight: '700', marginBottom: '32px' }}>Shopping Cart</h1>
+        <h1 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '2.5rem', fontWeight: '700', marginBottom: '32px' }}>Shopping Cart</h1>
         
         <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '48px' }}>
           <div>
@@ -50,7 +50,7 @@ function Cart() {
                 display: 'flex',
                 gap: '16px',
                 padding: '16px 0',
-                borderBottom: '1px solid #e8e8f0'
+                borderBottom: '1px solid #EAEAEA'
               }}>
                 <img
                   src={item.image}
@@ -60,18 +60,18 @@ function Cart() {
                     height: '100px',
                     borderRadius: '8px',
                     objectFit: 'cover',
-                    border: '1px solid #e8e8f0'
+                    border: '1px solid #EAEAEA'
                   }}
                   onError={(e) => e.target.src = 'https://placehold.co/100x100/f0f0f0/aaa?text=IMG'}
                 />
                 <div style={{ flex: 1 }}>
                   <h3 style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '4px' }}>{item.name}</h3>
-                  <p style={{ color: '#4a4a68', fontSize: '0.9rem', marginBottom: '8px' }}>{formatPrice(item.price)}</p>
+                  <p style={{ color: '#6B6B6B', fontSize: '0.9rem', marginBottom: '8px' }}>{formatPrice(item.price)}</p>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                     <div style={{
                       display: 'flex',
                       alignItems: 'center',
-                      border: '1.5px solid #e8e8f0',
+                      border: '1.5px solid #EAEAEA',
                       borderRadius: '8px',
                       overflow: 'hidden'
                     }}>
@@ -84,7 +84,7 @@ function Cart() {
                           border: 'none',
                           cursor: 'pointer',
                           fontSize: '1rem',
-                          color: '#4a4a68',
+                          color: '#6B6B6B',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center'
@@ -95,8 +95,8 @@ function Cart() {
                         textAlign: 'center',
                         fontSize: '0.875rem',
                         fontWeight: '600',
-                        borderLeft: '1.5px solid #e8e8f0',
-                        borderRight: '1.5px solid #e8e8f0'
+                        borderLeft: '1.5px solid #EAEAEA',
+                        borderRight: '1.5px solid #EAEAEA'
                       }}>{item.quantity}</span>
                       <button
                         onClick={() => updateQuantity(item.id, item.quantity + 1)}
@@ -107,7 +107,7 @@ function Cart() {
                           border: 'none',
                           cursor: 'pointer',
                           fontSize: '1rem',
-                          color: '#4a4a68',
+                          color: '#6B6B6B',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center'
@@ -155,7 +155,7 @@ function Cart() {
           </div>
 
           <div style={{
-            background: '#f8f8fc',
+            background: '#FAFAFA',
             padding: '24px',
             borderRadius: '16px',
             height: 'fit-content',
@@ -167,7 +167,7 @@ function Cart() {
               display: 'flex',
               justifyContent: 'space-between',
               padding: '8px 0',
-              borderBottom: '1px solid #e8e8f0'
+              borderBottom: '1px solid #EAEAEA'
             }}>
               <span>Subtotal</span>
               <span>{formatPrice(total)}</span>
@@ -176,7 +176,7 @@ function Cart() {
               display: 'flex',
               justifyContent: 'space-between',
               padding: '8px 0',
-              borderBottom: '1px solid #e8e8f0'
+              borderBottom: '1px solid #EAEAEA'
             }}>
               <span>Shipping</span>
               <span>Free</span>
@@ -196,7 +196,7 @@ function Cart() {
               width: '100%',
               padding: '14px',
               borderRadius: '10px',
-              background: '#FF6B35',
+              background: '#1A1A1A',
               color: 'white',
               textDecoration: 'none',
               fontWeight: '600',
