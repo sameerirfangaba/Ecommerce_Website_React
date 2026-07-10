@@ -382,7 +382,7 @@ function CSVModal({ onClose, onImport }) {
                 padding: '12px',
                 borderRadius: '12px',
                 border: 'none',
-                background: '#FF6B35',
+                background: '#1A1A1A',
                 color: 'white',
                 fontWeight: 600,
                 fontSize: '0.875rem',

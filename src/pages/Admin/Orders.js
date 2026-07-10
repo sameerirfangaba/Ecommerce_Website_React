@@ -134,7 +134,7 @@ function Orders({ formatPrice }) {
           gap: '12px'
         }}>
           <h2 style={{ fontSize: '1.25rem', fontWeight: 700 }}>
-            <i className="fas fa-shopping-cart" style={{ color: '#FF6B35', marginRight: '8px' }}></i>
+            <i className="fas fa-shopping-cart" style={{ color: '#1A1A1A', marginRight: '8px' }}></i>
             All Orders
             <span style={{
               fontSize: '0.75rem',
@@ -171,7 +171,7 @@ function Orders({ formatPrice }) {
                   width: '200px',
                   transition: 'all 0.2s'
                 }}
-                onFocus={(e) => e.currentTarget.style.borderColor = '#FF6B35'}
+                onFocus={(e) => e.currentTarget.style.borderColor = '#1A1A1A'}
                 onBlur={(e) => e.currentTarget.style.borderColor = '#e5e7eb'}
               />
             </div>
@@ -206,7 +206,7 @@ function Orders({ formatPrice }) {
             color: '#6b7280'
           }}>
             <i className="fas fa-inbox" style={{ fontSize: '3rem', display: 'block', marginBottom: '16px', opacity: 0.3 }}></i>
-            <h3 style={{ fontSize: '1.1rem', fontWeight: 600, color: '#1a1a2e', marginBottom: '4px' }}>
+            <h3 style={{ fontSize: '1.1rem', fontWeight: 600, color: '#111827', marginBottom: '4px' }}>
               {searchTerm || filter !== 'all' ? 'No matching orders' : 'No orders yet'}
             </h3>
             <p style={{ fontSize: '0.875rem' }}>
@@ -223,14 +223,14 @@ function Orders({ formatPrice }) {
             }}>
               <thead>
                 <tr>
-                  <th style={{ textAlign: 'left', padding: '12px 10px', color: '#6b7280', fontWeight: 600, fontSize: '0.7rem', textTransform: 'uppercase', borderBottom: '2px solid #e8e8f0' }}>Order ID</th>
-                  <th style={{ textAlign: 'left', padding: '12px 10px', color: '#6b7280', fontWeight: 600, fontSize: '0.7rem', textTransform: 'uppercase', borderBottom: '2px solid #e8e8f0' }}>Customer</th>
-                  <th style={{ textAlign: 'left', padding: '12px 10px', color: '#6b7280', fontWeight: 600, fontSize: '0.7rem', textTransform: 'uppercase', borderBottom: '2px solid #e8e8f0' }}>Date</th>
-                  <th style={{ textAlign: 'center', padding: '12px 10px', color: '#6b7280', fontWeight: 600, fontSize: '0.7rem', textTransform: 'uppercase', borderBottom: '2px solid #e8e8f0' }}>Items</th>
-                  <th style={{ textAlign: 'right', padding: '12px 10px', color: '#6b7280', fontWeight: 600, fontSize: '0.7rem', textTransform: 'uppercase', borderBottom: '2px solid #e8e8f0' }}>Total</th>
-                  <th style={{ textAlign: 'center', padding: '12px 10px', color: '#6b7280', fontWeight: 600, fontSize: '0.7rem', textTransform: 'uppercase', borderBottom: '2px solid #e8e8f0' }}>Payment</th>
-                  <th style={{ textAlign: 'center', padding: '12px 10px', color: '#6b7280', fontWeight: 600, fontSize: '0.7rem', textTransform: 'uppercase', borderBottom: '2px solid #e8e8f0' }}>Status</th>
-                  <th style={{ textAlign: 'center', padding: '12px 10px', color: '#6b7280', fontWeight: 600, fontSize: '0.7rem', textTransform: 'uppercase', borderBottom: '2px solid #e8e8f0' }}>Action</th>
+                  <th style={{ textAlign: 'left', padding: '12px 10px', color: '#6b7280', fontWeight: 600, fontSize: '0.7rem', textTransform: 'uppercase', borderBottom: '2px solid #E5E7EB' }}>Order ID</th>
+                  <th style={{ textAlign: 'left', padding: '12px 10px', color: '#6b7280', fontWeight: 600, fontSize: '0.7rem', textTransform: 'uppercase', borderBottom: '2px solid #E5E7EB' }}>Customer</th>
+                  <th style={{ textAlign: 'left', padding: '12px 10px', color: '#6b7280', fontWeight: 600, fontSize: '0.7rem', textTransform: 'uppercase', borderBottom: '2px solid #E5E7EB' }}>Date</th>
+                  <th style={{ textAlign: 'center', padding: '12px 10px', color: '#6b7280', fontWeight: 600, fontSize: '0.7rem', textTransform: 'uppercase', borderBottom: '2px solid #E5E7EB' }}>Items</th>
+                  <th style={{ textAlign: 'right', padding: '12px 10px', color: '#6b7280', fontWeight: 600, fontSize: '0.7rem', textTransform: 'uppercase', borderBottom: '2px solid #E5E7EB' }}>Total</th>
+                  <th style={{ textAlign: 'center', padding: '12px 10px', color: '#6b7280', fontWeight: 600, fontSize: '0.7rem', textTransform: 'uppercase', borderBottom: '2px solid #E5E7EB' }}>Payment</th>
+                  <th style={{ textAlign: 'center', padding: '12px 10px', color: '#6b7280', fontWeight: 600, fontSize: '0.7rem', textTransform: 'uppercase', borderBottom: '2px solid #E5E7EB' }}>Status</th>
+                  <th style={{ textAlign: 'center', padding: '12px 10px', color: '#6b7280', fontWeight: 600, fontSize: '0.7rem', textTransform: 'uppercase', borderBottom: '2px solid #E5E7EB' }}>Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -274,7 +274,7 @@ function Orders({ formatPrice }) {
                           {itemsCount}
                         </div>
                       </td>
-                      <td style={{ padding: '12px 10px', textAlign: 'right', fontWeight: 700, color: '#FF6B35', fontSize: '0.95rem' }}>
+                      <td style={{ padding: '12px 10px', textAlign: 'right', fontWeight: 700, color: '#1A1A1A', fontSize: '0.95rem' }}>
                         {formatPrice(order.total || 0)}
                       </td>
                       <td style={{ padding: '12px 10px', textAlign: 'center' }}>
@@ -330,7 +330,7 @@ function Orders({ formatPrice }) {
                           <button
                             onClick={() => viewOrderDetails(order)}
                             style={{
-                              color: '#FF6B35',
+                              color: '#1A1A1A',
                               background: 'none',
                               border: 'none',
                               cursor: 'pointer',
@@ -339,7 +339,7 @@ function Orders({ formatPrice }) {
                               borderRadius: '6px',
                               transition: 'background 0.2s'
                             }}
-                            onMouseEnter={(e) => e.currentTarget.style.background = '#fef3c7'}
+                            onMouseEnter={(e) => e.currentTarget.style.background = '#EEF2FF'}
                             onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
                             title="View Details"
                           >

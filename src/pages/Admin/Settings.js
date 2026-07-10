@@ -156,13 +156,14 @@ function Settings() {
     <>
       <style>{`
         .settings-info-box {
-          background: #fffbeb;
-          border: 1.5px solid #fde68a;
+          background: #FAFAFA;
+          border: 1px solid #EAEAEA;
+          border-left: 3px solid #1A1A1A;
           border-radius: 12px;
           padding: 14px 18px;
           margin-bottom: 20px;
           font-size: 0.82rem;
-          color: #92400e;
+          color: #1A1A1A;
           display: flex;
           align-items: flex-start;
           gap: 10px;
@@ -191,7 +192,7 @@ function Settings() {
         border: '1px solid #f0f0f0'
       }}>
         <h2 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '8px' }}>
-          <i className="fas fa-cog" style={{ color: '#FF6B35', marginRight: '8px' }}></i>
+          <i className="fas fa-cog" style={{ color: '#1A1A1A', marginRight: '8px' }}></i>
           Store Configuration
         </h2>
 
@@ -574,7 +575,7 @@ function Settings() {
             padding: '14px',
             borderRadius: '12px',
             border: 'none',
-            background: '#FF6B35',
+            background: '#1A1A1A',
             color: 'white',
             fontSize: '1rem',
             fontWeight: 600,
@@ -587,10 +588,10 @@ function Settings() {
             gap: '8px'
           }}
           onMouseEnter={(e) => {
-            if (!saving) e.currentTarget.style.background = '#e55a25';
+            if (!saving) e.currentTarget.style.background = '#000000';
           }}
           onMouseLeave={(e) => {
-            if (!saving) e.currentTarget.style.background = '#FF6B35';
+            if (!saving) e.currentTarget.style.background = '#1A1A1A';
           }}
         >
           <i className="fas fa-save"></i>
@@ -604,7 +605,7 @@ function Settings() {
           position: 'fixed',
           bottom: '2rem',
           right: '2rem',
-          background: toast.type === 'success' ? '#1a1a2e' : '#ef4444',
+          background: toast.type === 'success' ? '#111827' : '#ef4444',
           color: 'white',
           padding: '1rem 2rem',
           borderRadius: '1rem',

@@ -75,7 +75,7 @@ function BlogManagement() {
           gap: '12px'
         }}>
           <h2 style={{ fontSize: '1.25rem', fontWeight: 700 }}>
-            <i className="fas fa-newspaper" style={{ color: '#FF6B35', marginRight: '8px' }}></i>
+            <i className="fas fa-newspaper" style={{ color: '#1A1A1A', marginRight: '8px' }}></i>
             Blog Management
             <span style={{
               fontSize: '0.75rem',
@@ -92,7 +92,7 @@ function BlogManagement() {
               padding: '10px 20px',
               borderRadius: '10px',
               border: 'none',
-              background: '#FF6B35',
+              background: '#1A1A1A',
               color: 'white',
               cursor: 'pointer',
               fontWeight: 600,
@@ -102,11 +102,11 @@ function BlogManagement() {
               transition: 'all 0.2s'
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = '#e55a25';
+              e.currentTarget.style.background = '#000000';
               e.currentTarget.style.transform = 'translateY(-2px)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = '#FF6B35';
+              e.currentTarget.style.background = '#1A1A1A';
               e.currentTarget.style.transform = 'translateY(0)';
             }}
           >
@@ -121,7 +121,7 @@ function BlogManagement() {
             color: '#6b7280'
           }}>
             <i className="fas fa-newspaper" style={{ fontSize: '3rem', display: 'block', marginBottom: '16px', opacity: 0.3 }}></i>
-            <h3 style={{ fontSize: '1.1rem', fontWeight: 600, color: '#1a1a2e', marginBottom: '4px' }}>
+            <h3 style={{ fontSize: '1.1rem', fontWeight: 600, color: '#111827', marginBottom: '4px' }}>
               No blogs yet
             </h3>
             <p style={{ fontSize: '0.875rem' }}>Click "Add Blog" to create your first blog post</p>
@@ -135,12 +135,12 @@ function BlogManagement() {
             }}>
               <thead>
                 <tr>
-                  <th style={{ textAlign: 'left', padding: '12px 10px', color: '#6b7280', fontWeight: 600, fontSize: '0.7rem', textTransform: 'uppercase', borderBottom: '2px solid #e8e8f0' }}>Title</th>
-                  <th style={{ textAlign: 'left', padding: '12px 10px', color: '#6b7280', fontWeight: 600, fontSize: '0.7rem', textTransform: 'uppercase', borderBottom: '2px solid #e8e8f0' }}>Category</th>
-                  <th style={{ textAlign: 'left', padding: '12px 10px', color: '#6b7280', fontWeight: 600, fontSize: '0.7rem', textTransform: 'uppercase', borderBottom: '2px solid #e8e8f0' }}>Author</th>
-                  <th style={{ textAlign: 'center', padding: '12px 10px', color: '#6b7280', fontWeight: 600, fontSize: '0.7rem', textTransform: 'uppercase', borderBottom: '2px solid #e8e8f0' }}>Views</th>
-                  <th style={{ textAlign: 'center', padding: '12px 10px', color: '#6b7280', fontWeight: 600, fontSize: '0.7rem', textTransform: 'uppercase', borderBottom: '2px solid #e8e8f0' }}>Date</th>
-                  <th style={{ textAlign: 'center', padding: '12px 10px', color: '#6b7280', fontWeight: 600, fontSize: '0.7rem', textTransform: 'uppercase', borderBottom: '2px solid #e8e8f0' }}>Actions</th>
+                  <th style={{ textAlign: 'left', padding: '12px 10px', color: '#6b7280', fontWeight: 600, fontSize: '0.7rem', textTransform: 'uppercase', borderBottom: '2px solid #E5E7EB' }}>Title</th>
+                  <th style={{ textAlign: 'left', padding: '12px 10px', color: '#6b7280', fontWeight: 600, fontSize: '0.7rem', textTransform: 'uppercase', borderBottom: '2px solid #E5E7EB' }}>Category</th>
+                  <th style={{ textAlign: 'left', padding: '12px 10px', color: '#6b7280', fontWeight: 600, fontSize: '0.7rem', textTransform: 'uppercase', borderBottom: '2px solid #E5E7EB' }}>Author</th>
+                  <th style={{ textAlign: 'center', padding: '12px 10px', color: '#6b7280', fontWeight: 600, fontSize: '0.7rem', textTransform: 'uppercase', borderBottom: '2px solid #E5E7EB' }}>Views</th>
+                  <th style={{ textAlign: 'center', padding: '12px 10px', color: '#6b7280', fontWeight: 600, fontSize: '0.7rem', textTransform: 'uppercase', borderBottom: '2px solid #E5E7EB' }}>Date</th>
+                  <th style={{ textAlign: 'center', padding: '12px 10px', color: '#6b7280', fontWeight: 600, fontSize: '0.7rem', textTransform: 'uppercase', borderBottom: '2px solid #E5E7EB' }}>Actions</th>
                 </tr>
               </thead>
               <tbody>

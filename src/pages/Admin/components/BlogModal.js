@@ -411,7 +411,7 @@ function BlogModal({ blog, onClose, onSave }) {
               background: '#fafafa'
             }}
             onClick={() => document.getElementById('featured-image-input').click()}
-            onDragOver={(e) => { e.preventDefault(); e.currentTarget.style.borderColor = '#FF6B35'; e.currentTarget.style.background = '#fff7ed'; }}
+            onDragOver={(e) => { e.preventDefault(); e.currentTarget.style.borderColor = '#1A1A1A'; e.currentTarget.style.background = '#fff7ed'; }}
             onDragLeave={(e) => { e.currentTarget.style.borderColor = '#d1d5db'; e.currentTarget.style.background = '#fafafa'; }}
             onDrop={(e) => {
               e.preventDefault();
@@ -432,7 +432,7 @@ function BlogModal({ blog, onClose, onSave }) {
               />
               {uploadingImage ? (
                 <div style={{ padding: '20px' }}>
-                  <i className="fas fa-spinner fa-spin" style={{ fontSize: '2rem', color: '#FF6B35', display: 'block', marginBottom: '8px' }}></i>
+                  <i className="fas fa-spinner fa-spin" style={{ fontSize: '2rem', color: '#1A1A1A', display: 'block', marginBottom: '8px' }}></i>
                   <p style={{ color: '#6b7280' }}>Uploading...</p>
                 </div>
               ) : featuredImagePreview ? (
@@ -574,7 +574,7 @@ function BlogModal({ blog, onClose, onSave }) {
               padding: '14px',
               borderRadius: '12px',
               border: 'none',
-              background: '#FF6B35',
+              background: '#1A1A1A',
               color: 'white',
               fontSize: '1rem',
               fontWeight: 600,

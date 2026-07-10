@@ -170,11 +170,11 @@ function OrderModal({ order, formatPrice, onClose }) {
             <div style={{
               display: 'flex',
               justifyContent: 'space-between',
-              borderTop: '2px solid #1a1a2e',
+              borderTop: '2px solid #111827',
               paddingTop: '8px',
               marginTop: '8px',
               fontWeight: 700,
-              color: '#FF6B35'
+              color: '#1A1A1A'
             }}>
               <span>Total</span>
               <span>{formatPrice(order.total || 0)}</span>

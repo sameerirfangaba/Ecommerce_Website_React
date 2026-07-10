@@ -17,38 +17,17 @@ function Sidebar({ activeTab, setActiveTab }) {
       {/* Logo */}
       <div style={{
         padding: '2rem 1.5rem',
-        borderBottom: '1px solid rgba(255,255,255,0.08)',
+        borderBottom: '1px solid #EAEAEA',
         flexShrink: 0
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <div style={{
-            width: '42px',
-            height: '42px',
-            background: '#FF6B35',
-            borderRadius: '12px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            boxShadow: '0 4px 12px rgba(255,107,53,0.3)'
-          }}>
-            <i className="fas fa-store" style={{ color: 'white', fontSize: '1.2rem' }}></i>
-          </div>
-          <div>
-            <span style={{
-              fontFamily: "'Playfair Display', serif",
-              fontSize: '1.4rem',
-              fontWeight: 700,
-              color: 'white',
-              display: 'block',
-              lineHeight: 1.2
-            }}>Ismora</span>
-            <span style={{
-              fontSize: '0.65rem',
-              color: 'rgba(255,255,255,0.4)',
-              letterSpacing: '0.05em',
-              textTransform: 'uppercase'
-            }}>Admin Panel</span>
-          </div>
+        <div>
+          <img src="/icon.png" alt="Ismora" style={{ height: '25px', width: 'auto', display: 'block', marginBottom: '6px' }} />
+          <span style={{
+            fontSize: '0.65rem',
+            color: '#9CA3AF',
+            letterSpacing: '0.05em',
+            textTransform: 'uppercase'
+          }}>Admin Panel</span>
         </div>
       </div>
 
@@ -60,18 +39,19 @@ function Sidebar({ activeTab, setActiveTab }) {
       }}>
         <p style={{
           fontSize: '0.65rem',
-          color: 'rgba(255,255,255,0.3)',
+          color: '#9CA3AF',
           letterSpacing: '0.1em',
           textTransform: 'uppercase',
           padding: '0 0.75rem',
           marginBottom: '1rem'
         }}>Main Menu</p>
-        
+
         {navItems.map((item) => {
           const isActive = activeTab === item.id;
           return (
             <div
               key={item.id}
+              data-tab={item.id}
               onClick={() => setActiveTab(item.id)}
               style={{
                 display: 'flex',
@@ -79,46 +59,38 @@ function Sidebar({ activeTab, setActiveTab }) {
                 gap: '14px',
                 padding: '0.8rem 1rem',
                 marginBottom: '4px',
-                borderRadius: '12px',
+                borderRadius: '14px',
                 cursor: 'pointer',
                 transition: 'all 0.2s',
-                background: isActive ? '#FF6B35' : 'transparent',
-                color: isActive ? 'white' : 'rgba(255,255,255,0.6)',
-                boxShadow: isActive ? '0 4px 16px rgba(255,107,53,0.3)' : 'none',
+                background: isActive ? '#1A1A1A' : 'transparent',
+                color: isActive ? 'white' : '#6B7280',
                 position: 'relative'
               }}
               onMouseEnter={(e) => {
                 if (!isActive) {
-                  e.currentTarget.style.background = 'rgba(255,255,255,0.06)';
-                  e.currentTarget.style.color = 'white';
+                  e.currentTarget.style.background = '#FAFAFA';
+                  e.currentTarget.style.color = '#1A1A1A';
                 }
               }}
               onMouseLeave={(e) => {
                 if (!isActive) {
                   e.currentTarget.style.background = 'transparent';
-                  e.currentTarget.style.color = 'rgba(255,255,255,0.6)';
+                  e.currentTarget.style.color = '#6B7280';
                 }
               }}
             >
               <i className={`fas ${item.icon}`} style={{
                 width: '20px',
-                fontSize: '1.1rem',
+                fontSize: '1.05rem',
                 textAlign: 'center'
               }}></i>
               <span style={{
                 fontWeight: isActive ? 600 : 500,
-                fontSize: '0.9rem'
+                fontSize: '0.9rem',
+                flex: 1
               }}>{item.label}</span>
               {isActive && (
-                <div style={{
-                  position: 'absolute',
-                  right: '8px',
-                  width: '6px',
-                  height: '6px',
-                  borderRadius: '50%',
-                  background: 'white',
-                  opacity: 0.5
-                }}></div>
+                <i className="fas fa-chevron-right" style={{ fontSize: '0.7rem', opacity: 0.6 }}></i>
               )}
             </div>
           );
@@ -128,7 +100,7 @@ function Sidebar({ activeTab, setActiveTab }) {
       {/* Bottom Section */}
       <div style={{
         padding: '1rem 1.5rem',
-        borderTop: '1px solid rgba(255,255,255,0.06)',
+        borderTop: '1px solid #EAEAEA',
         flexShrink: 0
       }}>
         <div style={{
@@ -137,15 +109,15 @@ function Sidebar({ activeTab, setActiveTab }) {
           gap: '10px',
           padding: '0.6rem 0.8rem',
           borderRadius: '10px',
-          background: 'rgba(255,255,255,0.04)'
+          background: '#FAFAFA'
         }}>
           <i className="fas fa-shield-alt" style={{
-            color: 'rgba(255,255,255,0.3)',
+            color: '#9CA3AF',
             fontSize: '0.85rem'
           }}></i>
           <span style={{
             fontSize: '0.7rem',
-            color: 'rgba(255,255,255,0.3)'
+            color: '#9CA3AF'
           }}>v2.0 • Secure</span>
         </div>
       </div>

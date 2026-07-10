@@ -693,7 +693,7 @@ function ProductModal({ product, onClose, onSave }) {
               background: '#fafafa'
             }}
             onClick={() => document.getElementById('main-image-input').click()}
-            onDragOver={(e) => { e.preventDefault(); e.currentTarget.style.borderColor = '#FF6B35'; e.currentTarget.style.background = '#fff7ed'; }}
+            onDragOver={(e) => { e.preventDefault(); e.currentTarget.style.borderColor = '#1A1A1A'; e.currentTarget.style.background = '#fff7ed'; }}
             onDragLeave={(e) => { e.currentTarget.style.borderColor = '#d1d5db'; e.currentTarget.style.background = '#fafafa'; }}
             onDrop={(e) => {
               e.preventDefault();
@@ -714,7 +714,7 @@ function ProductModal({ product, onClose, onSave }) {
               />
               {uploadingImage ? (
                 <div style={{ padding: '20px' }}>
-                  <i className="fas fa-spinner fa-spin" style={{ fontSize: '2rem', color: '#FF6B35', display: 'block', marginBottom: '8px' }}></i>
+                  <i className="fas fa-spinner fa-spin" style={{ fontSize: '2rem', color: '#1A1A1A', display: 'block', marginBottom: '8px' }}></i>
                   <p style={{ color: '#6b7280' }}>Uploading...</p>
                 </div>
               ) : imageUrl ? (
@@ -1015,7 +1015,7 @@ function ProductModal({ product, onClose, onSave }) {
               </div>
               
               <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
-                <span style={{ fontSize: '0.8rem', fontWeight: 500, color: variantsEnabled ? '#1a1a2e' : '#6b7280' }}>
+                <span style={{ fontSize: '0.8rem', fontWeight: 500, color: variantsEnabled ? '#111827' : '#6b7280' }}>
                   {variantsEnabled ? 'ON' : 'OFF'}
                 </span>
                 <div
@@ -1028,7 +1028,7 @@ function ProductModal({ product, onClose, onSave }) {
                     cursor: 'pointer',
                     transition: 'all 0.3s',
                     position: 'relative',
-                    boxShadow: variantsEnabled ? '0 0 0 3px rgba(79,70,229,0.2)' : 'none'
+                    boxShadow: variantsEnabled ? '0 0 0 3px rgba(26,26,26,0.2)' : 'none'
                   }}
                 >
                   <div
@@ -1474,7 +1474,7 @@ function ProductModal({ product, onClose, onSave }) {
               padding: '14px',
               borderRadius: '12px',
               border: 'none',
-              background: '#FF6B35',
+              background: '#1A1A1A',
               color: 'white',
               fontSize: '1rem',
               fontWeight: 600,

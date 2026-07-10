@@ -89,13 +89,13 @@ function Admin() {
         alignItems: 'center',
         justifyContent: 'center',
         minHeight: '100vh',
-        background: '#f8f8fc'
+        background: '#F9FAFB'
       }}>
         <div style={{
           width: '48px',
           height: '48px',
-          border: '3px solid #e8e8f0',
-          borderTopColor: '#FF6B35',
+          border: '3px solid #E5E7EB',
+          borderTopColor: '#1A1A1A',
           borderRadius: '50%',
           animation: 'spin 0.8s linear infinite'
         }}></div>
@@ -133,7 +133,7 @@ function Admin() {
     <div style={{
       display: 'flex',
       minHeight: '100vh',
-      background: '#f8f8fc',
+      background: '#F9FAFB',
       position: 'relative'
     }}>
       {/* Sidebar */}
@@ -143,10 +143,9 @@ function Admin() {
         top: 0,
         height: '100vh',
         width: '280px',
-        background: '#1a1a2e',
-        color: 'white',
+        background: 'white',
+        borderRight: '1px solid #EAEAEA',
         zIndex: 50,
-        boxShadow: '4px 0 20px rgba(0,0,0,0.1)',
         overflowY: 'auto',
         transition: 'all 0.3s ease'
       }}>

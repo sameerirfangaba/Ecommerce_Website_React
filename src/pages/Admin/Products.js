@@ -182,7 +182,7 @@ function Products({ formatPrice }) {
         }}>
           <div>
             <h2 style={{ fontSize: '1.25rem', fontWeight: 700 }}>
-              <i className="fas fa-box" style={{ color: '#FF6B35', marginRight: '8px' }}></i>
+              <i className="fas fa-box" style={{ color: '#1A1A1A', marginRight: '8px' }}></i>
               Products
               <span style={{
                 fontSize: '0.75rem',
@@ -243,7 +243,7 @@ function Products({ formatPrice }) {
                 padding: '10px 20px',
                 borderRadius: '10px',
                 border: 'none',
-                background: '#FF6B35',
+                background: '#1A1A1A',
                 color: 'white',
                 cursor: 'pointer',
                 fontWeight: 600,
@@ -251,14 +251,14 @@ function Products({ formatPrice }) {
                 alignItems: 'center',
                 gap: '6px',
                 transition: 'all 0.2s',
-                boxShadow: '0 4px 12px rgba(255,107,53,0.25)'
+                boxShadow: '0 4px 12px rgba(26,26,26,0.25)'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = '#e55a25';
+                e.currentTarget.style.background = '#000000';
                 e.currentTarget.style.transform = 'translateY(-2px)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = '#FF6B35';
+                e.currentTarget.style.background = '#1A1A1A';
                 e.currentTarget.style.transform = 'translateY(0)';
               }}
             >
@@ -303,8 +303,8 @@ function Products({ formatPrice }) {
                 background: 'white'
               }}
               onFocus={(e) => {
-                e.currentTarget.style.borderColor = '#FF6B35';
-                e.currentTarget.style.boxShadow = '0 0 0 3px rgba(255,107,53,0.1)';
+                e.currentTarget.style.borderColor = '#1A1A1A';
+                e.currentTarget.style.boxShadow = '0 0 0 3px rgba(26,26,26,0.1)';
               }}
               onBlur={(e) => {
                 e.currentTarget.style.borderColor = '#e5e7eb';
@@ -365,7 +365,7 @@ function Products({ formatPrice }) {
             color: '#6b7280'
           }}>
             <i className="fas fa-search" style={{ fontSize: '3rem', display: 'block', marginBottom: '16px', opacity: 0.3 }}></i>
-            <h3 style={{ fontSize: '1.1rem', fontWeight: 600, color: '#1a1a2e', marginBottom: '4px' }}>
+            <h3 style={{ fontSize: '1.1rem', fontWeight: 600, color: '#111827', marginBottom: '4px' }}>
               No products found
             </h3>
             <p style={{ fontSize: '0.875rem' }}>
@@ -389,7 +389,7 @@ function Products({ formatPrice }) {
                   background: 'white',
                   borderRadius: '14px',
                   padding: '16px',
-                  border: '1px solid #e8e8f0',
+                  border: '1px solid #E5E7EB',
                   transition: 'all 0.3s',
                   position: 'relative'
                 }}
@@ -401,7 +401,7 @@ function Products({ formatPrice }) {
                 onMouseLeave={(e) => {
                   e.currentTarget.style.boxShadow = 'none';
                   e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.borderColor = '#e8e8f0';
+                  e.currentTarget.style.borderColor = '#E5E7EB';
                 }}
                 >
                   <div style={{ position: 'relative' }}>
@@ -414,7 +414,7 @@ function Products({ formatPrice }) {
                         objectFit: 'cover',
                         borderRadius: '10px',
                         marginBottom: '12px',
-                        background: '#f8f8fc'
+                        background: '#F9FAFB'
                       }}
                       onError={(e) => e.target.src = 'https://placehold.co/300x160/f0f0f0/aaa?text=No+Image'}
                     />
@@ -440,7 +440,7 @@ function Products({ formatPrice }) {
                         position: 'absolute',
                         bottom: '10px',
                         left: '10px',
-                        background: 'rgba(26,26,46,0.8)',
+                        background: 'rgba(17,24,39,0.8)',
                         backdropFilter: 'blur(4px)',
                         color: 'white',
                         fontSize: '0.6rem',
@@ -490,7 +490,7 @@ function Products({ formatPrice }) {
                   </h3>
                   
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
-                    <span style={{ color: '#FF6B35', fontWeight: 700, fontSize: '1rem' }}>
+                    <span style={{ color: '#1A1A1A', fontWeight: 700, fontSize: '1rem' }}>
                       {formatPrice(product.price)}
                     </span>
                     {hasDiscount && (

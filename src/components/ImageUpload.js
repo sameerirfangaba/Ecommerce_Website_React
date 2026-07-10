@@ -69,7 +69,7 @@ function ImageUpload({ onImageUploaded }) {
 
   return (
     <div style={{
-      border: '2px dashed #e8e8f0',
+      border: '2px dashed #E5E7EB',
       borderRadius: '12px',
       padding: '40px 20px',
       textAlign: 'center',
@@ -93,11 +93,11 @@ function ImageUpload({ onImageUploaded }) {
       >
         <i className="fas fa-cloud-upload-alt" style={{
           fontSize: '3rem',
-          color: '#FF6B35',
+          color: '#1A1A1A',
           display: 'block',
           marginBottom: '12px'
         }}></i>
-        <p style={{ fontWeight: 600, color: '#1a1a2e' }}>
+        <p style={{ fontWeight: 600, color: '#111827' }}>
           {uploading ? 'Uploading...' : 'Click or drag to upload image'}
         </p>
         <p style={{ fontSize: '0.85rem', color: '#4a4a68', marginTop: '4px' }}>
@@ -116,7 +116,7 @@ function ImageUpload({ onImageUploaded }) {
           <div style={{
             width: `${progress}%`,
             height: '100%',
-            background: '#FF6B35',
+            background: '#1A1A1A',
             transition: 'width 0.3s',
             borderRadius: '8px'
           }}></div>
