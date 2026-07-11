@@ -2,7 +2,8 @@ import { useState, useEffect, useRef } from 'react';
 import { db } from '../../../firebase/config';
 import { doc, addDoc, updateDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { useToast } from '../../../context/ToastContext';
-import { loadQuill } from '../../../utils/loadQuill';
+import Quill from 'quill';
+import 'quill/dist/quill.snow.css';
 
 // ✅ ImgBB Upload Function
 const uploadToImgBB = async (file) => {
@@ -94,112 +95,91 @@ function ProductModal({ product, onClose, onSave }) {
 
   // ✅ Initialize Quill for description
   useEffect(() => {
-    const initQuill = () => {
-      if (typeof window !== 'undefined' && window.Quill && document.getElementById('quill-editor') && !quillInstance.current) {
-        try {
-          const toolbarOptions = [
-            [{ header: [1, 2, 3, 4, 5, 6, false] }],
-            ['bold', 'italic', 'underline', 'strike'],
-            [{ list: 'ordered' }, { list: 'bullet' }],
-            [{ color: [] }, { background: [] }],
-            [{ align: [] }],
-            ['link', 'image', 'video'],
-            ['blockquote', 'code-block'],
-            ['clean']
-          ];
+    const container = document.getElementById('quill-editor');
+    if (!quillInstance.current && container) {
+      try {
+        const toolbarOptions = [
+          [{ header: [1, 2, 3, 4, 5, 6, false] }],
+          ['bold', 'italic', 'underline', 'strike'],
+          [{ list: 'ordered' }, { list: 'bullet' }],
+          [{ color: [] }, { background: [] }],
+          [{ align: [] }],
+          ['link', 'image', 'video'],
+          ['blockquote', 'code-block'],
+          ['clean']
+        ];
 
-          const quill = new window.Quill('#quill-editor', {
-            theme: 'snow',
-            modules: {
-              toolbar: toolbarOptions
-            },
-            placeholder: 'Write product description here...'
-          });
+        const quill = new Quill(container, {
+          theme: 'snow',
+          modules: {
+            toolbar: toolbarOptions
+          },
+          placeholder: 'Write product description here...'
+        });
 
-          if (formData.desc) {
-            quill.root.innerHTML = formData.desc;
-          }
-
-          quill.on('text-change', () => {
-            const content = quill.root.innerHTML;
-            setFormData(prev => ({ ...prev, desc: content }));
-          });
-
-          const toolbar = quill.getModule('toolbar');
-          if (toolbar) {
-            toolbar.addHandler('image', () => {
-              const input = document.createElement('input');
-              input.setAttribute('type', 'file');
-              input.setAttribute('accept', 'image/*');
-              input.click();
-
-              input.onchange = async () => {
-                const file = input.files[0];
-                if (!file) return;
-
-                try {
-                  const range = quill.getSelection();
-                  if (range) {
-                    quill.insertText(range.index, '⏳ Uploading image...', 'bold');
-                    quill.setSelection(range.index + 19);
-                  }
-
-                  const url = await uploadToImgBB(file);
-
-                  if (range) {
-                    quill.deleteText(range.index, 19);
-                    quill.insertEmbed(range.index, 'image', url);
-                    quill.setSelection(range.index + 1);
-                  }
-                  showToast('Image uploaded successfully!', 'success');
-                } catch (error) {
-                  showToast('Image upload failed: ' + error.message, 'error');
-                  const range = quill.getSelection();
-                  if (range) {
-                    quill.deleteText(range.index - 19, 19);
-                  }
-                }
-              };
-            });
-          }
-
-          quillInstance.current = quill;
-          setQuillLoaded(true);
-        } catch (error) {
-          console.error('Quill init error:', error);
+        if (formData.desc) {
+          quill.root.innerHTML = formData.desc;
         }
+
+        quill.on('text-change', () => {
+          const content = quill.root.innerHTML;
+          setFormData(prev => ({ ...prev, desc: content }));
+        });
+
+        const toolbar = quill.getModule('toolbar');
+        if (toolbar) {
+          toolbar.addHandler('image', () => {
+            const input = document.createElement('input');
+            input.setAttribute('type', 'file');
+            input.setAttribute('accept', 'image/*');
+            input.click();
+
+            input.onchange = async () => {
+              const file = input.files[0];
+              if (!file) return;
+
+              try {
+                const range = quill.getSelection();
+                if (range) {
+                  quill.insertText(range.index, '⏳ Uploading image...', 'bold');
+                  quill.setSelection(range.index + 19);
+                }
+
+                const url = await uploadToImgBB(file);
+
+                if (range) {
+                  quill.deleteText(range.index, 19);
+                  quill.insertEmbed(range.index, 'image', url);
+                  quill.setSelection(range.index + 1);
+                }
+                showToast('Image uploaded successfully!', 'success');
+              } catch (error) {
+                showToast('Image upload failed: ' + error.message, 'error');
+                const range = quill.getSelection();
+                if (range) {
+                  quill.deleteText(range.index - 19, 19);
+                }
+              }
+            };
+          });
+        }
+
+        quillInstance.current = quill;
+        setQuillLoaded(true);
+      } catch (error) {
+        console.error('Quill init error:', error);
       }
-    };
-
-    const checkQuill = () => {
-      if (typeof window !== 'undefined' && window.Quill) {
-        initQuill();
-        return true;
-      }
-      return false;
-    };
-
-    loadQuill();
-
-    if (checkQuill()) return;
-
-    const interval = setInterval(() => {
-      if (checkQuill()) {
-        clearInterval(interval);
-      }
-    }, 100);
-
-    const timeout = setTimeout(() => {
-      clearInterval(interval);
-      if (!quillInstance.current) {
-        console.warn('Quill failed to load from CDN');
-      }
-    }, 5000);
+    }
 
     return () => {
-      clearInterval(interval);
-      clearTimeout(timeout);
       if (quillInstance.current) {
+        const toolbar = quillInstance.current.getModule('toolbar');
+        if (toolbar?.container) {
+          toolbar.container.remove();
+        }
+        container.innerHTML = '';
+        container.classList.remove('ql-container', 'ql-snow');
+        container.removeAttribute('tabindex');
         quillInstance.current = null;
       }
     };
