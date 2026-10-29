@@ -1,10 +1,10 @@
-# 🛒 React E-Commerce & Admin Suite
+# React E-Commerce & Admin Suite
 
 A production-ready e-commerce web application built with React. It features a complete public storefront, seamless shopping cart management, a dynamic blog platform, Google AdSense integration, and a full-featured **Admin Dashboard** for managing products, orders, and store content.
 
 ---
 
-## ✨ Key Features
+## Key Features
 
 * **Dynamic Storefront:** Browse through categorized products, detailed views, and custom filters.
 * **Interactive Cart & Checkout:** Real-time cart management and seamless checkout flow.
@@ -18,7 +18,7 @@ A production-ready e-commerce web application built with React. It features a co
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 * **Frontend:** React.js, React Router
 * **Backend / Database:** Firebase Integration
@@ -27,7 +27,7 @@ A production-ready e-commerce web application built with React. It features a co
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 Follow these steps to set up and run the project locally on your machine:
 
@@ -49,7 +49,7 @@ Follow these steps to set up and run the project locally on your machine:
    npm install
    
 4. **Environment Configuration::**
-* Set up your **.env** file with the required Firebase configuration keys.
+   * Set up your **.env** file with the required Firebase configuration keys.
 
 5. **Run the development server:**
    ```bash
